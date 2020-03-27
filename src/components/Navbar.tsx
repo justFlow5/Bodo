@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import HomeIcon from '@material-ui/icons/Home';
+import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+import PeopleSharpIcon from '@material-ui/icons/PeopleSharp';
 
 import { device } from './utils/media';
 
@@ -14,7 +17,7 @@ const MyNavbar = styled.nav`
 
 /* background: ${props => props.theme.greenFour}; */
 background: #091D34;
-height: 50px;
+height: 55px;
 
 color: #f7fbdf;
 
@@ -53,37 +56,53 @@ const NavbarItem = styled.li`
   /* padding-top: 30px;
   padding-bottom: 30px; */
   padding: 0 10px;
-  height: 50px;
-  line-height: 50px;
+  height: 55px;
+  /* line-height: 55px; */
   white-space: nowrap;
 
-  font-size: 16px;
   font-weight: 500;
 
   cursor: pointer;
   /* margin: 10px; */
 
   border-bottom: 2px hidden #f7fbdf;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   transition: border 0.1s linear;
-
-  @media ${device.mobileL} {
-    font-size: 17px;
-  }
-  @media ${device.tablet} {
-    font-size: 19px;
-    letter-spacing: 0.5px;
-  }
-
-  @media ${device.laptop} {
-    font-size: 19px;
-    font-weight: 600;
-    padding: 0 20px;
-  }
 
   &.lastItem {
     margin-left: inherit;
     @media ${device.laptop} {
       margin-left: auto;
+    }
+  }
+
+  & .navIcon {
+    fill: #f7fbdf;
+    height: 30px;
+    width: 30px;
+  }
+
+  & .navText {
+    font-size: 8px;
+    line-height: unset;
+
+    @media ${device.mobileL} {
+      font-size: 10px;
+    }
+    @media ${device.tablet} {
+      font-size: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    @media ${device.laptop} {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 0 20px;
     }
   }
 
@@ -98,10 +117,19 @@ const Navbar: React.FC = () => {
   return (
     <MyNavbar>
       <NavbarList>
-        <NavbarItem>Dashboard</NavbarItem>
-        <NavbarItem>+ New Question</NavbarItem>
+        <NavbarItem>
+          <HomeIcon className="navIcon" />
+          <span className="navText">Dashboard</span>
+        </NavbarItem>
+        <NavbarItem>
+          <QuestionAnswerIcon className="navIcon" />
+          <span className="navText">+ New Question</span>
+        </NavbarItem>
 
-        <NavbarItem className="lastItem">Start Interview</NavbarItem>
+        <NavbarItem className="lastItem">
+          <PeopleSharpIcon className="navIcon" />
+          <span className="navText">Start Interview</span>
+        </NavbarItem>
       </NavbarList>
     </MyNavbar>
   );
