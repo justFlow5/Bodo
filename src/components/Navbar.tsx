@@ -16,10 +16,12 @@ const MyNavbar = styled.nav`
 
 
 /* background: ${props => props.theme.greenFour}; */
-background: #091D34;
+background: ${props => props.theme.blueFife};
 height: 55px;
 
-color: #f7fbdf;
+/* color:${props => props.theme.blueOne}; */
+
+
 
 -webkit-box-shadow: 0px -5px 9px -5px rgba(19,56,99,1);
 -moz-box-shadow: 0px -5px 9px -5px rgba(19,56,99,1);
@@ -65,14 +67,27 @@ const NavbarItem = styled.li`
   cursor: pointer;
   /* margin: 10px; */
 
-  border-bottom: 2px hidden #f7fbdf;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  transition: border 0.1s linear;
+  border-bottom: 2px solid ${props => props.theme.blueFife};
+  transition: border-bottom 0.1s linear;
+
+  &:hover {
+    @media ${device.laptop} {
+      border-bottom: 2px solid ${props => props.theme.blueOne};
+    }
+  }
+
+  &:hover .navIcon {
+    fill: white;
+  }
+
+  &:hover .navText {
+    color: white;
+  }
 
   &.lastItem {
     margin-left: inherit;
@@ -82,33 +97,38 @@ const NavbarItem = styled.li`
   }
 
   & .navIcon {
-    fill: #f7fbdf;
+    fill: ${props => props.theme.blueOne};
     height: 30px;
     width: 30px;
+    transition: fill 0.4s linear;
+
+    /* &:hover {
+      fill: white;
+    } */
   }
 
   & .navText {
     font-size: 8px;
     line-height: unset;
+    color: ${props => props.theme.blueOne};
+    letter-spacing: 1px;
+    transition: color 0.4s linear;
+
+    /* &:hover {
+      color: white;
+    } */
 
     @media ${device.mobileL} {
       font-size: 10px;
     }
     @media ${device.tablet} {
       font-size: 12px;
-      letter-spacing: 0.5px;
     }
 
     @media ${device.laptop} {
       font-size: 12px;
       font-weight: 600;
       padding: 0 20px;
-    }
-  }
-
-  &:hover {
-    @media ${device.laptop} {
-      border-bottom: 2px solid #f7fbdf;
     }
   }
 `;

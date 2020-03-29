@@ -34,11 +34,11 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const theme = {
-  greenOne: '#E1ECF9',
-  greenTwo: ' #609CE1',
-  greenThree: '#236AB9',
-  greenFour: '#133863',
-  greenFife: '#091D34',
+  blueOne: '#E1ECF9',
+  blueTwo: ' #609CE1',
+  blueThree: '#236AB9',
+  blueFour: '#133863',
+  blueFife: '#091D34',
 
   mobileS: '320px',
   mobileM: '375px',
