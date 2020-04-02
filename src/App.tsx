@@ -24,6 +24,7 @@ const GlobalStyle = createGlobalStyle`
   -moz-osx-font-smoothing: grayscale;
   /* background: #f7fbdf; */
   background: #E1ECF9;
+  background: #acccf1;
   }
 
   code {

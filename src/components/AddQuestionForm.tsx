@@ -66,12 +66,15 @@ const FormContainer = styled.form`
   /* align-items: center; */
   justify-content: center;
 
-  /* border-radius: 12px;
+  border-radius: 12px;
   background: #acccf1;
   padding: 50px 60px;
+  background: #e1ecf9;
+  background: #c7d7ea;
+
   -webkit-box-shadow: 0px 0px 37px -18px rgba(19, 56, 99, 1);
   -moz-box-shadow: 0px 0px 37px -18px rgba(19, 56, 99, 1);
-  box-shadow: 0px 0px 37px -18px rgba(19, 56, 99, 1); */
+  box-shadow: 0px 0px 37px -18px rgba(19, 56, 99, 1);
 
   @media ${device.laptop} {
     width: 40%;
