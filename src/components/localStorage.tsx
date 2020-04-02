@@ -1,5 +1,6 @@
 interface QuestionObject {
-  technology: string;
+  job: string;
+  technology?: string;
   question: string;
   answer: string;
   code?: string;
