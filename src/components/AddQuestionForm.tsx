@@ -58,23 +58,32 @@ const Header = styled.h3`
 const FormContainer = styled.form`
   /* margin-top: 80px; */
   overflow: hidden;
+  width: 85%;
+  padding: 20px 20px 10px;
 
-  width: 75%;
-  margin: 20px auto;
+  margin: 20px auto 80px;
+
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: center;
 
   border-radius: 12px;
-  background: #acccf1;
-  padding: 50px 60px;
-  background: #e1ecf9;
+  /* background: #acccf1;
+  background: #e1ecf9; */
   background: #c7d7ea;
 
   -webkit-box-shadow: 0px 0px 37px -18px rgba(19, 56, 99, 1);
   -moz-box-shadow: 0px 0px 37px -18px rgba(19, 56, 99, 1);
   box-shadow: 0px 0px 37px -18px rgba(19, 56, 99, 1);
+
+  @media ${device.mobileL} {
+    width: 75%;
+  }
+
+  @media ${device.tablet} {
+    padding: 30px 60px 20px;
+    width: 65%;
+  }
 
   @media ${device.laptop} {
     width: 40%;
@@ -82,11 +91,12 @@ const FormContainer = styled.form`
   }
 
   & button {
-    margin-bottom: 60px;
+    /* margin-bottom: 60px; */
+    margin-bottom: 10px;
     margin-top: 20px;
     @media ${device.laptop} {
       margin-top: 40px;
-      margin-bottom: unset;
+      /* margin-bottom: unset; */
     }
   }
 `;
@@ -103,7 +113,7 @@ margin: 15px auto 0;
 
   &.techs {
     & label {
-      flex: 0 0 50%;
+      flex: 0 0 49%;
       margin: 0 auto;
 
       /* @media ${device.mobileS} {
