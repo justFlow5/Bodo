@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import 'reset-css';
-import NavBar from './components/Navbar';
-import AddQuestionForm from './components/AddQuestionForm';
+// import NavBar from './components/Navbar';
+// import AddQuestionForm from './components/pages/AddQuestionForm';
+import AppRouter from './AppRouter';
 
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 
@@ -13,6 +14,11 @@ const GlobalStyle = createGlobalStyle`
   margin: 0;
   padding: 0;
   outline: none;
+  border: 0;
+}
+
+html {
+  height: 100%;
 }
 
   body {
@@ -25,11 +31,24 @@ const GlobalStyle = createGlobalStyle`
   /* background: #f7fbdf; */
   background: #E1ECF9;
   background: #acccf1;
+  height: 100%;
+  position: relative;
   }
+
+#root {
+  height: 100%;
+  position: relative;
+
+}
+  
 
   code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+a {
+  text-decoration: none;
 }
 
 `;
@@ -47,15 +66,15 @@ const theme = {
   tablet: '768px',
   laptop: '1024px',
   laptopL: '1440px',
-  desktop: '2560px'
+  desktop: '2560px',
 };
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <NavBar />
-      <AddQuestionForm />
+
+      <AppRouter />
     </ThemeProvider>
   );
 };

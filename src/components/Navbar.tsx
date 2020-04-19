@@ -5,6 +5,8 @@ import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import PeopleSharpIcon from '@material-ui/icons/PeopleSharp';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 
+import { Link } from 'react-router-dom';
+import { logout } from '../firebase/base';
 import { device } from './utils/media';
 
 const MyNavbar = styled.nav`
@@ -16,11 +18,11 @@ const MyNavbar = styled.nav`
   z-index: 5;
 
 
-/* background: ${props => props.theme.greenFour}; */
-background: ${props => props.theme.blueFife};
+/* background: ${(props) => props.theme.greenFour}; */
+background: ${(props) => props.theme.blueFife};
 height: 55px;
 
-/* color:${props => props.theme.blueOne}; */
+/* color:${(props) => props.theme.blueOne}; */
 
 
 
@@ -73,12 +75,16 @@ const NavbarItem = styled.li`
   justify-content: center;
   align-items: center;
 
-  border-bottom: 2px solid ${props => props.theme.blueFife};
+  border-bottom: 2px solid ${(props) => props.theme.blueFife};
   transition: border-bottom 0.1s linear;
+
+  @media ${device.tablet} {
+    padding: 0;
+  }
 
   &:hover {
     @media ${device.laptop} {
-      border-bottom: 2px solid ${props => props.theme.blueOne};
+      border-bottom: 2px solid ${(props) => props.theme.blueOne};
     }
   }
 
@@ -97,8 +103,13 @@ const NavbarItem = styled.li`
     }
   }
 
+  &.middleIcon {
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+  }
+
   & .navIcon {
-    fill: ${props => props.theme.blueOne};
+    fill: ${(props) => props.theme.blueOne};
     height: 30px;
     width: 30px;
     transition: fill 0.4s linear;
@@ -111,7 +122,7 @@ const NavbarItem = styled.li`
   & .navText {
     font-size: 8px;
     line-height: unset;
-    color: ${props => props.theme.blueOne};
+    color: ${(props) => props.theme.blueOne};
     letter-spacing: 1px;
     transition: color 0.4s linear;
 
@@ -138,21 +149,31 @@ const Navbar: React.FC = () => {
   return (
     <MyNavbar>
       <NavbarList>
-        <NavbarItem>
-          <HomeIcon className="navIcon" />
-          <span className="navText">Dashboard</span>
-        </NavbarItem>
-        <NavbarItem>
-          <QuestionAnswerIcon className="navIcon" />
-          <span className="navText">+ New Question</span>
-        </NavbarItem>
+        <Link to="/dashboard">
+          <NavbarItem>
+            <HomeIcon className="navIcon" />
+            <span className="navText">Dashboard</span>
+          </NavbarItem>
+        </Link>
+        <Link to="/add-question">
+          <NavbarItem>
+            <QuestionAnswerIcon className="navIcon" />
+            <span className="navText">+ New Question</span>
+          </NavbarItem>
+        </Link>
+        <Link to="/interview">
+          <NavbarItem className="middleIcon">
+            <PeopleSharpIcon className="navIcon" />
+            <span className="navText">Start Interview</span>
+          </NavbarItem>
+        </Link>
 
-        <NavbarItem>
-          <PeopleSharpIcon className="navIcon" />
-          <span className="navText">Start Interview</span>
-        </NavbarItem>
-
-        <NavbarItem className="lastItem">
+        <NavbarItem
+          className="lastItem"
+          onClick={() => {
+            logout();
+          }}
+        >
           <MeetingRoomIcon className="navIcon" />
           <span className="navText">Logout</span>
         </NavbarItem>
