@@ -412,13 +412,13 @@ const Welcome = () => {
   // const handler = useCallback(debounce(handleScroll, 20), []);
 
   const handleScroll = () => {
-    console.log(stickyRef.current);
+    // console.log(stickyRef.current);
     if (stickyRef.current) {
-      console.log('window.pageYOffset:', window.pageYOffset);
-      console.log(
-        'stickyRef.current.getBoundingClientRect().bottom:',
-        stickyRef.current.getBoundingClientRect().bottom
-      );
+      // console.log('window.pageYOffset:', window.pageYOffset);
+      // console.log(
+      //   'stickyRef.current.getBoundingClientRect().bottom:',
+      //   stickyRef.current.getBoundingClientRect().bottom
+      // );
 
       window.pageYOffset > stickyRef.current.getBoundingClientRect().top
         ? setSticky(true)

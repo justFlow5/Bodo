@@ -9,6 +9,10 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
+console.log(
+  'process.env.REACT_APP_FIREBASE_DATABASE_URL: ',
+  process.env.REACT_APP_FIREBASE_DATABASE_URL
+);
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -21,10 +25,6 @@ const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
 export const loginWithGoogle = () => {
   return firebase.auth().signInWithPopup(googleAuthProvider);
-};
-
-export const loginAnonimously = () => {
-  return firebase.auth().signInAnonymously();
 };
 
 export const logout = () => {
