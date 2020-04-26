@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+
+import styled, { keyframes } from 'styled-components';
 import Navbar from '../Navbar';
 import ArrowRightAltRoundedIcon from '@material-ui/icons/ArrowRightAltRounded';
 import Jeff from '../../images/jeff2.png';
@@ -17,6 +18,17 @@ import Typist from 'react-typist';
 import Button from '@material-ui/core/Button';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+
+const fadeIn = keyframes`
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+`;
 
 const InterviewPage = styled.div`
   height: 100%;
@@ -203,6 +215,7 @@ const Input = styled.input`
 const TechsContainer = styled.div`
   position: relative;
   width: 100%;
+  animation: ${fadeIn} 0.2s ease-in-out;
 `;
 
 const TechsList = styled.form`
@@ -350,8 +363,6 @@ const Interview = () => {
   const [hide, setHide] = useState('');
   const [isCompleted, setIsCompleted] = useState(true);
 
-  const [isLoaded, setIsLoaded] = useState(false);
-
   const info1 = 'Hi! My name is Jeff. Nice to meet you!';
 
   const handleChange = (e) => {
@@ -416,58 +427,60 @@ const Interview = () => {
             {/* ##################################################################### */}
 
             <Title>Choose Technology:</Title>
-            <TechsContainer>
-              <TechsList>
-                <Checkbox
-                  id="HTML111"
-                  type="checkbox"
-                  onChange={handleCheckbox}
-                  value="html"
-                />
-                <TechsItemWrapper className="checkbox-label-wrapper">
-                  <TechsItem htmlFor="HTML111">HTML</TechsItem>
-                </TechsItemWrapper>
-                <Checkbox
-                  id="CSS111"
-                  type="checkbox"
-                  onChange={handleCheckbox}
-                  value="css"
-                />
-                <TechsItemWrapper className="checkbox-label-wrapper">
-                  <TechsItem htmlFor="CSS111">CSS</TechsItem>
-                </TechsItemWrapper>
+            {stack === 'frontend' && (
+              <TechsContainer>
+                <TechsList>
+                  <Checkbox
+                    id="HTML111"
+                    type="checkbox"
+                    onChange={handleCheckbox}
+                    value="html"
+                  />
+                  <TechsItemWrapper className="checkbox-label-wrapper">
+                    <TechsItem htmlFor="HTML111">HTML</TechsItem>
+                  </TechsItemWrapper>
+                  <Checkbox
+                    id="CSS111"
+                    type="checkbox"
+                    onChange={handleCheckbox}
+                    value="css"
+                  />
+                  <TechsItemWrapper className="checkbox-label-wrapper">
+                    <TechsItem htmlFor="CSS111">CSS</TechsItem>
+                  </TechsItemWrapper>
 
-                <Checkbox
-                  id="JavaScript111"
-                  type="checkbox"
-                  onChange={handleCheckbox}
-                  value="javascript"
-                />
-                <TechsItemWrapper className="checkbox-label-wrapper">
-                  <TechsItem htmlFor="JavaScript111">JS</TechsItem>
-                </TechsItemWrapper>
+                  <Checkbox
+                    id="JavaScript111"
+                    type="checkbox"
+                    onChange={handleCheckbox}
+                    value="javascript"
+                  />
+                  <TechsItemWrapper className="checkbox-label-wrapper">
+                    <TechsItem htmlFor="JavaScript111">JS</TechsItem>
+                  </TechsItemWrapper>
 
-                <Checkbox
-                  id="react111"
-                  type="checkbox"
-                  onChange={handleCheckbox}
-                  value="react"
-                />
-                <TechsItemWrapper className="checkbox-label-wrapper">
-                  <TechsItem htmlFor="react111">React</TechsItem>
-                </TechsItemWrapper>
+                  <Checkbox
+                    id="react111"
+                    type="checkbox"
+                    onChange={handleCheckbox}
+                    value="react"
+                  />
+                  <TechsItemWrapper className="checkbox-label-wrapper">
+                    <TechsItem htmlFor="react111">React</TechsItem>
+                  </TechsItemWrapper>
 
-                <Checkbox
-                  id="github111"
-                  type="checkbox"
-                  onChange={handleCheckbox}
-                  value="github"
-                />
-                <TechsItemWrapper className="checkbox-label-wrapper">
-                  <TechsItem htmlFor="github111">GitHub</TechsItem>
-                </TechsItemWrapper>
-              </TechsList>
-            </TechsContainer>
+                  <Checkbox
+                    id="github111"
+                    type="checkbox"
+                    onChange={handleCheckbox}
+                    value="github"
+                  />
+                  <TechsItemWrapper className="checkbox-label-wrapper">
+                    <TechsItem htmlFor="github111">GitHub</TechsItem>
+                  </TechsItemWrapper>
+                </TechsList>
+              </TechsContainer>
+            )}
           </FieldsContainer>
         </InputsSection>
         <InterviewSection>

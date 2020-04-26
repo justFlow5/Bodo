@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+
+import Tooltip from '@material-ui/core/Tooltip';
+
+import { firebase, googleAuthProvider } from '../../firebase/base';
+
+import { validateEmail } from '../utils/helperFunctions';
 
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 
-// import Logo from '../../images/logo';
-// import Logo2 from '../../images/logoApp4.png';
-// import Logo2 from '../../images/appLogo999.png';
-import Logo2 from '../../images/logoApp900.png';
+import { device } from '../utils/media';
 
 import GoogleIcon from '../../images/googleIcon';
 
@@ -18,12 +21,30 @@ import InterviewPic from '../../images/interviewPic.jpg';
 import InterviewPic2 from '../../images/happyInterview.jpg';
 import InterviewPic3 from '../../images/studying.jpg';
 
+import clover from '../../images/clover2.png';
+
+import {
+  handleGoogleLogin,
+  handleAnonimousLogin,
+} from '../../firebase/firebaseFuntions';
+
 const rotate = keyframes`
 0% {
     transform: rotateY(360deg);
   }
   100% {
     transform: rotateY(0rem);
+  }
+`;
+
+const fadeIn = keyframes`
+0% {
+  transform: scale(0);
+  opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 `;
 
@@ -37,40 +58,65 @@ const PageContainer = styled.div`
 `;
 
 const PicWrapperLeft = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  display: none;
 
-  & .left-top-pic {
-    /* margin-left: 35px; */
-    width: 250px;
-    height: 160px;
-    align-self: flex-start;
-  }
+  @media ${device.laptop} {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 
-  & .left-bottom-pic {
-    /* margin-left: 35px; */
-    width: 350px;
-    height: 220px;
-    align-self: flex-end;
+    & .left-top-pic {
+      /* margin-left: 35px; */
+
+      width: 210px;
+      height: 150px;
+      align-self: flex-start;
+
+      @media ${device.laptopL} {
+        width: 250px;
+        height: 160px;
+      }
+    }
+
+    & .left-bottom-pic {
+      /* margin-left: 35px; */
+
+      width: 295px;
+      height: 190px;
+      align-self: flex-end;
+
+      @media ${device.laptopL} {
+        width: 350px;
+        height: 220px;
+      }
+    }
   }
 `;
 
 const PicWrapperRight = styled.div`
-  display: flex;
-  align-items: center;
+  display: none;
 
-  & .right-center-pic {
-    width: 375px;
-    height: 260px;
-    margin-bottom: 40px;
+  @media ${device.laptop} {
+    display: flex;
+    align-items: center;
+
+    & .right-center-pic {
+      width: 335px;
+      height: 240px;
+      margin-bottom: 40px;
+
+      @media ${device.laptopL} {
+        width: 375px;
+        height: 260px;
+      }
+    }
   }
 `;
 
 const InterviewPic1 = styled.img`
   width: 300px;
   height: 200px;
-  display: inline-block;
+
   /* position: fixed; */
 
   border-radius: 50%;
@@ -79,14 +125,14 @@ const InterviewPic1 = styled.img`
   -webkit-box-shadow: 0px 0px 29px 0px rgba(60, 153, 220, 1);
   -moz-box-shadow: 0px 0px 29px 0px rgba(60, 153, 220, 1);
   box-shadow: 0px 0px 29px 0px rgba(60, 153, 220, 1);
-  opacity: 0.6;
+  opacity: 0.7;
   /* opacity: 1; */
   transition: all 0.3s;
 
-  &:hover {
+  /* &:hover {
     transform: scale(1.07);
     opacity: 0.8;
-  }
+  } */
 `;
 
 const SignInUpWrapper = styled.div`
@@ -99,44 +145,69 @@ const SignInUpWrapper = styled.div`
 
 const LogoHolder = styled.div`
   text-align: center;
-  /* margin: 0px auto 30px;
-   */
   margin: 5px auto 25px;
   position: relative;
   left: -10px;
   position: fixed;
-  /* top: -35px; */
-  /* flex */
-  /* margin: 0 auto; */
+
   left: 50%;
   transform: translateX(-50%);
-  top: -50px;
-  & img {
-    /* display: inline-block; */
+  top: 20px;
+  cursor: pointer;
 
-    margin: 0 auto;
+  & span {
+    font-family: 'Merienda', cursive;
+    font-size: 55px;
+    color: #113ee0;
+  }
+  & img {
+    display: inline-block;
+
+    /* margin: 0 auto; */
     /* width: 200px; */
-    width: 170px;
+    width: 70px;
     pointer-events: none;
-    animation: ${rotate} 0.7s ease-out 0.5s;
+    animation: ${rotate} 0.7s ease-out 1s;
     /* width: 210px; */
     /* margin-bottom: 40px; */
   }
 `;
 
 const SignIpUpWindow = styled.div`
-  /* margin-top: 50px; */
+  width: 85vw;
+  height: 75vh;
   border: 1px solid #a8a8a8;
   border-radius: 6px;
   background: #add8e6;
   background: #fff;
   margin-top: 150px;
   position: relative;
-  width: 30vw;
-  height: 73vh;
+
   -webkit-box-shadow: 0px 0px 20px -6px rgba(0, 0, 128, 1);
   -moz-box-shadow: 0px 0px 20px -6px rgba(0, 0, 128, 1);
   box-shadow: 0px 0px 20px -6px rgba(0, 0, 128, 1);
+  @media ${device.mobileL} {
+    /* max-width: 50vw;
+    height: 65vh; */
+    max-width: 85vw;
+    height: 75vh;
+  }
+
+  @media (min-width: 540px) {
+    /* max-width: 50vw;
+    height: 65vh; */
+    max-width: 70vw;
+    height: 75vh;
+  }
+  @media ${device.tablet} {
+    width: 50vw;
+    height: 75vh;
+  }
+
+  @media ${device.laptop} {
+    width: 30vw;
+    height: 73vh;
+  }
 `;
 
 const TitleContainer = styled.h3`
@@ -152,14 +223,13 @@ const Title = styled.h3`
   letter-spacing: 0.6px;
 `;
 
-const TextFieldContainer = styled.div`
+const Form = styled.form`
   position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* margin: 0 auto; */
 
   & > .wrapper {
     margin-top: 20px;
@@ -189,52 +259,42 @@ const Button = styled.button`
   font-size: 17px;
 
   height: 40px;
-  line-height: 40px;
+  /* line-height: 40px; */
 `;
 
 const PassButton = styled(Button)`
   margin: 30px auto 0;
-  background: #cdd2d4;
-  color: hsl(0, 0%, 55%);
-  transition: all 3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  font-weight: 500;
+  background: #3063ffe0;
+  font-size: 19px;
+
+  color: #fff;
+  transition: all 0.3s;
 
   &:hover {
-    background: #396afc;
-    background: -webkit-linear-gradient(to right, #2948ff, #396afc);
-    background: linear-gradient(to right, #2948ff, #396afc);
-    color: #fff;
-  }
-
-  &.active {
-    background: #396afc;
-    background: -webkit-linear-gradient(to right, #2948ff, #396afc);
-    background: linear-gradient(to right, #2948ff, #396afc);
+    background: #3063ff;
+    /* background: -webkit-linear-gradient(to right, #2948ff, #396afc);
+    background: linear-gradient(to right, #2948ff, #396afc); */
   }
 `;
 
 const Separator = styled.div`
-  margin: 20px auto;
+  margin: 15px auto;
   text-align: center;
   font-weight: 500;
+  font-size: 14px;
 `;
 
 const GoogleButton = styled(Button)`
   background: #e6e6fa;
-  /* background: #bdffbd; */
-
-  /* border: 1px solid #90ee90; */
-
   transition: all 0.3s;
 
   &:hover {
-    /* background: #98fb98; */
     background: #bdd4bc;
-    /* color: #e6e6fa; */
   }
 
   & svg {
     width: 23px;
-
     margin-right: 10px;
   }
 `;
@@ -242,19 +302,11 @@ const GoogleButton = styled(Button)`
 const AnonimousButton = styled(Button)`
   background: #707070;
   background: #b8b8b8;
-
-  font-size: 17px;
   margin-top: 10px;
-  /* border: 1px solid #505050; */
   transition: all 0.3s;
 
   &:hover {
     background: #a8a8a8;
-    /* color: #e6e6fa; */
-
-    /* & svg {
-      fill: 
-    } */
   }
 
   & svg {
@@ -285,10 +337,173 @@ const Footer = styled.div`
   }
 `;
 
-const SignInUpScheme = ({ title }) => {
-  const validateEmail = (email) => {
-    const regexp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return regexp.test(email);
+// function CssTextField(props) {
+//   return (
+//     <TextField
+//       variant="outlined"
+//       id={props.name}
+//       label={props.label}
+//       name={props.name}
+//       type={props.type}
+//       fullWidth
+//       required
+//       value={props.value}
+//       onChange={props.handleChange(props.name)}
+//     />
+//   );
+// }
+
+{
+  /* <CssTextField
+                id="outlined-basic"
+                label="Password"
+                name="password"
+                type="password"
+                value={password}
+            
+                onChange={handleChange}
+
+              /> */
+}
+
+const PicContainer = styled.div`
+  /* display: inline-block; */
+  position: relative;
+
+  padding: 30px;
+  opacity: 0;
+  animation-name: ${fadeIn};
+  animation-fill-mode: forwards;
+  animation-duration: 0.3s;
+
+  &#pic-container-two {
+    animation-delay: 0.3s;
+  }
+
+  &#pic-container-three {
+    animation-delay: 0.6s;
+  }
+
+  &:hover > img {
+    /* animation-fill-mode: forwards; */
+
+    transform: scale(1.05);
+    opacity: 0.85;
+  }
+
+  &:hover .top-left-text {
+    opacity: 1;
+    transform: translateX(-20px);
+    @media ${device.laptopL} {
+      transform: translateX(-40px);
+    }
+  }
+
+  &:hover .top-right-text {
+    opacity: 1;
+    transform: translateX(10px);
+  }
+
+  &:hover .rightside-top-text {
+    opacity: 1;
+    transform: translateX(-60px);
+  }
+
+  &:hover .rightside-bottom-text {
+    opacity: 1;
+    transform: translateX(10px);
+  }
+`;
+
+const Slogan = styled.p`
+  /* display: inline-block; */
+  /* font-family: 'Permanent Marker', cursive; */
+  font-family: 'Merienda', cursive;
+  font-size: 32px;
+  font-weight: 600;
+  opacity: 0;
+  position: absolute;
+  /* bottom: -10px; */
+  word-break: keep-all;
+  color: #133863;
+  transform: translateX(0);
+  transition: all 0.3s cubic-bezier(0.08, 1.17, 0.96, 0.94);
+
+  @media ${device.laptopL} {
+    font-size: 36px;
+  }
+
+  &.top-right-text {
+    top: -20px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+
+  &.top-left-text {
+    top: -40px;
+    right: 50%;
+    -webkit-transform: translateX(50%);
+    transform: translateX(50%);
+  }
+
+  &.rightside-top-text {
+    top: -40px;
+    right: 50%;
+    -webkit-transform: translateX(50%);
+    transform: translateX(50%);
+  }
+
+  &.rightside-bottom-text {
+    bottom: -40px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+`;
+
+const SignInUpScheme = ({ title, history }) => {
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
+
+  const handleLogin = useCallback(
+    async (event) => {
+      event.preventDefault();
+      const { email, password } = event.target.elements;
+      try {
+        await firebase
+          .auth()
+          .signInWithEmailAndPassword(email.value, password.value);
+        history.push('/');
+      } catch (error) {
+        alert(error);
+      }
+    },
+    [history]
+  );
+
+  const handleSignUp = useCallback(
+    async (event) => {
+      event.preventDefault();
+      const { email, password } = event.target.elements;
+      try {
+        await firebase
+          .auth()
+          .createUserWithEmailAndPassword(email.value, password.value);
+        history.push('/dashboard');
+      } catch (error) {
+        alert(error);
+      }
+    },
+    [history]
+  );
+
+  const handleAction = (e, actionType) => {
+    if (actionType === 'Login') {
+      handleLogin(e);
+    } else if (actionType === 'Sign up') {
+      handleSignUp(e);
+    }
   };
 
   const CssTextField = withStyles({
@@ -297,7 +512,7 @@ const SignInUpScheme = ({ title }) => {
         color: '#396afc',
       },
       '& .MuiInput-underline:after': {
-        borderBottomColor: 'green',
+        borderBottomColor: '#609CE1',
       },
       '& .MuiOutlinedInput-root': {
         '& fieldset': {
@@ -317,54 +532,78 @@ const SignInUpScheme = ({ title }) => {
     <PageContainer>
       <PicWrapperLeft>
         {' '}
-        <InterviewPic1 src={InterviewPic3} className="left-top-pic" />
-        <InterviewPic1 src={InterviewPic} className="left-bottom-pic" />{' '}
+        <PicContainer>
+          <InterviewPic1 src={InterviewPic3} className="left-top-pic" />
+          <Slogan className="top-right-text">Prepare</Slogan>
+        </PicContainer>
+        <PicContainer id="pic-container-two">
+          <InterviewPic1 src={InterviewPic} className="left-bottom-pic" />
+          <Slogan className="top-left-text">Go for it</Slogan>
+        </PicContainer>
       </PicWrapperLeft>
 
       <SignInUpWrapper>
         <LogoHolder>
-          {/* <Logo2 /> */}
-          <img src={Logo2} />
-          {/* <span>Bodo</span> */}
+          <Link to="/">
+            <img src={clover} alt="clover" /> <span>Bodo</span>
+          </Link>
         </LogoHolder>
         <SignIpUpWindow>
           <TitleContainer>
             <Title>{title}</Title>
           </TitleContainer>
-          <TextFieldContainer>
+          <Form
+            onSubmit={(e) => {
+              handleAction(e, title);
+            }}
+            validate
+          >
             <div className="wrapper">
               <CssTextField
-                id="outlined-basic"
+                id="asdsafadsdfad434"
                 label="Email"
                 variant="outlined"
                 fullWidth
+                name="email"
+                type="email"
+                required
               />
             </div>
             <div className="wrapper">
               <CssTextField
-                id="outlined-basic"
+                id="sdfskdfbeklrj"
                 label="Password"
                 variant="outlined"
                 fullWidth
+                name="password"
+                type="password"
+                required
               />
             </div>
-          </TextFieldContainer>
-          <ButtonContainer>
-            <PassButton>{title}</PassButton>
-          </ButtonContainer>
+            <ButtonContainer>
+              <PassButton type="submit">
+                {title === 'Login' ? 'Login' : 'Create account'}
+              </PassButton>
+            </ButtonContainer>
+          </Form>
 
           <Separator>OR</Separator>
           <ButtonContainer>
-            <GoogleButton>
+            <GoogleButton onClick={handleGoogleLogin}>
               {/* <span> */}
               <GoogleIcon />
               Login with Google
               {/* </span> */}
             </GoogleButton>
-            <AnonimousButton>
-              <AnonimousIcon />
-              Login Anonimously
-            </AnonimousButton>
+            <Tooltip
+              title="Some functionality of the app will be disabled"
+              placement="right"
+            >
+              <AnonimousButton onClick={handleAnonimousLogin}>
+                <AnonimousIcon />
+                Login Anonimously
+              </AnonimousButton>
+            </Tooltip>
           </ButtonContainer>
           <Footer>
             <>
@@ -382,10 +621,14 @@ const SignInUpScheme = ({ title }) => {
         </SignIpUpWindow>
       </SignInUpWrapper>
       <PicWrapperRight>
-        <InterviewPic1 src={InterviewPic2} className="right-center-pic" />
+        <PicContainer id="pic-container-three">
+          <InterviewPic1 src={InterviewPic2} className="right-center-pic" />{' '}
+          <Slogan className="rightside-top-text">Take</Slogan>
+          <Slogan className="rightside-bottom-text">What you deserve</Slogan>
+        </PicContainer>
       </PicWrapperRight>
     </PageContainer>
   );
 };
 
-export default SignInUpScheme;
+export default withRouter(SignInUpScheme);
