@@ -48,7 +48,7 @@ const fadeIn = keyframes`
   }
 `;
 
-const PageContainer = styled.div`
+const PageCointainer = styled.div`
   width: 100vw;
   height: 100vh;
   background: #e6e6fa;
@@ -136,6 +136,7 @@ const InterviewPic1 = styled.img`
 `;
 
 const SignInUpWrapper = styled.div`
+  margin-top: 20px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -145,14 +146,15 @@ const SignInUpWrapper = styled.div`
 
 const LogoHolder = styled.div`
   text-align: center;
-  margin: 5px auto 25px;
+  /* margin: 5px auto 25px; */
   position: relative;
-  left: -10px;
-  position: fixed;
+  /* left: -10px; */
+  /* position: fixed; */
+  margin-bottom: 30px;
 
-  left: 50%;
-  transform: translateX(-50%);
-  top: 20px;
+  /* left: 50%; */
+  /* transform: translateX(-50%); */
+  /* top: 20px; */
   cursor: pointer;
 
   & span {
@@ -180,12 +182,13 @@ const SignIpUpWindow = styled.div`
   border-radius: 6px;
   background: #add8e6;
   background: #fff;
-  margin-top: 150px;
+  /* margin-top: 150px; */
   position: relative;
 
   -webkit-box-shadow: 0px 0px 20px -6px rgba(0, 0, 128, 1);
   -moz-box-shadow: 0px 0px 20px -6px rgba(0, 0, 128, 1);
   box-shadow: 0px 0px 20px -6px rgba(0, 0, 128, 1);
+
   @media ${device.mobileL} {
     /* max-width: 50vw;
     height: 65vh; */
@@ -319,10 +322,18 @@ const AnonimousButton = styled(Button)`
 const Footer = styled.div`
   width: 70%;
   margin: 10px auto 5px;
+  margin-top: auto;
   text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  /* margin-top: 5px; */
+  padding-top: 10px;
 
   & span {
     color: black;
@@ -529,7 +540,8 @@ const SignInUpScheme = ({ title, history }) => {
   })(TextField);
 
   return (
-    <PageContainer>
+    <PageCointainer>
+      {/* <ContentContainer> */}
       <PicWrapperLeft>
         {' '}
         <PicContainer>
@@ -627,7 +639,8 @@ const SignInUpScheme = ({ title, history }) => {
           <Slogan className="rightside-bottom-text">What you deserve</Slogan>
         </PicContainer>
       </PicWrapperRight>
-    </PageContainer>
+      {/* </ContentContainer> */}
+    </PageCointainer>
   );
 };
 
