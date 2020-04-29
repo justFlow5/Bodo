@@ -62,6 +62,7 @@ const Navbar = styled.nav`
 const NavbarLogoHolder = styled.div`
   display: flex;
   align-items: center;
+
   & svg {
     fill: #fff;
     width: 50px;
@@ -71,17 +72,28 @@ const NavbarLogoHolder = styled.div`
   }
 
   & > img {
-    width: 55px;
-    height: 55px;
-    margin-right: 0.5rem;
+    width: 50px;
+    height: 50px;
+    /* margin-right: 0.5rem; */
     animation: ${rotate} 0.7s ease-in-out 0.5s;
+
+    @media ${device.mobileL} {
+      width: 55px;
+      height: 55px;
+      margin-right: 8px;
+    }
+
+    @media ${device.tablet} {
+      width: 55px;
+      height: 55px;
+    }
   }
 
   & #logoName {
     font-family: 'Merienda', cursive;
     font-size: 30px;
     padding: 8px 3px;
-    padding: 5px 0px 5px 10px;
+    padding: 5px 0px 5px 5px;
     display: inline-block;
     pointer-events: none;
 
@@ -122,8 +134,12 @@ const NavbarItem = styled.li`
   cursor: pointer;
   text-align: center;
   /* padding: 8px 18px; */
-  /* color: #fff; */
-  color: black;
+  color: #fff;
+  /* color: black; */
+
+  @media (min-width: 638px) {
+    color: black;
+  }
 
   &#login {
     font-weight: 500;
@@ -143,7 +159,8 @@ const NavbarItem = styled.li`
       margin-right: 5px;
       font-size: 19px;
       font-weight: 600;
-      margin-right: 15px;
+      margin-right: 5px;
+      margin-left: 5px;
       margin-top: 3px;
       padding: 12px 2px 5px 2px;
       border-bottom: 3px solid transparent;
@@ -165,12 +182,17 @@ const NavbarItem = styled.li`
   }
 
   &#register {
-    width: 120px;
+    width: 100px;
     font-size: 19px;
     font-weight: 500;
     letter-spacing: 1px;
 
     transition: all 0.3s;
+
+    @media ${device.mobileL} {
+      width: 120px;
+      font-size: 22px;
+    }
 
     @media ${device.tablet} {
       width: 150px;

@@ -87,30 +87,57 @@ position: relative;
   z-index: 1;
  
   & .left {
+    width: 100px;
     position: absolute;
     /* top: 60%; */
-    top:50%;
+    top:65%;
 
     left: 0;
     z-index: 999;
     background: no-repeat;
+
+    @media ${device.tablet} {
+     
+    
+      width:150px;
+      top: 50%;
+
+}
+
+  
   }
 
   & .right {
     position: absolute;
-    top: 23%;
+    top: 50%;
     right: 0;
-    width: 350px;
+  
+    width: 160px;
     /* height: 120px; */
     z-index: 1;
     /* background: url(${Right}) no-repeat; */
 
     background: no-repeat;
+
+    @media ${device.mobileL} {
+  
+      top: 40%;
+
+}
+    @media ${device.tablet} {
+      width: 230px;
+      top: 30%;
+
+}
+
+@media ${device.laptop} {
+      width: 350px;
+      top: 23%;
+
+}
+
   }
 
-  & img {
-    width: 150px;
-  }
 
 `;
 const Header = styled.section`
@@ -131,25 +158,37 @@ const Header = styled.section`
     animation-duration: 0.3s;
 
     position: relative;
-    margin-top: 20%;
+    margin: 20% 5px 0;
+
     word-break: keep-all;
 
     /* display: block; */
-    font-size: 52px;
+    font-size: 43px;
     color: #fff;
     font-weight: 600;
     min-width: 40%;
     /* width: 40%; */
+    /* margin-top: 20%; */
 
     text-align: center;
 
+    @media ${device.tablet} {
+      font-size: 52px;
+      margin-top: 20%;
+      margin-left: unset;
+      margin-right: unset;
+      margin-bottom: unset;
+    }
+
     & > .subTitle {
-      font-size: 24px;
+      width: 50%;
+      font-size: 17px;
       font-weight: 400;
       position: absolute;
       right: 0;
-      bottom: -70%;
+      bottom: -30%;
       font-style: italic;
+      z-index: 999;
 
       opacity: 0;
       animation-delay: 0.3s;
@@ -159,6 +198,20 @@ const Header = styled.section`
       /* animation-timing-function: linear; */
 
       animation-duration: 0.3s;
+      @media ${device.mobileM} {
+        font-size: 20px;
+        bottom: -55%;
+      }
+
+      @media ${device.mobileL} {
+        font-size: 20px;
+        bottom: -70%;
+      }
+
+      @media ${device.laptop} {
+        font-size: 24px;
+        bottom: -70%;
+      }
     }
   }
 
@@ -166,10 +219,10 @@ const Header = styled.section`
     opacity: 0;
     font-weight: 400;
     text-align: center;
-    margin-top: 60px;
+    margin-top: 0px;
     font-size: 22px;
     color: #fff;
-    width: 45%;
+    width: 85%;
     line-height: 1.4;
 
     animation-delay: 0.6s;
@@ -177,7 +230,16 @@ const Header = styled.section`
     animation-fill-mode: forwards;
     animation-timing-function: cubic-bezier(0.08, 1.17, 0.96, 0.94);
 
+    margin-top: 80px;
     animation-duration: 0.3s;
+
+    @media ${device.tablet} {
+    }
+
+    @media ${device.laptop} {
+      width: 45%;
+      margin-top: 60px;
+    }
   }
 `;
 
