@@ -19,6 +19,8 @@ import Button from '@material-ui/core/Button';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
+import { device } from '../utils/media';
+
 const fadeIn = keyframes`
     from {
       opacity: 0;
@@ -315,8 +317,12 @@ const SpeechBubble = styled.div`
   position: absolute;
 
   top: 0;
-  left: 10%;
+  left: 0;
   text-align: start;
+
+  /* @media ${device.laptop} {
+    left: 5%;
+  } */
 `;
 const SpeechBubbleText = styled.p`
   font-size: 17px;
