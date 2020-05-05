@@ -56,7 +56,7 @@ export let javascript = [{
   },
 
   {
-    text: 'What is the difference between innerHTML & innerText ? ?',
+    text: 'What is the difference between innerHTML & innerText ?',
     answer: {
       title: 'The innerText property sets or returns the text content as plain text of the specified node, and all its descendants whereas the innerHTML property sets or returns the plain text or HTML contents in the elements. Unlike innerText, inner HTML lets you work with HTML rich text and doesn’t automatically encode and decode text.'
     },
@@ -800,12 +800,14 @@ export let javascript = [{
 
   {
     text: `What's the difference between Spread operator and Rest operator?`,
-    answer: `Javascript's ECMA6 came out with a cool new features; 
+    answer: {
+      title: `Javascript's ECMA6 came out with a cool new features; 
     ... is one of these new Javascript functionalities. It can be used in two
      different ways; as a spread operator OR as a rest parameter.
      Rest parameter: collects all remaining elements into an array.
      Spread operator: allows iterables( arrays / objects / strings ) to be expanded into
-      single arguments/elements.`,
+      single arguments/elements.`
+    },
     note: '',
     level: 'junior',
     known: false,

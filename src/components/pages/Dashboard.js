@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
+import { device } from '../utils/media';
+
 import Navbar from '../Navbar';
 
 import { javascript } from '../../questionsCollection/Qjavascript';
@@ -19,6 +21,19 @@ const fadeIn = keyframes`
   }
   100% {
     top: -20px;
+    opacity: 1;
+  }
+`;
+
+const fadeBottom = keyframes`
+0% {
+  bottom: -70px;
+  opacity: 0;
+
+
+  }
+  100% {
+    bottom: -10px;
     opacity: 1;
   }
 `;
@@ -51,8 +66,9 @@ const fadeUp = keyframes`
 `;
 
 const StyledBurger = styled.button`
+outline: none;
   position: fixed;
-  top: 13%;
+  top: 3%;
   right: 3%;
   right:  ${({ open }) => (open ? '1%' : '3%')};
   display: flex;
@@ -67,38 +83,46 @@ const StyledBurger = styled.button`
   z-index: 10;
   transition: all 0.3s;
 
+  @media ${device.laptop} {
+    top: 13%;
+}
+
 
   &::before {
     content: 'Categories';
     position: absolute;
     left: -415%;
-    color: ${({ open }) => (open ? '#EFFFFA' : '#091d34')};
+    color: ${({ open }) => (open ? '#9999ff' : '#091d34')};
     font-size: 23px;
     font-weight: 700;
     margin-right: 10px;
-    transition: color 0.3s;
+    transition: all 0.3s linear;
 
   }
     &:hover::before  {
-      color: ${({ open }) => (open ? '#D8D8D8' : '#11355f')};
+      color: ${({ open }) => (open ? '#ADADFF' : '#11355f')};
     }
 
   &:hover > div {
-      background: ${({ open }) => (open ? '#D8D8D8' : '#11355f')};
+      background: ${({ open }) => (open ? '#ADADFF' : '#11355f')};
   }
 
   &:focus {
     outline: none;
+    outline: 0;
+
   }
 
   div {
     width: 2rem;
     height: 0.25rem;
-    background: ${({ open }) => (open ? '#EFFFFA' : '#091d34')};
+    background: ${({ open }) => (open ? '#9999ff' : '#091d34')};
     border-radius: 10px;
     position: relative;
     transform-origin: 1px;
     transition: transform 0.3s linear;
+
+   
 
 
 
@@ -143,28 +167,37 @@ const Burger = ({ open, setOpen }) => {
 // #####################################################################################################
 
 const SemiCircleContainer = styled.div`
-  margin: 0px auto;
-  /* margin: 55px auto; */
+  /* position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto; */
+  position: relative;
   z-index: 2;
   display: inline-block;
-  position: fixed;
-  /* top: -20px; */
-  top: -110px;
-
-  left: 50%;
-  transform: translateX(-50%);
-
-  animation-name: ${fadeIn};
+  animation-name: ${fadeBottom};
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.08, 1.17, 0.96, 0.94);
   /* animation-timing-function: linear; */
   opacity: 0;
 
-  animation-duration: 0.3s;
+  animation-duration: 0.4s;
+
+  @media ${device.laptop} {
+    animation-name: ${fadeIn};
+  }
 
   & > div {
-    width: 400px;
-    height: 160px;
+    position: relative;
+    position: fixed;
+    z-index: 999;
+    bottom: -40px;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 300px;
+    height: 120px;
     border-radius: 50%;
     background: #091d34;
     border: 1px solid #236ab9;
@@ -172,17 +205,26 @@ const SemiCircleContainer = styled.div`
     box-shadow: 0px -5px 9px rgba(19, 56, 99, 1);
     text-align: center;
     /* vertical-align: bottom; */
-    font-size: 32px;
-    letter-spacing: 1px;
+    font-size: 27px;
+    letter-spacing: 0.8px;
     font-weight: 600;
     color: #fff;
-    position: relative;
+
+    @media ${device.laptop} {
+      top: -20px;
+      bottom: unset;
+      width: 400px;
+      height: 160px;
+      font-size: 32px;
+    }
+
     & > h3 {
       position: absolute;
-      bottom: 27px;
+      z-index: 999;
+      top: -10px;
       left: 0;
       right: 0;
-      font-size: 36px;
+      font-size: 24px;
       letter-spacing: 1.5px;
       font-weight: 700;
       color: #fff;
@@ -190,6 +232,13 @@ const SemiCircleContainer = styled.div`
       /* text-shadow: 2px 2px 2px #200ac7; */
       /* text-shadow: 2px 2px 2px #236ab9; */
       text-shadow: 2px 2px 2px #005fa3;
+      padding: 5px 15px;
+
+      @media ${device.laptop} {
+        bottom: 27px;
+        top: unset;
+        font-size: 36px;
+      }
     }
   }
 
@@ -221,19 +270,23 @@ const Hamburger = styled.div`
 `;
 
 const SideNavbar = styled.div`
+  /* z-index: 3; */
+
   position: fixed;
   right: 0;
-  top: 55px;
+  top: 0px;
   bottom: 0;
-  width: 210px;
+  width: 100%;
   background: #07274c;
 
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
 
-  /* -webkit-box-shadow: -10px 0px 16px -9px rgba(19, 56, 99, 1);
-  -moz-box-shadow: -10px 0px 16px -9px rgba(19, 56, 99, 1);
-  box-shadow: -10px 0px 16px -9px rgba(19, 56, 99, 1); */
   transition: all 0.3s;
+
+  @media ${device.laptop} {
+    top: 55px;
+    width: 210px;
+  }
 `;
 
 const SideNavbarList = styled.ul`
@@ -263,6 +316,18 @@ const SideNavbarItem = styled.li`
 
   transition: all 0.3s;
 
+  /* &:focus {
+    color: red;
+    -webkit-box-shadow: inset 0px 0px 20px 2px rgba(46, 74, 117, 1);
+    -moz-box-shadow: inset 0px 0px 20px 2px rgba(46, 74, 117, 1);
+    box-shadow: inset 0px 0px 15px 2px rgba(46, 74, 117, 1);
+  } */
+
+  @media ${device.laptop} {
+    top: 55px;
+    width: 210px;
+  }
+
   &:first-child {
     margin-top: 100px;
   }
@@ -276,38 +341,52 @@ const SideNavbarItem = styled.li`
     box-shadow: inset 0px 0px 15px 2px rgba(46, 74, 117, 1);
 
     & .numOfQuestions {
-      left: -20px;
-      opacity: 1;
+      @media ${device.laptop} {
+        left: -20px;
+        opacity: 1;
+      }
     }
   }
 `;
 
 const NumOfQuestions = styled.div`
-  opacity: 0;
-
   letter-spacing: 0.8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  color: #a3aefb;
-  color: #d8dcf9;
-  width: 40px;
-  height: 40px;
-  background: rgba(19, 56, 99, 1);
-  /* background: #a3aefbfa; */
+  display: inline-block;
+  position: relative;
+
+  /* width: 40px; */
+  /* height: 40px; */
+  font-size: 11px;
+  top: -13px;
+  right: -6px;
+  border: 2px solid #a3aefb;
+  padding: 6px;
   border-radius: 50%;
-  border: 4px solid #e1ecf9;
-  position: absolute;
-  left: -20px;
-  left: -25px;
-  /* left: 10px; */
-  /* -webkit-box-shadow: -10px 0px 16px -9px rgba(19, 56, 99, 1);
-  -moz-box-shadow: -10px 0px 16px -9px rgba(19, 56, 99, 1);
-  box-shadow: -10px 0px 16px -9px rgba(19, 56, 99, 1); */
-  transition: all 0.4s cubic-bezier(0.08, 1.17, 0.96, 0.94);
-  transition: all 0.3s cubic-bezier(0.23, 0.94, 0.86, 1);
+  background: transparent;
+  color: #a3aefb;
   transition: all 0.3s ease;
+
+  @media ${device.laptop} {
+    color: #d8dcf9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: unset;
+    top: unset;
+    right: unset;
+    width: 40px;
+    height: 40px;
+
+    position: absolute;
+
+    opacity: 0;
+    background: rgba(19, 56, 99, 1);
+    font-size: 14px;
+
+    left: -25px;
+    border-radius: 50%;
+    border: 4px solid #e1ecf9;
+  }
 `;
 
 const QuestionsContainer = styled.div`
@@ -315,15 +394,19 @@ const QuestionsContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  margin: 200px auto 50px;
-  width: 60%;
-  /* overflow-y: scroll; */
+  margin: 70px auto 50px;
+  /* width: 75%; */
+  width: 90%;
+  @media ${device.laptop} {
+    width: 60%;
+    margin: 200px auto 50px;
+  }
 
   & > .title {
     text-align: center;
     line-height: 1.2;
 
-    font-size: 42px;
+    font-size: 35px;
     font-weight: 600;
     letter-spacing: 1px;
     color: #091d34;
@@ -335,13 +418,20 @@ const QuestionsContainer = styled.div`
     opacity: 0;
 
     animation-duration: 0.3s;
+
+    @media ${device.laptop} {
+      font-size: 42px;
+    }
   }
 `;
 
 const ContentContainer = styled.div`
   position: relative;
   /* width: 90%; */
-  margin: 40px auto 55px;
+  margin: 25px auto 55px;
+  @media ${device.laptop} {
+    margin: 40px auto 55px;
+  }
 `;
 
 const ContentList = styled.ul`
@@ -354,20 +444,28 @@ const ContentItem = styled.li`
   display: flex;
   flex-direction: column;
 
-  margin: 15px 20px;
+  margin: 5px 20px;
 
   & .question-title {
-    font-size: 23px;
+    font-size: 21px;
     font-weight: 600;
     line-height: 1.3;
     color: #091d34;
-    padding: 15px;
+    padding: 10px;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s;
 
+    @media ${device.laptop} {
+      font-size: 23px;
+    }
+
     &:hover {
-      background: rgba(255, 255, 255, 0.5);
+      background: #ccccff;
+
+      & .question-number {
+        color: #6666ff;
+      }
     }
 
     & ~ input {
@@ -390,6 +488,7 @@ const ContentItem = styled.li`
       font-style: italic;
       font-weight: 600;
       color: #a3aefb;
+      transition: all 0.3s;
     }
   }
 `;
@@ -398,19 +497,28 @@ const Answer = styled.div`
   display: none;
 
   & .answer-main {
-    font-size: 18px;
+    font-size: 16px;
     margin: 10px;
     line-height: 1.3;
     color: #06254a;
     font-weight: 500;
+    margin: 10px 20px;
+
+    @media ${device.laptop} {
+      font-size: 18px;
+    }
   }
 
   & .answer-sub {
     color: #06254a;
-    font-size: 17px;
+    font-size: 15px;
     padding-left: 20px;
     line-height: 1.2;
     margin: 10px;
+
+    @media ${device.laptop} {
+      font-size: 17px;
+    }
 
     &::before {
       content: '';
@@ -423,6 +531,20 @@ const Answer = styled.div`
       vertical-align: middle;
     }
   }
+`;
+
+const NoInfo = styled.p`
+  position: fixed;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  text-align: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 36px;
+  font-weight: 600;
+  color: #a3aefb;
 `;
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
@@ -457,7 +579,7 @@ const Dashboard = () => {
 
         <Burger open={open} setOpen={setOpen} />
         {category && (
-          <SemiCircleContainer className="tech-header">
+          <SemiCircleContainer>
             {' '}
             {/* <img src={semiCircle} /> */}
             <div>
@@ -467,7 +589,7 @@ const Dashboard = () => {
         )}
 
         <QuestionsContainer>
-          {category && (
+          {category ? (
             <>
               <h3 className="title">
                 Top{' '}
@@ -513,6 +635,8 @@ const Dashboard = () => {
                 </ContentList>
               </ContentContainer>
             </>
+          ) : (
+            <NoInfo>No Category Selected</NoInfo>
           )}
         </QuestionsContainer>
 

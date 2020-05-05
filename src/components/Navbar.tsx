@@ -121,7 +121,8 @@ const NavbarItem = styled.li`
   }
 
   & .navText {
-    font-size: 8px;
+    font-weight: 500;
+    font-size: 10px;
     line-height: unset;
     color: ${(props) => props.theme.blueOne};
     letter-spacing: 1px;
@@ -132,7 +133,7 @@ const NavbarItem = styled.li`
     } */
 
     @media ${device.mobileL} {
-      font-size: 10px;
+      font-size: 11px;
     }
     @media ${device.tablet} {
       font-size: 12px;
@@ -159,7 +160,7 @@ const Navbar: React.FC = () => {
         <Link to="/add-question">
           <NavbarItem>
             <QuestionAnswerIcon className="navIcon" />
-            <span className="navText">+ New Question</span>
+            <span className="navText">New Question</span>
           </NavbarItem>
         </Link>
         <Link to="/interview">
