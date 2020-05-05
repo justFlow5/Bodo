@@ -23,14 +23,18 @@ import { AuthContext } from '../contexts/Auth';
 
 // export default PrivateRoute;
 
-const PrivateRoute = ({ component, ...rest }: any) => {
+const PrivateRoute = ({ component, ...rest }) => {
   const { currentUser } = useContext(AuthContext);
 
-  const RouteComponent = (props: any) =>
+  const RouteComponent = () =>
     !!currentUser ? (
-      React.createElement(component, props)
+      React.createElement(component)
     ) : (
-      <Redirect to={{ pathname: '/' }} />
+      <Redirect
+        to={{
+          pathname: '/',
+        }}
+      />
     );
   return <Route {...rest} render={RouteComponent} />;
   // return (

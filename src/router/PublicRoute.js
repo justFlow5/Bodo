@@ -2,12 +2,16 @@ import React, { useContext } from 'react';
 import { Route, Redirect, RouteComponentProps } from 'react-router-dom';
 import { AuthContext } from '../contexts/Auth';
 
-const PublicRoute = ({ component, ...rest }: any) => {
+const PublicRoute = ({ component, ...rest }) => {
   const { currentUser } = useContext(AuthContext);
 
-  const RouteComponent = (props: any) =>
+  const RouteComponent = (props) =>
     !!currentUser ? (
-      <Redirect to={{ pathname: '/dashboard' }} />
+      <Redirect
+        to={{
+          pathname: '/dashboard',
+        }}
+      />
     ) : (
       React.createElement(component, props)
     );

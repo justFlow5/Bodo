@@ -1,14 +1,4 @@
-interface QuestionObject {
-  job: string;
-  technology?: string;
-  question: string;
-  answer: string;
-  code?: string;
-  known: boolean;
-  id: string;
-}
-
-const addQuestion = (item: QuestionObject) => {
+const addQuestion = (item) => {
   let data = localStorage.getItem('questions');
 
   let questions = data ? JSON.parse(data) : [];
@@ -19,7 +9,7 @@ const addQuestion = (item: QuestionObject) => {
   localStorage.setItem('questions', JSON.stringify(questions));
 };
 
-const deleteQuestion = (id: string) => {
+const deleteQuestion = (id) => {
   let data = localStorage.getItem('questions');
 
   let questions = data ? JSON.parse(data) : [];
@@ -27,7 +17,7 @@ const deleteQuestion = (id: string) => {
   let updatedQuestions;
 
   if (questions.length > 0) {
-    updatedQuestions = questions.filter((question: QuestionObject) => {
+    updatedQuestions = questions.filter((question) => {
       return question.id !== id;
     });
   }
@@ -40,13 +30,18 @@ const getQuestions = () => {
   return data ? JSON.parse(data) : [];
 };
 
-const isQuestion = (id: string) => {
+const isQuestion = (id) => {
   let questions = getQuestions();
 
   if (questions) {
-    return questions.some((question: QuestionObject) => {
+    return questions.some((question) => {
       return question.id === id;
     });
   }
 };
-export { addQuestion, deleteQuestion, getQuestions, isQuestion };
+export {
+  addQuestion,
+  deleteQuestion,
+  getQuestions,
+  isQuestion
+};

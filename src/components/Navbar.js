@@ -147,29 +147,28 @@ const NavbarItem = styled.li`
   }
 `;
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
   return (
     <MyNavbar>
       <NavbarList>
         <Link to="/dashboard">
           <NavbarItem>
             <HomeIcon className="navIcon" />
-            <span className="navText">Dashboard</span>
-          </NavbarItem>
-        </Link>
+            <span className="navText"> Dashboard </span>{' '}
+          </NavbarItem>{' '}
+        </Link>{' '}
         <Link to="/add-question">
           <NavbarItem>
             <QuestionAnswerIcon className="navIcon" />
-            <span className="navText">New Question</span>
-          </NavbarItem>
-        </Link>
+            <span className="navText"> New Question </span>{' '}
+          </NavbarItem>{' '}
+        </Link>{' '}
         <Link to="/interview">
           <NavbarItem className="middleIcon">
             <PeopleSharpIcon className="navIcon" />
-            <span className="navText">Start Interview</span>
-          </NavbarItem>
+            <span className="navText"> Start Interview </span>{' '}
+          </NavbarItem>{' '}
         </Link>
-
         <NavbarItem
           className="lastItem"
           onClick={() => {
@@ -177,9 +176,9 @@ const Navbar: React.FC = () => {
           }}
         >
           <MeetingRoomIcon className="navIcon" />
-          <span className="navText">Logout</span>
-        </NavbarItem>
-      </NavbarList>
+          <span className="navText"> Logout </span>{' '}
+        </NavbarItem>{' '}
+      </NavbarList>{' '}
     </MyNavbar>
   );
 };
