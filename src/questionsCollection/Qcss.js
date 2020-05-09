@@ -1,4 +1,4 @@
-export let css = [{
+export let CSS = [{
         text: 'Have you played around with the new CSS Flexbox or Grid specs?',
         answer: {
             title: `Flexbox is mainly meant for 1-dimensional layouts while Grid is meant for 2-dimensional layouts.`,
@@ -9,7 +9,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
     {
@@ -27,7 +27,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
 
@@ -43,7 +43,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
 
@@ -56,7 +56,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
     {
@@ -70,7 +70,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
     {
@@ -84,7 +84,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
     {
@@ -102,7 +102,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
 
@@ -114,7 +114,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
     {
@@ -125,7 +125,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
 
@@ -139,7 +139,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
     {
@@ -151,7 +151,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
     {
@@ -163,7 +163,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
 
@@ -181,7 +181,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
     {
@@ -196,7 +196,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
     {
@@ -211,7 +211,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
     {
@@ -227,7 +227,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
     {
@@ -237,7 +237,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
     {
@@ -247,7 +247,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
     {
@@ -257,19 +257,19 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
     {
         text: `What is the difference between {visibility: hidden} and {display: none}`,
         answer: {
-            title: `Those two css rules control the visibility of a given element`,
+            title: `Those two CSS rules control the visibility of a given element`,
             par1: `display:none means that the tag in question will not appear on the page at all (although you can still interact with it through the DOM). There will be no space allocated for it between the other tags.`,
             par2: `visibility:hidden means that unlike display:none, the tag is not visible, but space is allocated for it on the page. The tag is rendered, it just isn’t seen on the page.`
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
 
@@ -282,7 +282,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
     {
@@ -295,7 +295,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
     {
@@ -310,7 +310,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
     {
@@ -325,7 +325,7 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 
     {
@@ -339,6 +339,6 @@ export let css = [{
         },
         note: '',
         known: false,
-        language: 'css',
+        technology: 'CSS',
     },
 ]

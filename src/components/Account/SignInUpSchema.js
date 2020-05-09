@@ -59,32 +59,25 @@ const PageCointainer = styled.div`
 
 const PicWrapperLeft = styled.div`
   display: none;
-
   @media ${device.laptop} {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-
     & .left-top-pic {
       /* margin-left: 35px; */
-
       width: 210px;
       height: 150px;
       align-self: flex-start;
-
       @media ${device.laptopL} {
         width: 250px;
         height: 160px;
       }
     }
-
     & .left-bottom-pic {
       /* margin-left: 35px; */
-
       width: 295px;
       height: 190px;
       align-self: flex-end;
-
       @media ${device.laptopL} {
         width: 350px;
         height: 220px;
@@ -95,16 +88,13 @@ const PicWrapperLeft = styled.div`
 
 const PicWrapperRight = styled.div`
   display: none;
-
   @media ${device.laptop} {
     display: flex;
     align-items: center;
-
     & .right-center-pic {
       width: 335px;
       height: 240px;
       margin-bottom: 40px;
-
       @media ${device.laptopL} {
         width: 375px;
         height: 260px;
@@ -116,19 +106,15 @@ const PicWrapperRight = styled.div`
 const InterviewPic1 = styled.img`
   width: 300px;
   height: 200px;
-
   /* position: fixed; */
-
   border-radius: 50%;
   /* opacity: 0.6; */
-
   -webkit-box-shadow: 0px 0px 29px 0px rgba(60, 153, 220, 1);
   -moz-box-shadow: 0px 0px 29px 0px rgba(60, 153, 220, 1);
   box-shadow: 0px 0px 29px 0px rgba(60, 153, 220, 1);
   opacity: 0.7;
   /* opacity: 1; */
   transition: all 0.3s;
-
   /* &:hover {
     transform: scale(1.07);
     opacity: 0.8;
@@ -151,12 +137,10 @@ const LogoHolder = styled.div`
   /* left: -10px; */
   /* position: fixed; */
   margin-bottom: 30px;
-
   /* left: 50%; */
   /* transform: translateX(-50%); */
   /* top: 20px; */
   cursor: pointer;
-
   & span {
     font-family: 'Merienda', cursive;
     font-size: 55px;
@@ -164,7 +148,6 @@ const LogoHolder = styled.div`
   }
   & img {
     display: inline-block;
-
     /* margin: 0 auto; */
     /* width: 200px; */
     width: 70px;
@@ -184,18 +167,15 @@ const SignIpUpWindow = styled.div`
   background: #fff;
   /* margin-top: 150px; */
   position: relative;
-
   -webkit-box-shadow: 0px 0px 20px -6px rgba(0, 0, 128, 1);
   -moz-box-shadow: 0px 0px 20px -6px rgba(0, 0, 128, 1);
   box-shadow: 0px 0px 20px -6px rgba(0, 0, 128, 1);
-
   @media ${device.mobileL} {
     /* max-width: 50vw;
     height: 65vh; */
     max-width: 85vw;
     height: 75vh;
   }
-
   @media (min-width: 540px) {
     /* max-width: 50vw;
     height: 65vh; */
@@ -206,7 +186,6 @@ const SignIpUpWindow = styled.div`
     width: 50vw;
     height: 75vh;
   }
-
   @media ${device.laptop} {
     width: 30vw;
     height: 73vh;
@@ -233,7 +212,6 @@ const Form = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   & > .wrapper {
     margin-top: 20px;
     position: relative;
@@ -256,11 +234,9 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-
   border-radius: 4px;
   width: 70%;
   font-size: 17px;
-
   height: 40px;
   /* line-height: 40px; */
 `;
@@ -270,10 +246,8 @@ const PassButton = styled(Button)`
   font-weight: 500;
   background: #3063ffe0;
   font-size: 19px;
-
   color: #fff;
   transition: all 0.3s;
-
   &:hover {
     background: #3063ff;
     /* background: -webkit-linear-gradient(to right, #2948ff, #396afc);
@@ -291,11 +265,9 @@ const Separator = styled.div`
 const GoogleButton = styled(Button)`
   background: #e6e6fa;
   transition: all 0.3s;
-
   &:hover {
     background: #bdd4bc;
   }
-
   & svg {
     width: 23px;
     margin-right: 10px;
@@ -307,11 +279,9 @@ const AnonimousButton = styled(Button)`
   background: #b8b8b8;
   margin-top: 10px;
   transition: all 0.3s;
-
   &:hover {
     background: #a8a8a8;
   }
-
   & svg {
     width: 23px;
     display: inline-block;
@@ -334,12 +304,10 @@ const Footer = styled.div`
   transform: translateX(-50%);
   /* margin-top: 5px; */
   padding-top: 10px;
-
   & span {
     color: black;
     font-size: 14px;
     /* margin: 0 auto; */
-
     /* transition: all 0.3s; */
     &:hover {
       text-decoration: underline;
@@ -373,35 +341,28 @@ const Footer = styled.div`
                 value={password}
             
                 onChange={handleChange}
-
               /> */
 }
 
 const PicContainer = styled.div`
   /* display: inline-block; */
   position: relative;
-
   padding: 30px;
   opacity: 0;
   animation-name: ${fadeIn};
   animation-fill-mode: forwards;
   animation-duration: 0.3s;
-
   &#pic-container-two {
     animation-delay: 0.3s;
   }
-
   &#pic-container-three {
     animation-delay: 0.6s;
   }
-
   &:hover > img {
     /* animation-fill-mode: forwards; */
-
     transform: scale(1.05);
     opacity: 0.85;
   }
-
   &:hover .top-left-text {
     opacity: 1;
     transform: translateX(-20px);
@@ -409,17 +370,14 @@ const PicContainer = styled.div`
       transform: translateX(-40px);
     }
   }
-
   &:hover .top-right-text {
     opacity: 1;
     transform: translateX(10px);
   }
-
   &:hover .rightside-top-text {
     opacity: 1;
     transform: translateX(-60px);
   }
-
   &:hover .rightside-bottom-text {
     opacity: 1;
     transform: translateX(10px);
@@ -439,32 +397,27 @@ const Slogan = styled.p`
   color: #133863;
   transform: translateX(0);
   transition: all 0.3s cubic-bezier(0.08, 1.17, 0.96, 0.94);
-
   @media ${device.laptopL} {
     font-size: 36px;
   }
-
   &.top-right-text {
     top: -20px;
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
   }
-
   &.top-left-text {
     top: -40px;
     right: 50%;
     -webkit-transform: translateX(50%);
     transform: translateX(50%);
   }
-
   &.rightside-top-text {
     top: -40px;
     right: 50%;
     -webkit-transform: translateX(50%);
     transform: translateX(50%);
   }
-
   &.rightside-bottom-text {
     bottom: -40px;
     left: 50%;

@@ -1,4 +1,4 @@
-export let html = [{
+export let HTML = [{
         text: 'Describe HTML',
         answer: {
             title: `Hypertext Markup Language or HTML is a markup language that is used to create website templates or WebPages to present the content on the World Wide Web.`,
@@ -7,7 +7,7 @@ export let html = [{
         },
         note: '',
         known: false,
-        language: 'html',
+        technology: 'HTML',
     },
 
     {
@@ -20,7 +20,7 @@ export let html = [{
         },
         note: '',
         known: false,
-        language: 'html',
+        technology: 'HTML',
     },
 
     {
@@ -33,7 +33,7 @@ export let html = [{
         },
         note: '',
         known: false,
-        language: 'html',
+        technology: 'HTML',
     },
 
     {
@@ -46,7 +46,7 @@ export let html = [{
         },
         note: '',
         known: false,
-        language: 'html',
+        technology: 'HTML',
     },
 
     {
@@ -59,7 +59,7 @@ export let html = [{
         },
         note: '',
         known: false,
-        language: 'html',
+        technology: 'HTML',
     },
 
     {
@@ -72,7 +72,7 @@ export let html = [{
         },
         note: '',
         known: false,
-        language: 'html',
+        technology: 'HTML',
     },
 
     {
@@ -85,7 +85,7 @@ export let html = [{
         },
         note: '',
         known: false,
-        language: 'html',
+        technology: 'HTML',
     },
 
     {
@@ -98,7 +98,7 @@ export let html = [{
         },
         note: '',
         known: false,
-        language: 'html',
+        technology: 'HTML',
     },
 
     {
@@ -111,7 +111,7 @@ export let html = [{
         },
         note: '',
         known: false,
-        language: 'html',
+        technology: 'HTML',
     },
 
     {
@@ -127,7 +127,7 @@ export let html = [{
         },
         note: '',
         known: false,
-        language: 'html',
+        technology: 'HTML',
     },
 
     {
@@ -141,7 +141,7 @@ export let html = [{
         },
         note: '',
         known: false,
-        language: 'html',
+        technology: 'HTML',
     },
 
     {
@@ -157,7 +157,7 @@ export let html = [{
         },
         note: '',
         known: false,
-        language: 'html',
+        technology: 'HTML',
     },
 
     {
@@ -171,7 +171,7 @@ export let html = [{
         },
         note: '',
         known: false,
-        language: 'html',
+        technology: 'HTML',
     },
 
     {
@@ -181,7 +181,7 @@ export let html = [{
         },
         note: '',
         known: false,
-        language: 'html',
+        technology: 'HTML',
     },
 
     {
@@ -195,7 +195,7 @@ export let html = [{
         },
         note: '',
         known: false,
-        language: 'html',
+        technology: 'HTML',
     },
 
     {
@@ -211,7 +211,7 @@ export let html = [{
         },
         note: '',
         known: false,
-        language: 'html',
+        technology: 'HTML',
     },
 
     {
@@ -223,7 +223,7 @@ export let html = [{
         },
         note: '',
         known: false,
-        language: 'html',
+        technology: 'HTML',
     },
 
     {
@@ -235,7 +235,7 @@ export let html = [{
         },
         note: '',
         known: false,
-        language: 'html',
+        technology: 'HTML',
     },
 
 
@@ -248,7 +248,7 @@ export let html = [{
         },
         note: '',
         known: false,
-        language: 'html',
+        technology: 'HTML',
     },
 
 
@@ -261,7 +261,7 @@ export let html = [{
         },
         note: '',
         known: false,
-        language: 'html',
+        technology: 'HTML',
     },
 
 
@@ -273,7 +273,7 @@ export let html = [{
         },
         note: '',
         known: false,
-        language: 'html',
+        technology: 'HTML',
     },
 
 ]

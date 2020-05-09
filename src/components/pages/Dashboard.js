@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled, { keyframes } from 'styled-components';
+import db from '../../firebase/base';
+import { addQuestion, getQuestions } from '../localStorage';
+import lodash from 'lodash';
+import { uuid } from 'uuidv4';
 
+import { AuthContext } from '../../contexts/Auth';
 import { device } from '../utils/media';
+// import { groupBy } from '../utils/helperFunctions';
 
 import Navbar from '../Navbar';
 
-import { javascript } from '../../questionsCollection/Qjavascript';
-import { css } from '../../questionsCollection/Qcss';
-import { html } from '../../questionsCollection/Qhtml';
+import { JavaScript } from '../../questionsCollection/Qjavascript';
+import { CSS } from '../../questionsCollection/Qcss';
+import { HTML } from '../../questionsCollection/Qhtml';
 import { react } from '../../questionsCollection/Qreact';
+import { staticQuestions } from '../../questionsCollection/staticQuestions';
 
 import semiCircle from '../../images/mainPage/semiCircle.png';
+
+import SimpleBar from 'simplebar-react';
+
+import 'simplebar/dist/simplebar.min.css';
 
 const fadeIn = keyframes`
 0% {
@@ -65,6 +76,18 @@ const fadeUp = keyframes`
   }
 `;
 
+// const fadeIn = keyframes`
+// 0% {
+//   top: -1px;
+//   opacity: 0;
+
+//   }
+//   100% {
+//     top: -20px;
+//     opacity: 1;
+//   }
+// `;
+
 const StyledBurger = styled.button`
 outline: none;
   position: fixed;
@@ -96,7 +119,14 @@ outline: none;
     font-size: 23px;
     font-weight: 700;
     margin-right: 10px;
-    transition: all 0.3s linear;
+    /* background:  ${({ open }) => (open ? '#E1ECF9' : 'transparent')}; */
+    /* background: ${({ open }) => (open ? '#a3aefb' : 'transparent')}; */
+    /* background: ${({ open }) => (open ? 'transparent' : '#E1ECF9')}; */
+
+    z-index: 11;
+    transition: color 0.3s linear;
+
+ 
 
   }
     &:hover::before  {
@@ -152,11 +182,10 @@ const Burger = ({ open, setOpen }) => {
         open={open}
         onClick={() => setOpen(!open)}
       >
-        {/* <span>Categories</span> */}
+        {/* <span>Categories</span> */} <div />
         <div />
         <div />
-        <div />
-      </StyledBurger>
+      </StyledBurger>{' '}
     </>
   );
 };
@@ -232,7 +261,7 @@ const SemiCircleContainer = styled.div`
       /* text-shadow: 2px 2px 2px #200ac7; */
       /* text-shadow: 2px 2px 2px #236ab9; */
       text-shadow: 2px 2px 2px #005fa3;
-      padding: 5px 15px;
+      padding: 0px 10px;
 
       @media ${device.laptop} {
         bottom: 27px;
@@ -270,8 +299,6 @@ const Hamburger = styled.div`
 `;
 
 const SideNavbar = styled.div`
-  /* z-index: 3; */
-
   position: fixed;
   right: 0;
   top: 0px;
@@ -283,15 +310,49 @@ const SideNavbar = styled.div`
 
   transition: all 0.3s;
 
+  & .simplebar-scrollbar:before {
+    background: #a3aefb;
+    /* height: 100px; */
+  }
+
+  & .simplebar-scrollbar {
+    height: 150px !important;
+  }
+
+  & .scrollDown {
+    margin-top: 10px;
+    text-align: center;
+    color: #a3aefb;
+    font-size: 12px;
+    position: relative;
+
+    &::after {
+      margin-top: 5px;
+      content: ' \\2193';
+      display: block;
+      transform: scale(2);
+    }
+  }
+
   @media ${device.laptop} {
-    top: 55px;
+    /* top: 55px; */
+    /* margin-top: 55px; */
     width: 210px;
+    /* padding-top: 20px;
+    padding-bottom: 30px; */
   }
 `;
 
 const SideNavbarList = styled.ul`
   display: flex;
   flex-direction: column;
+  margin-top: 90px;
+
+  @media ${device.laptop} {
+    margin-top: 200px;
+    /* margin-bottom: 50px; */
+    /* height: 75%; */
+  }
 `;
 
 const SideNavbarItem = styled.li`
@@ -301,6 +362,8 @@ const SideNavbarItem = styled.li`
   cursor: pointer;
   display: flex;
   justify-content: center;
+  /* justify-content: flex-start; */
+
   align-items: center;
   color: white;
   border-bottom: 1px solid #133863;
@@ -310,6 +373,7 @@ const SideNavbarItem = styled.li`
   letter-spacing: 0.8px;
   color: #a3aefb;
   white-space: nowrap;
+  overflow: hidden;
 
   text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1),
     1px 1px 1px rgba(0, 0, 0, 0.5), 2px 2px 2px rgba(163, 174, 251, 0);
@@ -324,12 +388,13 @@ const SideNavbarItem = styled.li`
   } */
 
   @media ${device.laptop} {
-    top: 55px;
+    /* top: 55px; */
     width: 210px;
   }
 
   &:first-child {
-    margin-top: 100px;
+    /* margin-top: 100px; */
+    /* padding-top: 0; */
   }
 
   &:hover {
@@ -342,7 +407,10 @@ const SideNavbarItem = styled.li`
 
     & .numOfQuestions {
       @media ${device.laptop} {
-        left: -20px;
+        /* left: 150px; */
+
+        /* top: -10px; */
+        top: -17px;
         opacity: 1;
       }
     }
@@ -350,42 +418,90 @@ const SideNavbarItem = styled.li`
 `;
 
 const NumOfQuestions = styled.div`
-  letter-spacing: 0.8px;
   display: inline-block;
+  border-radius: 6px;
+  right: -10px;
+  top: -17px;
+  /* top: -10px; */
+  /* position: absolute; */
   position: relative;
+
+  color: #d8dcf9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: unset; */
+  padding: 2px;
+  /* top: unset; */
+  /* right: unset; */
+  width: 30px;
+  height: 30px;
+
+  opacity: 1;
+  background: rgba(19, 56, 99, 1);
+  font-size: 14px;
+
+  /* left: -25px; */
+
+  border: 2px solid #200ac7;
+  -webkit-box-shadow: 0px 0px 12px 0px rgba(32, 10, 199, 1);
+  -moz-box-shadow: 0px 0px 12px 0px rgba(32, 10, 199, 1);
+  box-shadow: 0px 0px 12px 0px rgba(32, 10, 199, 1);
+  /* letter-spacing: 0.8px; */
+  /* display: inline-block;
+  position: absolute; */
 
   /* width: 40px; */
   /* height: 40px; */
-  font-size: 11px;
-  top: -13px;
+  /* font-size: 11px; */
+  /* top: -13px;
+  top: -40px;
   right: -6px;
   border: 2px solid #a3aefb;
-  padding: 6px;
-  border-radius: 50%;
-  background: transparent;
-  color: #a3aefb;
-  transition: all 0.3s ease;
+  padding: 6px; */
+  /* border-radius: 50%; */
+  /* background: transparent; */
+  /* color: #a3aefb; */
+  /* color: #d8dcf9;
 
+
+  border: 2px solid #200ac7;
+  -webkit-box-shadow: 0px 0px 12px 0px rgba(32, 10, 199, 1);
+  -moz-box-shadow: 0px 0px 12px 0px rgba(32, 10, 199, 1);
+  box-shadow: 0px 0px 12px 0px rgba(32, 10, 199, 1); */
+
+  /* transition: all 0.3s ease; */
+  transition: all 0.3s cubic-bezier(0.69, 0.9, 0.92, 1.19);
   @media ${device.laptop} {
+    display: inline-block;
+    border-radius: 6px;
+    right: -10px;
+    top: -50px;
+    /* top: -10px; */
+    /* position: absolute; */
+    position: relative;
+
     color: #d8dcf9;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: unset;
-    top: unset;
-    right: unset;
-    width: 40px;
-    height: 40px;
-
-    position: absolute;
+    /* padding: unset; */
+    padding: 2px;
+    /* top: unset; */
+    /* right: unset; */
+    width: 30px;
+    height: 30px;
 
     opacity: 0;
     background: rgba(19, 56, 99, 1);
     font-size: 14px;
 
-    left: -25px;
-    border-radius: 50%;
-    border: 4px solid #e1ecf9;
+    /* left: -25px; */
+
+    border: 2px solid #200ac7;
+    -webkit-box-shadow: 0px 0px 12px 0px rgba(32, 10, 199, 1);
+    -moz-box-shadow: 0px 0px 12px 0px rgba(32, 10, 199, 1);
+    box-shadow: 0px 0px 12px 0px rgba(32, 10, 199, 1);
   }
 `;
 
@@ -454,6 +570,7 @@ const ContentItem = styled.li`
     padding: 10px;
     border-radius: 8px;
     cursor: pointer;
+
     transition: all 0.3s;
 
     @media ${device.laptop} {
@@ -471,6 +588,7 @@ const ContentItem = styled.li`
     & ~ input {
       display: none;
     }
+
     & ~ input:checked + div {
       display: inline-block;
       animation-name: ${fadeUp};
@@ -526,6 +644,7 @@ const Answer = styled.div`
       border-radius: 50%;
       height: 6px;
       width: 6px;
+
       background: #a3aefb;
       margin-right: 10px;
       vertical-align: middle;
@@ -549,111 +668,231 @@ const NoInfo = styled.p`
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [category, setCategory] = useState('');
-  const [number, setNumber] = useState('');
+  // const [number, setNumber] = useState('');
+
+  const [numOfTech, setNumOfTech] = useState(
+    JSON.parse(localStorage.getItem('numOfTech')) || []
+  );
+
+  const [questions, setQuestions] = useState(
+    JSON.parse(localStorage.getItem('questions')) || []
+  );
+
+  const { currentUser } = useContext(AuthContext);
+  console.log('currentUser: ', currentUser);
+
+  // const getQuestions = () => {
+  //   const questions = [];
+  //   db.ref(`users/${currentUser.uid}/questions`)
+  //     .once('value')
+  //     .then((childSnapshot) => {
+  //       childSnapshot.forEach((childchildSnapshot) => {
+  //         let dbQuestion = childchildSnapshot.val();
+  //         questions.push(dbQuestion);
+  //         // console.log('QUESTIONS: ', questions);
+  //       });
+  //     });
+  //   // console.log('&*(^&(&^(^(&(&()&)(*): ', questions);
+  //   return questions;
+  // };
 
   const toggleAnswer = (e) => {
     e.target.checked = !e.target.checked;
   };
 
-  const techs = [
-    ['HR questions', 15],
-    ['HTML', html.length],
-    ['CSS', css.length],
-    ['JavaScript', javascript.length],
-    ['React', react.length],
-  ];
+  // let allTechs =[]
+  // Object.keys(questions).forEach((tech) => {
+  //   techs.forEach((staticTech) => {
+  //     if (tech === staticTech) {
+  //       let combTech = {...questions[tech], }
+  //       allTechs.push(...questions[tech]
+  //     }
 
-  const allQuestions = {
-    html,
-    css,
-    javascript,
-    react,
+  //   })
+  // })
+  // const dbTechs = Object.keys(questions)
+  // const dbTechsWithLength = []
+  // dbTechs.forEach((tech) => {
+  //   d
+  // } )
+
+  // const combData = [];
+
+  // Object.keys(questions).forEach((item) => {
+  //   Object.keys(allQuestions).forEach((item2) => {
+  //     if (item === item2) {
+  //       combData.push({ ...questions.item, ...allQuestions.item2 });
+  //     }
+  //     else {
+
+  //     }
+  //   });
+  // });
+
+  // const html = { ...HTML };
+  // const css = { ...CSS };
+  // const js = { ...JavaScript };
+  // const react2 = { ...react };
+
+  // const kurwaAll = { ...html, ...css, ...js, ...react2 };
+  // console.log('kurwa: ', kurwaAll);
+
+  // var newObj = Object.assign(
+  //   {},
+  //   ...HTML.map((item) => ({ [item.key]: item.value }))
+  // );
+
+  // console.log('allQuestions: ', allQuestions);
+
+  const sortAlpha = (arr) => {
+    return arr.sort((a, b) =>
+      a[0].localeCompare(b[0], undefined, {
+        sensitivity: 'base',
+      })
+    );
   };
-  console.log('allQuestions: ', allQuestions);
+  useEffect(async () => {
+    async function getQuestionsDb() {
+      const questions = [];
+      const questionsRef = db.ref(`users/${currentUser.uid}/questions`);
+      const questionsSnapshot = await questionsRef.once('value');
+
+      // If user stored already some data in database
+      if (questionsSnapshot) {
+        questionsSnapshot.forEach((childSnapshot) => {
+          let dbQuestion = childSnapshot.val();
+          questions.push(dbQuestion);
+        });
+        return await questions;
+      } else return [];
+    }
+
+    const questions2 = await getQuestionsDb();
+
+    const combData = [...staticQuestions, ...questions2];
+    console.log('combData: ', combData);
+
+    const techs = lodash.groupBy(combData, 'technology');
+
+    // addQuestion(techs);
+    localStorage.setItem('questions', JSON.stringify(techs));
+    const numOfTech = Object.keys(techs).map((tech) => {
+      return [tech, techs[tech].length];
+    });
+
+    localStorage.setItem('numOfTech', JSON.stringify(numOfTech));
+
+    console.log('numOfTech: ', numOfTech);
+
+    console.log('techs: ', techs);
+  }, []);
+
+  // const classNames={}
   return (
     <>
       {' '}
       <PageContainer>
-        {/* <PageContent> */}
-        <Navbar />
-
-        <Burger open={open} setOpen={setOpen} />
+        {' '}
+        {/* <PageContent> */} <Navbar />
+        <Burger open={open} setOpen={setOpen} />{' '}
         {category && (
           <SemiCircleContainer>
             {' '}
-            {/* <img src={semiCircle} /> */}
+            {/* <img src={semiCircle} /> */}{' '}
             <div>
-              <h3>{category}</h3>
-            </div>
+              <h3> {category} </h3>{' '}
+            </div>{' '}
           </SemiCircleContainer>
         )}
-
         <QuestionsContainer>
+          {' '}
           {category ? (
             <>
               <h3 className="title">
                 Top{' '}
-                {techs.map((tech) => {
+                {numOfTech.map((tech) => {
                   if (tech[0] === category) return tech[1];
                 })}{' '}
-                {category} questions & answers
-              </h3>
+                {category} questions & answers{' '}
+              </h3>{' '}
               <ContentContainer>
                 <ContentList>
-                  {allQuestions[category.toLowerCase()].map((question, id) => {
-                    return (
-                      <ContentItem>
-                        <label
-                          className="question-title"
-                          htmlFor={id}
-                          onClick={toggleAnswer}
-                        >
-                          <span className="question-number"> Q{id + 1}:</span>
-                          {question.text}
-                        </label>
-                        <input id={id} type="checkbox" />
-                        <Answer key={id}>
-                          {Object.keys(question.answer).map((par, id) => {
-                            if (id === 0) {
-                              return (
-                                <h5 className="answer-main">
-                                  {question.answer[par]}
-                                </h5>
-                              );
-                            } else {
-                              return (
-                                <p className="answer-sub">
-                                  {question.answer[par]}
-                                </p>
-                              );
-                            }
-                          })}
-                        </Answer>
-                      </ContentItem>
-                    );
-                  })}
-                </ContentList>
-              </ContentContainer>
+                  {' '}
+                  {questions &&
+                    questions[category].map((question, id) => {
+                      let newId = uuid();
+                      return (
+                        <ContentItem>
+                          <label
+                            className="question-title"
+                            htmlFor={newId}
+                            onClick={toggleAnswer}
+                          >
+                            <span className="question-number">
+                              {' '}
+                              Q {id + 1}:{' '}
+                            </span>{' '}
+                            {question.text}{' '}
+                          </label>{' '}
+                          <input id={newId} type="checkbox" />
+                          <Answer key={newId}>
+                            {' '}
+                            {typeof question.answer === 'string' ? (
+                              <h5 className="answer-main">
+                                {' '}
+                                {question.answer}{' '}
+                              </h5>
+                            ) : (
+                              Object.keys(question.answer).map((par, id) => {
+                                if (id === 0) {
+                                  return (
+                                    <h5 className="answer-main">
+                                      {' '}
+                                      {question.answer[par]}{' '}
+                                    </h5>
+                                  );
+                                } else {
+                                  return (
+                                    <p className="answer-sub">
+                                      {' '}
+                                      {question.answer[par]}{' '}
+                                    </p>
+                                  );
+                                }
+                              })
+                            )}{' '}
+                          </Answer>{' '}
+                        </ContentItem>
+                      );
+                    })}{' '}
+                </ContentList>{' '}
+              </ContentContainer>{' '}
             </>
           ) : (
-            <NoInfo>No Category Selected</NoInfo>
-          )}
+            <NoInfo> No Category Selected </NoInfo>
+          )}{' '}
         </QuestionsContainer>
-
         <SideNavbar open={open}>
           <SideNavbarList>
-            {techs.map((category) => (
-              <SideNavbarItem onClick={() => setCategory(`${category[0]}`)}>
-                {category[0]}{' '}
-                <NumOfQuestions className="numOfQuestions">
-                  {category[1]}
-                </NumOfQuestions>
-              </SideNavbarItem>
-            ))}
-          </SideNavbarList>
-        </SideNavbar>
-        {/* </PageContent> */}
-      </PageContainer>
+            <SimpleBar style={{ maxHeight: '300px' }}>
+              {' '}
+              {numOfTech &&
+                sortAlpha(numOfTech).map((category) => (
+                  <SideNavbarItem onClick={() => setCategory(`${category[0]}`)}>
+                    {' '}
+                    {category[0]}{' '}
+                    <NumOfQuestions className="numOfQuestions">
+                      {' '}
+                      {category[1]}{' '}
+                    </NumOfQuestions>{' '}
+                  </SideNavbarItem>
+                ))}{' '}
+            </SimpleBar>
+            <p className="scrollDown">scroll down</p>
+          </SideNavbarList>{' '}
+        </SideNavbar>{' '}
+        {/* </PageContent> */}{' '}
+      </PageContainer>{' '}
     </>
   );
 };

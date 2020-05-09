@@ -1,4 +1,4 @@
-export let javascript = [{
+export let JavaScript = [{
     text: 'What is Coercion in JavaScript?',
     answer: {
       title: `Type coercion is the process of converting value from one type to another (such as string to number, object to boolean, and so on). Any type, be it primitive or an object, is a valid subject for type coercion. To recall, primitives are: number, string, boolean, null, undefined + Symbol (added in ES6). Type coercion can be explicit and implicit.`,
@@ -10,7 +10,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -26,7 +26,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -37,7 +37,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -52,7 +52,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -63,7 +63,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -79,7 +79,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -92,7 +92,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -108,7 +108,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -125,7 +125,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -141,7 +141,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -157,7 +157,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
 
@@ -174,7 +174,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -185,7 +185,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -201,7 +201,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
 
@@ -214,7 +214,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   ,
@@ -231,7 +231,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -247,7 +247,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
 
@@ -265,7 +265,7 @@ export let javascript = [{
     note: '',
     level: 'mid',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -281,7 +281,7 @@ export let javascript = [{
     note: '',
     level: 'mid',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -298,7 +298,7 @@ export let javascript = [{
     note: '',
     level: 'mid',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
 
@@ -313,7 +313,7 @@ export let javascript = [{
     note: '',
     level: 'mid',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -326,7 +326,7 @@ export let javascript = [{
     note: '',
     level: 'mid',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -342,7 +342,7 @@ export let javascript = [{
     note: '',
     level: 'mid',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -353,7 +353,7 @@ export let javascript = [{
     note: '',
     level: 'mid',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -373,7 +373,7 @@ export let javascript = [{
     note: '',
     level: 'mid',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -384,7 +384,7 @@ export let javascript = [{
     note: '',
     level: 'mid',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
 
@@ -397,7 +397,7 @@ export let javascript = [{
     note: '',
     level: 'mid',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -412,7 +412,7 @@ export let javascript = [{
     note: '',
     level: 'mid',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -425,7 +425,7 @@ export let javascript = [{
     note: '',
     level: 'mid',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
 
@@ -441,7 +441,7 @@ export let javascript = [{
     note: '',
     level: 'mid',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
 
@@ -460,7 +460,7 @@ export let javascript = [{
     note: '',
     level: 'mid',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -477,7 +477,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -493,7 +493,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -511,7 +511,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -524,7 +524,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -537,7 +537,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -550,7 +550,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -568,7 +568,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -583,7 +583,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -598,7 +598,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -613,7 +613,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -622,7 +622,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -640,7 +640,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -655,7 +655,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -671,7 +671,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -684,7 +684,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -699,7 +699,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -713,7 +713,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -727,7 +727,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -746,7 +746,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -760,7 +760,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -778,7 +778,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
   {
@@ -793,7 +793,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 
 
@@ -811,7 +811,7 @@ export let javascript = [{
     note: '',
     level: 'junior',
     known: false,
-    language: 'javascript',
+    technology: 'JavaScript',
   },
 ];
 

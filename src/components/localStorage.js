@@ -1,10 +1,24 @@
 const addQuestion = (item) => {
   let data = localStorage.getItem('questions');
 
-  let questions = data ? JSON.parse(data) : [];
+  let questions = data ? JSON.parse(data) : {};
+  let key = item.technology
 
-  console.log('questions', questions);
-  questions.push(item);
+  if (questions[key]) {
+    questions[key] = [...questions[key], item]
+  } else {
+    questions[key] = [item]
+  }
+
+  // // if (questions[key]) {}
+  // let updatedData = {
+  //   ...questions[key],
+
+  //   item
+
+  // }
+
+  // questions[key] = questions[key] ? updatedData : item
 
   localStorage.setItem('questions', JSON.stringify(questions));
 };
@@ -12,7 +26,7 @@ const addQuestion = (item) => {
 const deleteQuestion = (id) => {
   let data = localStorage.getItem('questions');
 
-  let questions = data ? JSON.parse(data) : [];
+  let questions = data ? JSON.parse(data) : {};
 
   let updatedQuestions;
 
@@ -27,7 +41,7 @@ const deleteQuestion = (id) => {
 
 const getQuestions = () => {
   const data = localStorage.getItem('questions');
-  return data ? JSON.parse(data) : [];
+  return data ? JSON.parse(data) : {};
 };
 
 const isQuestion = (id) => {

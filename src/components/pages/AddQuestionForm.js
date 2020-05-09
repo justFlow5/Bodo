@@ -203,7 +203,7 @@ const AddQuestionForm = () => {
 
   const [technology, setTechnology] = useState('JavaScript');
   const [newTechnology, setNewTechnology] = useState('');
-  const [question, setQuestion] = useState('');
+  const [text, setText] = useState('');
   const [answer, setAnswer] = useState('');
   const [code, setCode] = useState('');
   const [job, setJob] = useState('Frontend Developer');
@@ -286,7 +286,7 @@ const AddQuestionForm = () => {
       addQuestion({
         job,
         technology: tech,
-        question,
+        text,
         answer,
         code,
         known: false,
@@ -298,7 +298,7 @@ const AddQuestionForm = () => {
       db.ref(`users/${currentUser.uid}/questions/${id}`).update({
         job,
         technology: tech,
-        question,
+        text,
         answer,
         code,
         known: false,
@@ -307,7 +307,7 @@ const AddQuestionForm = () => {
     } else {
       addQuestion({
         job: jobText,
-        question,
+        text,
         answer,
         known: false,
         id,
@@ -315,23 +315,21 @@ const AddQuestionForm = () => {
 
       db.ref(`users/${currentUser.uid}/questions/${id}`).update({
         job: jobText,
-        question,
+        text,
         answer,
         known: false,
         id,
       });
     }
 
-    if (isQuestion(id)) {
-      setOpen(true);
-      //   handleClose();
-      // setChecked('');
-      //   setNewTechnology('');
-      setQuestion('');
-      setAnswer('');
-      setCode('');
-      //   setJob('');
-    }
+    // if (isQuestion(id)) {
+    setOpen(true);
+
+    setText('');
+    setAnswer('');
+    setCode('');
+
+    // }
   };
 
   //   useEffect(() => {
@@ -527,8 +525,8 @@ const AddQuestionForm = () => {
             variant="standard"
             label="Question"
             multiline
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
+            value={text}
+            onChange={(e) => setText(e.target.value)}
             required
           />
 

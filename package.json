@@ -23,6 +23,8 @@
     "react-scripts": "3.4.1",
     "react-typist": "^2.0.5",
     "reset-css": "^5.0.1",
+    "simplebar": "^5.1.0",
+    "simplebar-react": "^2.1.0",
     "styled-components": "^5.0.1",
     "uuidv4": "^6.0.6"
   },

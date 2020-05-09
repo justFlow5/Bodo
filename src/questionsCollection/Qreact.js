@@ -9,7 +9,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -31,7 +31,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -53,7 +53,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -66,7 +66,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -81,7 +81,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -94,7 +94,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -107,7 +107,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -124,7 +124,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -141,7 +141,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -158,7 +158,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -171,7 +171,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -185,7 +185,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
 
@@ -200,7 +200,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
 
@@ -218,7 +218,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
 
@@ -234,7 +234,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -249,7 +249,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -264,7 +264,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -278,7 +278,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -299,7 +299,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -320,7 +320,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -337,7 +337,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -354,7 +354,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -370,7 +370,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -390,7 +390,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -409,7 +409,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -424,7 +424,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -439,7 +439,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -454,7 +454,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
     {
@@ -467,7 +467,7 @@ export let react = [{
         note: '',
 
         known: false,
-        language: 'React',
+        technology: 'React',
     },
 
 ]
