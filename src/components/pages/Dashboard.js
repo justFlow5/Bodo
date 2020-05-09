@@ -250,7 +250,7 @@ const SemiCircleContainer = styled.div`
     & > h3 {
       position: absolute;
       z-index: 999;
-      top: -10px;
+      top: -5px;
       left: 0;
       right: 0;
       font-size: 24px;
@@ -412,6 +412,17 @@ const SideNavbarItem = styled.li`
         /* top: -10px; */
         top: -17px;
         opacity: 1;
+
+        /* test */
+        /* position: absolute; */
+        /* right: 10px; */
+        top: -23px;
+        & > span {
+          position: relative;
+          bottom: -9px;
+          font-size: 13px;
+          color: white;
+        }
       }
     }
   }
@@ -420,8 +431,9 @@ const SideNavbarItem = styled.li`
 const NumOfQuestions = styled.div`
   display: inline-block;
   border-radius: 6px;
+  border-radius: 50%;
   right: -10px;
-  top: -17px;
+  top: -12px;
   /* top: -10px; */
   /* position: absolute; */
   position: relative;
@@ -439,7 +451,7 @@ const NumOfQuestions = styled.div`
 
   opacity: 1;
   background: rgba(19, 56, 99, 1);
-  font-size: 14px;
+  font-size: 12px;
 
   /* left: -25px; */
 
@@ -474,9 +486,9 @@ const NumOfQuestions = styled.div`
   transition: all 0.3s cubic-bezier(0.69, 0.9, 0.92, 1.19);
   @media ${device.laptop} {
     display: inline-block;
-    border-radius: 6px;
-    right: -10px;
+    /* border-radius: 6px; */
     top: -50px;
+    right: -10px;
     /* top: -10px; */
     /* position: absolute; */
     position: relative;
@@ -499,9 +511,16 @@ const NumOfQuestions = styled.div`
     /* left: -25px; */
 
     border: 2px solid #200ac7;
-    -webkit-box-shadow: 0px 0px 12px 0px rgba(32, 10, 199, 1);
-    -moz-box-shadow: 0px 0px 12px 0px rgba(32, 10, 199, 1);
-    box-shadow: 0px 0px 12px 0px rgba(32, 10, 199, 1);
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(32, 10, 199, 1);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(32, 10, 199, 1);
+    box-shadow: 0px 0px 15px 0px #57a0e0;
+
+    /* test */
+    position: absolute;
+    right: 10px;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
   }
 `;
 
@@ -547,6 +566,7 @@ const ContentContainer = styled.div`
   margin: 25px auto 55px;
   @media ${device.laptop} {
     margin: 40px auto 55px;
+    width: 100%;
   }
 `;
 
@@ -668,7 +688,7 @@ const NoInfo = styled.p`
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [category, setCategory] = useState('');
-  // const [number, setNumber] = useState('');
+  const [data, setData] = useState([]);
 
   const [numOfTech, setNumOfTech] = useState(
     JSON.parse(localStorage.getItem('numOfTech')) || []
@@ -751,25 +771,27 @@ const Dashboard = () => {
       })
     );
   };
-  useEffect(async () => {
-    async function getQuestionsDb() {
+  useEffect(() => {
+    const getQuestionsDb = async () => {
       const questions = [];
       const questionsRef = db.ref(`users/${currentUser.uid}/questions`);
       const questionsSnapshot = await questionsRef.once('value');
 
       // If user stored already some data in database
       if (questionsSnapshot) {
-        questionsSnapshot.forEach((childSnapshot) => {
+        questionsSnapshot.forEach(async (childSnapshot) => {
           let dbQuestion = childSnapshot.val();
           questions.push(dbQuestion);
         });
+
         return await questions;
-      } else return [];
-    }
+      }
 
-    const questions2 = await getQuestionsDb();
+      setData(questions);
+    };
+    getQuestionsDb();
 
-    const combData = [...staticQuestions, ...questions2];
+    const combData = [...staticQuestions, ...data];
     console.log('combData: ', combData);
 
     const techs = lodash.groupBy(combData, 'technology');
@@ -883,7 +905,7 @@ const Dashboard = () => {
                     {category[0]}{' '}
                     <NumOfQuestions className="numOfQuestions">
                       {' '}
-                      {category[1]}{' '}
+                      <span>{category[1]}</span>{' '}
                     </NumOfQuestions>{' '}
                   </SideNavbarItem>
                 ))}{' '}
