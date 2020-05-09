@@ -9,9 +9,9 @@ const SnackBar = ({ open, setOpen, toggleOpen }) => {
       anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       open={open}
       onClose={toggleOpen}
-      autoHideDuration={6000}
+      autoHideDuration={3000}
     >
-      <Alert color="info" variant="filled">
+      <Alert color="success" variant="filled">
         Question added successfully!
       </Alert>
     </Snackbar>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import db from '../../firebase/base';
 import { addQuestion, getQuestions } from '../localStorage';
@@ -19,6 +19,7 @@ import { staticQuestions } from '../../questionsCollection/staticQuestions';
 
 import semiCircle from '../../images/mainPage/semiCircle.png';
 
+import Datalist from '../forms/Datalist';
 import SimpleBar from 'simplebar-react';
 
 import 'simplebar/dist/simplebar.min.css';
@@ -347,9 +348,11 @@ const SideNavbarList = styled.ul`
   display: flex;
   flex-direction: column;
   margin-top: 90px;
+  margin-top: 20px;
 
   @media ${device.laptop} {
     margin-top: 200px;
+    margin-top: 20px;
     /* margin-bottom: 50px; */
     /* height: 75%; */
   }
@@ -701,68 +704,9 @@ const Dashboard = () => {
   const { currentUser } = useContext(AuthContext);
   console.log('currentUser: ', currentUser);
 
-  // const getQuestions = () => {
-  //   const questions = [];
-  //   db.ref(`users/${currentUser.uid}/questions`)
-  //     .once('value')
-  //     .then((childSnapshot) => {
-  //       childSnapshot.forEach((childchildSnapshot) => {
-  //         let dbQuestion = childchildSnapshot.val();
-  //         questions.push(dbQuestion);
-  //         // console.log('QUESTIONS: ', questions);
-  //       });
-  //     });
-  //   // console.log('&*(^&(&^(^(&(&()&)(*): ', questions);
-  //   return questions;
-  // };
-
   const toggleAnswer = (e) => {
     e.target.checked = !e.target.checked;
   };
-
-  // let allTechs =[]
-  // Object.keys(questions).forEach((tech) => {
-  //   techs.forEach((staticTech) => {
-  //     if (tech === staticTech) {
-  //       let combTech = {...questions[tech], }
-  //       allTechs.push(...questions[tech]
-  //     }
-
-  //   })
-  // })
-  // const dbTechs = Object.keys(questions)
-  // const dbTechsWithLength = []
-  // dbTechs.forEach((tech) => {
-  //   d
-  // } )
-
-  // const combData = [];
-
-  // Object.keys(questions).forEach((item) => {
-  //   Object.keys(allQuestions).forEach((item2) => {
-  //     if (item === item2) {
-  //       combData.push({ ...questions.item, ...allQuestions.item2 });
-  //     }
-  //     else {
-
-  //     }
-  //   });
-  // });
-
-  // const html = { ...HTML };
-  // const css = { ...CSS };
-  // const js = { ...JavaScript };
-  // const react2 = { ...react };
-
-  // const kurwaAll = { ...html, ...css, ...js, ...react2 };
-  // console.log('kurwa: ', kurwaAll);
-
-  // var newObj = Object.assign(
-  //   {},
-  //   ...HTML.map((item) => ({ [item.key]: item.value }))
-  // );
-
-  // console.log('allQuestions: ', allQuestions);
 
   const sortAlpha = (arr) => {
     return arr.sort((a, b) =>
@@ -777,15 +721,10 @@ const Dashboard = () => {
       const questionsRef = db.ref(`users/${currentUser.uid}/questions`);
       const questionsSnapshot = await questionsRef.once('value');
 
-      const numberOfQuestionsFromDb = Object.keys(questionsSnapshot.val())
-        .length;
-
-      // If user stored already some data in database
       if (questionsSnapshot) {
-        // console.log(
-        //   'questionsSnapshot: ',
-        //   Object.keys(questionsSnapshot.val().length)
-        // );
+        const numberOfQuestionsFromDb = Object.keys(questionsSnapshot.val())
+          .length;
+
         questionsSnapshot.forEach((childSnapshot) => {
           let dbQuestion = childSnapshot.val();
           questions.push(dbQuestion);
@@ -910,6 +849,7 @@ const Dashboard = () => {
           )}{' '}
         </QuestionsContainer>
         <SideNavbar open={open}>
+          <Datalist technologies={numOfTech} setCategory={setCategory} />
           <SideNavbarList>
             <SimpleBar style={{ maxHeight: '300px' }}>
               {' '}

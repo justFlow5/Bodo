@@ -226,6 +226,16 @@ const AddQuestionForm = () => {
     else setShowJob(false);
   };
 
+  const saveNumbers = () => {
+    const numOfTech = JSON.parse(localStorage.getItem('questions'));
+
+    const numOfTech2 = Object.keys(numOfTech).map((tech) => {
+      return [tech, numOfTech[tech].length];
+    });
+
+    localStorage.setItem('numOfTech', JSON.stringify(numOfTech2));
+  };
+
   // const handleClose = () => {
   //   setState({ ...state, open: false });
   // };
@@ -293,6 +303,9 @@ const AddQuestionForm = () => {
         id,
       });
 
+      // number of questions:
+      saveNumbers();
+
       // add to firebase
 
       db.ref(`users/${currentUser.uid}/questions/${id}`).update({
@@ -312,6 +325,9 @@ const AddQuestionForm = () => {
         known: false,
         id,
       });
+
+      // save number of questions
+      saveNumbers();
 
       db.ref(`users/${currentUser.uid}/questions/${id}`).update({
         job: jobText,
@@ -561,12 +577,6 @@ const AddQuestionForm = () => {
         >
           Save
         </SaveButton>
-
-        {/* <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success">
-          Question added successfully!
-        </Alert>
-      </Snackbar> */}
 
         <AcceptAlert open={open} setOpen={setOpen} toggleOpen={toggleOpen} />
       </FormContainer>
