@@ -777,37 +777,52 @@ const Dashboard = () => {
       const questionsRef = db.ref(`users/${currentUser.uid}/questions`);
       const questionsSnapshot = await questionsRef.once('value');
 
+      const numberOfQuestionsFromDb = Object.keys(questionsSnapshot.val())
+        .length;
+
       // If user stored already some data in database
       if (questionsSnapshot) {
-        questionsSnapshot.forEach(async (childSnapshot) => {
+        // console.log(
+        //   'questionsSnapshot: ',
+        //   Object.keys(questionsSnapshot.val().length)
+        // );
+        questionsSnapshot.forEach((childSnapshot) => {
           let dbQuestion = childSnapshot.val();
           questions.push(dbQuestion);
         });
 
+        if (questions.length === numberOfQuestionsFromDb) {
+          setData(questions);
+        }
         return await questions;
       }
-
-      setData(questions);
     };
     getQuestionsDb();
+  }, []);
 
+  useEffect(() => {
+    console.log('data', data);
     const combData = [...staticQuestions, ...data];
+
     console.log('combData: ', combData);
 
     const techs = lodash.groupBy(combData, 'technology');
 
     // addQuestion(techs);
     localStorage.setItem('questions', JSON.stringify(techs));
-    const numOfTech = Object.keys(techs).map((tech) => {
-      return [tech, techs[tech].length];
+
+    const numOfTech = JSON.parse(localStorage.getItem('questions'));
+
+    const numOfTech2 = Object.keys(numOfTech).map((tech) => {
+      return [tech, numOfTech[tech].length];
     });
 
-    localStorage.setItem('numOfTech', JSON.stringify(numOfTech));
+    localStorage.setItem('numOfTech', JSON.stringify(numOfTech2));
 
     console.log('numOfTech: ', numOfTech);
 
     console.log('techs: ', techs);
-  }, []);
+  }, [data]);
 
   // const classNames={}
   return (
