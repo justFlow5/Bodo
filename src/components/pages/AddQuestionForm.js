@@ -199,7 +199,7 @@ const AddQuestionForm = () => {
   const classes = useStyles();
 
   const { currentUser } = useContext(AuthContext);
-  console.log('currentUser: ', currentUser);
+  // console.log('currentUser: ', currentUser);
 
   const [technology, setTechnology] = useState('JavaScript');
   const [newTechnology, setNewTechnology] = useState('');
@@ -332,6 +332,7 @@ const AddQuestionForm = () => {
       //   id,
       // });
       db.ref(`users/${currentUser.uid}/questions`).set(dbLoad);
+      db.ref(`users/${currentUser.uid}/staticDataStatus`).set(true);
       // db.ref(`users/${currentUser.uid}/questions/${tech}`).set(upData);
     } else {
       addQuestion({

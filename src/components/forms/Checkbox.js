@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import DoneSharpIcon from '@material-ui/icons/DoneSharp';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -48,17 +48,27 @@ const Label = styled.label`
   }
 `;
 
-const Checkbox = ({ id, boxId, technology, updateKnown }) => {
+const Checkbox = ({ id, boxId, technology, updateKnown, known }) => {
   const [checked, setChecked] = useState(false);
 
-  const toggleCheckbox = () => {
-    console.log('ID_checkbox: ', id);
-    console.log('key_checkbox: ', boxId);
-
-    setChecked(!checked);
-    console.log('checked: ', checked);
-    updateKnown(id, technology);
+  const toggleCheckbox = (value) => {
+    // console.log('ID_checkbox: ', id);
+    // console.log('key_checkbox: ', boxId);
+    setChecked(value);
+    // setChecked(value);
+    // console.log('checked: ', checked);
+    updateKnown(id, technology, value);
   };
+
+  //   const doIt =() => {
+  //       if(known) {
+  //           setChecked(known)
+  //       }
+  //   }
+
+  useEffect(() => {
+    setChecked(known);
+  }, [known]);
 
   return (
     <>
@@ -67,7 +77,7 @@ const Checkbox = ({ id, boxId, technology, updateKnown }) => {
         key={boxId}
         type="checkbox"
         checked={checked}
-        onChange={() => toggleCheckbox()}
+        onChange={(e) => toggleCheckbox(e.target.checked)}
         // onChange={() => setChecked(!checked)}
       />
       <Tooltip

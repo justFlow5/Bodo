@@ -702,7 +702,9 @@ const NoInfo = styled.p`
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [category, setCategory] = useState('');
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(
+    JSON.parse(localStorage.getItem('questions')) || []
+  );
 
   const [numOfTech, setNumOfTech] = useState(
     JSON.parse(localStorage.getItem('numOfTech')) || []
@@ -727,21 +729,22 @@ const Dashboard = () => {
     );
   };
 
-  const updateKnown = (id, technology) => {
+  const updateKnown = (id, technology, value) => {
     // console.log('updateKnown ID: ', id);
     const allQuestions = JSON.parse(localStorage.getItem('questions'));
     // console.log('YOU TECH!: ', allQuestions[technology]);
     // allQuestions[technology]
 
+    // const updatedTechQuestions = allQuestions[technology].map((question) => {
     const updatedTechQuestions = allQuestions[technology].map((question) => {
-      console.log('technology: ', technology);
-      console.log('id: ', id);
-      console.log('question.id: ', question.id);
-      console.log('question: ', question);
+      // console.log('technology: ', technology);
+      // console.log('id: ', id);
+      // console.log('question.id: ', question.id);
+      // console.log('question: ', question);
 
       if (question.id === id) {
         // console.log('EEQUALITY OF ID! : ', question);
-        question.known = !question.known;
+        question.known = value;
         return question;
       } else return question;
     });
@@ -753,118 +756,229 @@ const Dashboard = () => {
     localStorage.setItem('questions', JSON.stringify(allQuestions));
 
     // save to database
-    db.ref(`users/${currentUser.uid}/questions`).set(allQuestions);
+    db.ref(`users/${currentUser.uid}/questions`).update(allQuestions);
   };
 
-  useEffect(() => {
-    const getQuestionsDb = async () => {
+  const getNumberOfQuestions = (questionsObj) => {
+    return Object.keys(questionsObj).map((tech) => {
+      return [tech, questionsObj[tech].length];
+    });
+  };
+
+  // ######################## INIT ########################################
+
+  const LoadInitialData = async () => {
+    const getFlag = await db
+      .ref(`users/${currentUser.uid}/staticDataStatus`)
+      .once('value');
+
+    const isInitialDataLoaded = getFlag.val();
+
+    if (!isInitialDataLoaded) {
+      // group data in firebase way
+      const groupedData = lodash.groupBy([...staticQuestions], 'technology');
+
+      // save data in runtime via hooks
+      setQuestions(groupedData);
+
+      // sava data to localStorage
+      localStorage.setItem('questions', JSON.stringify(groupedData));
+
+      // save number of questions to localStorage
+      const techNumber = getNumberOfQuestions(groupedData);
+      localStorage.setItem('numOfTech', JSON.stringify(techNumber));
+
+      // save it via hook
+      setNumOfTech(techNumber);
+
+      // save data to firebase
+      db.ref(`users/${currentUser.uid}/questions`).set(groupedData);
+
+      // set flag as true -- this funtction will never run again
+      db.ref(`users/${currentUser.uid}/staticDataStatus`).set(true);
+    }
+  };
+
+  // ######################## END INIT ########################################
+
+  // ######################## DATABASE DATA ########################################
+
+  const getDataFromDb = async () => {
+    const getFlag = await db
+      .ref(`users/${currentUser.uid}/staticDataStatus`)
+      .once('value');
+
+    const isInitialDataLoaded = getFlag.val();
+
+    if (isInitialDataLoaded) {
       const questions = [];
       var counter = 0;
       const questionsRef = db.ref(`users/${currentUser.uid}/questions`);
       const questionsSnapshot = await questionsRef.once('value');
-      const questionObject = questionsSnapshot.val();
 
-      if (questionObject) {
-        // const numberOfQuestionsFromDb = Object.keys(questionObject).length;
-        // console.log('numberOfQuestionsFromDb: ', numberOfQuestionsFromDb);
+      questionsSnapshot.forEach((childSnapshot) => {
+        let dbQuestion = childSnapshot.val();
+        counter += dbQuestion.length;
+        questions.push(...dbQuestion);
+      });
 
-        questionsSnapshot.forEach((childSnapshot) => {
-          console.log('childSnapshot: ', JSON.stringify(childSnapshot.val()));
-          let dbQuestion = childSnapshot.val();
-          counter += dbQuestion.length;
-          console.log('CHECK THIS OUT: ', JSON.stringify(dbQuestion));
+      if (questions.length === counter) {
+        const groupedData = lodash.groupBy(questions, 'technology');
+        // save data via hooks
+        setData(groupedData);
 
-          questions.push(...dbQuestion);
-        });
-        console.log('WHAT NOW: ', JSON.stringify(questions));
-        console.log('WHAT NOW2: ', questions);
-        console.log('WHAT NOW3: ', questions.length);
+        // save data to localStorage
+        localStorage.setItem('questions', JSON.stringify(groupedData));
 
-        console.log('COUNTER: ', counter);
+        // save number of questions to localStorage
+        const techNumber = getNumberOfQuestions(groupedData);
+        localStorage.setItem('numOfTech', JSON.stringify(techNumber));
 
-        if (questions.length === counter) {
-          console.log('SETTING DATA!');
-          console.log(JSON.stringify(questions));
+        // save it via hook
+        setNumOfTech(techNumber);
 
-          setData(questions);
-        }
-        return await questions;
+        // save data to firebase
+        db.ref(`users/${currentUser.uid}/questions`).set(groupedData);
       }
-    };
-    getQuestionsDb();
+    }
+  };
+
+  // ########################  END /  DATABASE DATA ########################################
+
+  useEffect(() => {
+    LoadInitialData();
   }, []);
 
   useEffect(() => {
-    // const data1 = { ...data };
-    // db.ref(`users/${currentUser.uid}/staticDataStatus`).set(true);
-    const loadStaticData = async () => {
-      const getInfoFromDb = await db
-        .ref(`users/${currentUser.uid}/staticDataStatus`)
-        .once('value');
+    getDataFromDb();
+  }, []);
 
-      const isStaticDataLoaded = getInfoFromDb.val();
+  // useEffect(() => {
+  //   const getQuestionsDb = async () => {
+  //     const questions = [];
+  //     var counter = 0;
+  //     const questionsRef = db.ref(`users/${currentUser.uid}/questions`);
+  //     const questionsSnapshot = await questionsRef.once('value');
+  //     const questionObject = questionsSnapshot.val();
 
-      if (isStaticDataLoaded) {
-        localStorage.setItem('numOfTech', JSON.stringify(data));
-      } else {
-        const combData = [...staticQuestions, ...data];
+  //     // if (questionObject) {
+  //     // const numberOfQuestionsFromDb = Object.keys(questionObject).length;
+  //     // console.log('numberOfQuestionsFromDb: ', numberOfQuestionsFromDb);
 
-        console.log('combData: ', combData);
-        console.log('combData.length: ', combData.length);
-        const techs = lodash.groupBy(combData, 'technology');
+  //     questionsSnapshot.forEach((childSnapshot) => {
+  //       console.log('childSnapshot: ', JSON.stringify(childSnapshot.val()));
+  //       let dbQuestion = childSnapshot.val();
+  //       counter += dbQuestion.length;
+  //       console.log('CHECK THIS OUT: ', JSON.stringify(dbQuestion));
 
-        // addQuestion(techs);
-        localStorage.setItem('questions', JSON.stringify(techs));
-        setQuestions(techs);
+  //       questions.push(...dbQuestion);
+  //     });
+  //     console.log('WHAT NOW: ', JSON.stringify(questions));
+  //     console.log('WHAT NOW2: ', questions);
+  //     console.log('WHAT NOW3: ', questions.length);
 
-        const numOfTech = JSON.parse(localStorage.getItem('questions'));
+  //     console.log('COUNTER: ', counter);
 
-        const numOfTech2 = Object.keys(numOfTech).map((tech) => {
-          return [tech, numOfTech[tech].length];
-        });
+  //     if (questions.length === counter) {
+  //       console.log('SETTING DATA!');
+  //       console.log(JSON.stringify(questions));
 
-        localStorage.setItem('numOfTech', JSON.stringify(numOfTech2));
-        db.ref(`users/${currentUser.uid}/staticDataStatus`).set(true);
-      }
-      // console.log('OOKK:', isStaticDataLoaded.val());
-      // const isStaticDataLoaded = await db
-      //   .ref(`users/${currentUser.uid}/questions/react`)
-      //   .once('value');
+  //       setData(questions);
+  //     }
+  //     return await questions;
+  //     // }
+  //   };
+  //   getQuestionsDb();
+  // }, []);
 
-      // console.log('isStaticDataLoaded', isStaticDataLoaded.val());
+  // useEffect(() => {
+  //   // const data1 = { ...data };
+  //   // db.ref(`users/${currentUser.uid}/staticDataStatus`).set(true);
+  //   const loadStaticData = async () => {
+  //     const getInfoFromDb = await db
+  //       .ref(`users/${currentUser.uid}/staticDataStatus`)
+  //       .once('value');
 
-      // console.log('CHECK2', ...data);
-      // console.log('CHECK3', ...data1);
+  //     const isStaticDataLoaded = getInfoFromDb.val();
+  //     console.log('isStaticDataLoaded: ', isStaticDataLoaded);
+  //     if (isStaticDataLoaded) {
+  //       // const combData = [...staticQuestions, ...data];
+  //       // const techs = lodash.groupBy(combData, 'technology');
+  //       console.log('DAAATA: ', data);
+  //       localStorage.setItem('questions', JSON.stringify(techs));
+  //       setQuestions(techs);
 
-      // console.log('CHECK3', ...staticQuestions);
+  //       const numOfTech = JSON.parse(localStorage.getItem('questions'));
 
-      // if (!isStaticDataLoaded.val()) {
+  //       const numOfTech2 = Object.keys(numOfTech).map((tech) => {
+  //         return [tech, numOfTech[tech].length];
+  //       });
 
-      // TEST ########################
-      // const combData = [...staticQuestions, ...data];
+  //       localStorage.setItem('numOfTech', JSON.stringify(numOfTech2));
 
-      // console.log('combData: ', combData);
-      // console.log('combData.length: ', combData.length);
-      // const techs = lodash.groupBy(combData, 'technology');
+  //       // localStorage.setItem('numOfTech', JSON.stringify(numOfTech2))
+  //     } else {
+  //       const combData = [...staticQuestions, ...data];
 
-      // // addQuestion(techs);
-      // localStorage.setItem('questions', JSON.stringify(techs));
-      // setQuestions(techs);
+  //       console.log('combData: ', combData);
+  //       console.log('combData.length: ', combData.length);
+  //       const techs = lodash.groupBy(combData, 'technology');
 
-      // const numOfTech = JSON.parse(localStorage.getItem('questions'));
+  //       // addQuestion(techs);
+  //       localStorage.setItem('questions', JSON.stringify(techs));
+  //       setQuestions(techs);
 
-      // const numOfTech2 = Object.keys(numOfTech).map((tech) => {
-      //   return [tech, numOfTech[tech].length];
-      // });
+  //       const numOfTech = JSON.parse(localStorage.getItem('questions'));
 
-      // localStorage.setItem('numOfTech', JSON.stringify(numOfTech2));
-      // #####################################
-      // db.ref(`users/${currentUser.uid}/staticDataStatus`).set(true);
-      // }
-    };
+  //       const numOfTech2 = Object.keys(numOfTech).map((tech) => {
+  //         return [tech, numOfTech[tech].length];
+  //       });
 
-    loadStaticData();
-  }, [data]);
+  //       localStorage.setItem('numOfTech', JSON.stringify(numOfTech2));
+
+  //       db.ref(`users/${currentUser.uid}/questions`).set(numOfTech);
+  //       db.ref(`users/${currentUser.uid}/staticDataStatus`).set(true);
+  //       // db.ref(`users/${currentUser.uid}/staticDataStatus`).set(true);
+  //     }
+  //     // console.log('OOKK:', isStaticDataLoaded.val());
+  //     // const isStaticDataLoaded = await db
+  //     //   .ref(`users/${currentUser.uid}/questions/react`)
+  //     //   .once('value');
+
+  //     // console.log('isStaticDataLoaded', isStaticDataLoaded.val());
+
+  //     // console.log('CHECK2', ...data);
+  //     // console.log('CHECK3', ...data1);
+
+  //     // console.log('CHECK3', ...staticQuestions);
+
+  //     // if (!isStaticDataLoaded.val()) {
+
+  //     // TEST ########################
+  //     // const combData = [...staticQuestions, ...data];
+
+  //     // console.log('combData: ', combData);
+  //     // console.log('combData.length: ', combData.length);
+  //     // const techs = lodash.groupBy(combData, 'technology');
+
+  //     // // addQuestion(techs);
+  //     // localStorage.setItem('questions', JSON.stringify(techs));
+  //     // setQuestions(techs);
+
+  //     // const numOfTech = JSON.parse(localStorage.getItem('questions'));
+
+  //     // const numOfTech2 = Object.keys(numOfTech).map((tech) => {
+  //     //   return [tech, numOfTech[tech].length];
+  //     // });
+
+  //     // localStorage.setItem('numOfTech', JSON.stringify(numOfTech2));
+  //     // #####################################
+  //     // db.ref(`users/${currentUser.uid}/staticDataStatus`).set(true);
+  //     // }
+  //   };
+
+  //   loadStaticData();
+  // }, [data]);
 
   // const classNames={}
   return (
@@ -908,6 +1022,7 @@ const Dashboard = () => {
                             technology={question.technology}
                             updateKnown={updateKnown}
                             key={newId}
+                            known={question.known}
                           />
                           <label
                             className="question-title"
