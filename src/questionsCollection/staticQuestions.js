@@ -1,3 +1,7 @@
+import {
+    uuid
+} from 'uuidv4';
+
 export let staticQuestions = [{
         text: 'Have you played around with the new CSS Flexbox or Grid specs?',
         answer: {
@@ -10,6 +14,8 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
+
     },
 
     {
@@ -28,6 +34,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
+
+
     },
 
 
@@ -37,6 +46,7 @@ export let staticQuestions = [{
             title: `When a browser displays a document, it must combine the document's content with its style information. It processes the document in two stages:`,
             par1: `The browser converts HTML and CSS into the DOM (Document Object Model). The DOM represents the document in the computer's memory. It combines the document's content with its style.`,
             par2: `The browser displays the contents of the DOM.
+        
         `,
 
 
@@ -44,6 +54,8 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: 'lolek'
+
     },
 
 
@@ -57,6 +69,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
     {
@@ -71,6 +84,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
     {
@@ -85,6 +99,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
     {
@@ -103,6 +118,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
 
@@ -115,6 +131,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
     {
@@ -126,6 +143,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
 
@@ -140,6 +158,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
     {
@@ -152,6 +171,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
     {
@@ -164,6 +184,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
 
@@ -182,6 +203,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
     {
@@ -197,6 +219,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
     {
@@ -212,6 +235,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
     {
@@ -228,6 +252,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
     {
@@ -238,6 +263,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
     {
@@ -248,6 +274,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
     {
@@ -258,6 +285,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
     {
@@ -270,6 +298,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
 
@@ -283,6 +312,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
     {
@@ -296,6 +326,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
     {
@@ -311,6 +342,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
     {
@@ -326,6 +358,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
     {
@@ -340,6 +373,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
+        id: uuid()
     },
 
     // #######################################################################################
@@ -355,6 +389,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
+        id: uuid()
     },
 
     {
@@ -368,6 +403,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
+        id: uuid()
     },
 
     {
@@ -381,6 +417,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
+        id: uuid()
     },
 
     {
@@ -394,6 +431,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
+        id: uuid()
     },
 
     {
@@ -407,6 +445,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
+        id: uuid()
     },
 
     {
@@ -420,6 +459,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
+        id: uuid()
     },
 
     {
@@ -433,6 +473,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
+        id: uuid()
     },
 
     {
@@ -446,6 +487,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
+        id: uuid()
     },
 
     {
@@ -459,6 +501,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
+        id: uuid()
     },
 
     {
@@ -475,6 +518,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
+        id: uuid()
     },
 
     {
@@ -489,6 +533,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
+        id: uuid()
     },
 
     {
@@ -505,6 +550,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
+        id: uuid()
     },
 
     {
@@ -519,6 +565,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
+        id: uuid()
     },
 
     {
@@ -529,6 +576,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
+        id: uuid()
     },
 
     {
@@ -543,6 +591,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
+        id: uuid()
     },
 
     {
@@ -559,6 +608,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
+        id: uuid()
     },
 
     {
@@ -571,6 +621,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
+        id: uuid()
     },
 
     {
@@ -583,6 +634,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
+        id: uuid()
     },
 
 
@@ -596,6 +648,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
+        id: uuid()
     },
 
 
@@ -609,6 +662,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
+        id: uuid()
     },
 
 
@@ -621,6 +675,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
+        id: uuid()
     },
 
     // #######################################################################################
@@ -639,6 +694,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -655,6 +711,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -666,6 +723,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -681,6 +739,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -692,6 +751,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -708,6 +768,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -721,6 +782,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -737,6 +799,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -754,6 +817,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -770,6 +834,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -786,6 +851,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
 
@@ -803,6 +869,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -814,6 +881,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -830,6 +898,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
 
@@ -849,6 +918,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -865,6 +935,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
 
@@ -883,6 +954,7 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -899,6 +971,7 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -916,6 +989,7 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
 
@@ -931,6 +1005,7 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -944,6 +1019,7 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -960,6 +1036,7 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -971,6 +1048,7 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -991,6 +1069,7 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1002,6 +1081,7 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
 
@@ -1015,6 +1095,7 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1030,6 +1111,7 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1043,6 +1125,7 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
 
@@ -1059,6 +1142,7 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
 
@@ -1078,6 +1162,7 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1095,6 +1180,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1111,6 +1197,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1129,6 +1216,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1142,6 +1230,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1155,6 +1244,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1168,6 +1258,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1186,6 +1277,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1201,6 +1293,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1216,6 +1309,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1231,6 +1325,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1240,6 +1335,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1258,6 +1354,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1273,6 +1370,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1289,6 +1387,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1302,6 +1401,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1317,6 +1417,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1331,6 +1432,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1345,6 +1447,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1364,6 +1467,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1378,6 +1482,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1396,6 +1501,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     {
@@ -1411,6 +1517,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
 
@@ -1429,6 +1536,7 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
+        id: uuid()
     },
 
     // #######################################################################################
@@ -1446,6 +1554,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1468,6 +1577,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1490,6 +1600,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1503,6 +1614,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1518,6 +1630,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1531,6 +1644,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1544,6 +1658,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1561,6 +1676,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1578,6 +1694,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1595,6 +1712,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1608,6 +1726,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1622,6 +1741,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
 
@@ -1637,6 +1757,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
 
@@ -1655,6 +1776,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
 
@@ -1671,6 +1793,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1686,6 +1809,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1701,6 +1825,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1715,6 +1840,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1736,6 +1862,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1757,6 +1884,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1774,6 +1902,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1791,6 +1920,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1807,6 +1937,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1827,6 +1958,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1846,6 +1978,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1861,6 +1994,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1876,6 +2010,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1891,6 +2026,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
     {
@@ -1904,6 +2040,7 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
+        id: uuid()
     },
 
 

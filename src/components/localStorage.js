@@ -6,7 +6,9 @@ const addQuestion = (item) => {
 
   if (questions[key]) {
     questions[key] = [...questions[key], item]
+    console.log('first loop')
   } else {
+    console.log('seconf loop')
     questions[key] = [item]
   }
 

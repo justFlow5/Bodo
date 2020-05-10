@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { firebase } from '../firebase/base';
+import db from '../firebase/base';
+
 import Spinner from '../components/loader/Loader';
 
 export const AuthContext = React.createContext({

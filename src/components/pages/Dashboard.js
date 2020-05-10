@@ -24,6 +24,8 @@ import SimpleBar from 'simplebar-react';
 
 import 'simplebar/dist/simplebar.min.css';
 
+import Checkbox from '../forms/Checkbox';
+
 const fadeIn = keyframes`
 0% {
   top: -110px;
@@ -577,11 +579,20 @@ const ContentList = styled.ul`
   /* margin-top: 40px; */
   display: flex;
   flex-direction: column;
+
+  & .known:hover + label {
+    background: #ccccff;
+
+    & .question-number {
+      color: #6666ff;
+    }
+  }
 `;
 
 const ContentItem = styled.li`
   display: flex;
   flex-direction: column;
+  position: relative;
 
   margin: 5px 20px;
 
@@ -702,7 +713,7 @@ const Dashboard = () => {
   );
 
   const { currentUser } = useContext(AuthContext);
-  console.log('currentUser: ', currentUser);
+  // console.log('currentUser: ', currentUser);
 
   const toggleAnswer = (e) => {
     e.target.checked = !e.target.checked;
@@ -715,22 +726,66 @@ const Dashboard = () => {
       })
     );
   };
+
+  const updateKnown = (id, technology) => {
+    // console.log('updateKnown ID: ', id);
+    const allQuestions = JSON.parse(localStorage.getItem('questions'));
+    // console.log('YOU TECH!: ', allQuestions[technology]);
+    // allQuestions[technology]
+
+    const updatedTechQuestions = allQuestions[technology].map((question) => {
+      console.log('technology: ', technology);
+      console.log('id: ', id);
+      console.log('question.id: ', question.id);
+      console.log('question: ', question);
+
+      if (question.id === id) {
+        // console.log('EEQUALITY OF ID! : ', question);
+        question.known = !question.known;
+        return question;
+      } else return question;
+    });
+
+    allQuestions[technology] = updatedTechQuestions;
+
+    // console.log('HER GOES UPDATE: ', allQuestions);
+    // save to localStorage
+    localStorage.setItem('questions', JSON.stringify(allQuestions));
+
+    // save to database
+    db.ref(`users/${currentUser.uid}/questions`).set(allQuestions);
+  };
+
   useEffect(() => {
     const getQuestionsDb = async () => {
       const questions = [];
+      var counter = 0;
       const questionsRef = db.ref(`users/${currentUser.uid}/questions`);
       const questionsSnapshot = await questionsRef.once('value');
+      const questionObject = questionsSnapshot.val();
 
-      if (questionsSnapshot) {
-        const numberOfQuestionsFromDb = Object.keys(questionsSnapshot.val())
-          .length;
+      if (questionObject) {
+        // const numberOfQuestionsFromDb = Object.keys(questionObject).length;
+        // console.log('numberOfQuestionsFromDb: ', numberOfQuestionsFromDb);
 
         questionsSnapshot.forEach((childSnapshot) => {
+          console.log('childSnapshot: ', JSON.stringify(childSnapshot.val()));
           let dbQuestion = childSnapshot.val();
-          questions.push(dbQuestion);
-        });
+          counter += dbQuestion.length;
+          console.log('CHECK THIS OUT: ', JSON.stringify(dbQuestion));
 
-        if (questions.length === numberOfQuestionsFromDb) {
+          questions.push(...dbQuestion);
+        });
+        console.log('WHAT NOW: ', JSON.stringify(questions));
+        console.log('WHAT NOW2: ', questions);
+        console.log('WHAT NOW3: ', questions.length);
+
+        console.log('COUNTER: ', counter);
+
+        if (questions.length === counter) {
+          console.log('SETTING DATA!');
+          console.log(JSON.stringify(questions));
+
           setData(questions);
         }
         return await questions;
@@ -740,27 +795,75 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-    console.log('data', data);
-    const combData = [...staticQuestions, ...data];
+    // const data1 = { ...data };
+    // db.ref(`users/${currentUser.uid}/staticDataStatus`).set(true);
+    const loadStaticData = async () => {
+      const getInfoFromDb = await db
+        .ref(`users/${currentUser.uid}/staticDataStatus`)
+        .once('value');
 
-    console.log('combData: ', combData);
+      const isStaticDataLoaded = getInfoFromDb.val();
 
-    const techs = lodash.groupBy(combData, 'technology');
+      if (isStaticDataLoaded) {
+        localStorage.setItem('numOfTech', JSON.stringify(data));
+      } else {
+        const combData = [...staticQuestions, ...data];
 
-    // addQuestion(techs);
-    localStorage.setItem('questions', JSON.stringify(techs));
+        console.log('combData: ', combData);
+        console.log('combData.length: ', combData.length);
+        const techs = lodash.groupBy(combData, 'technology');
 
-    const numOfTech = JSON.parse(localStorage.getItem('questions'));
+        // addQuestion(techs);
+        localStorage.setItem('questions', JSON.stringify(techs));
+        setQuestions(techs);
 
-    const numOfTech2 = Object.keys(numOfTech).map((tech) => {
-      return [tech, numOfTech[tech].length];
-    });
+        const numOfTech = JSON.parse(localStorage.getItem('questions'));
 
-    localStorage.setItem('numOfTech', JSON.stringify(numOfTech2));
+        const numOfTech2 = Object.keys(numOfTech).map((tech) => {
+          return [tech, numOfTech[tech].length];
+        });
 
-    console.log('numOfTech: ', numOfTech);
+        localStorage.setItem('numOfTech', JSON.stringify(numOfTech2));
+        db.ref(`users/${currentUser.uid}/staticDataStatus`).set(true);
+      }
+      // console.log('OOKK:', isStaticDataLoaded.val());
+      // const isStaticDataLoaded = await db
+      //   .ref(`users/${currentUser.uid}/questions/react`)
+      //   .once('value');
 
-    console.log('techs: ', techs);
+      // console.log('isStaticDataLoaded', isStaticDataLoaded.val());
+
+      // console.log('CHECK2', ...data);
+      // console.log('CHECK3', ...data1);
+
+      // console.log('CHECK3', ...staticQuestions);
+
+      // if (!isStaticDataLoaded.val()) {
+
+      // TEST ########################
+      // const combData = [...staticQuestions, ...data];
+
+      // console.log('combData: ', combData);
+      // console.log('combData.length: ', combData.length);
+      // const techs = lodash.groupBy(combData, 'technology');
+
+      // // addQuestion(techs);
+      // localStorage.setItem('questions', JSON.stringify(techs));
+      // setQuestions(techs);
+
+      // const numOfTech = JSON.parse(localStorage.getItem('questions'));
+
+      // const numOfTech2 = Object.keys(numOfTech).map((tech) => {
+      //   return [tech, numOfTech[tech].length];
+      // });
+
+      // localStorage.setItem('numOfTech', JSON.stringify(numOfTech2));
+      // #####################################
+      // db.ref(`users/${currentUser.uid}/staticDataStatus`).set(true);
+      // }
+    };
+
+    loadStaticData();
   }, [data]);
 
   // const classNames={}
@@ -798,20 +901,28 @@ const Dashboard = () => {
                     questions[category].map((question, id) => {
                       let newId = uuid();
                       return (
-                        <ContentItem>
+                        <ContentItem key={question.id}>
+                          <Checkbox
+                            id={question.id}
+                            boxId={newId}
+                            technology={question.technology}
+                            updateKnown={updateKnown}
+                            key={newId}
+                          />
                           <label
                             className="question-title"
-                            htmlFor={newId}
+                            htmlFor={question.id}
                             onClick={toggleAnswer}
+                            // key={question.id}
                           >
                             <span className="question-number">
                               {' '}
-                              Q {id + 1}:{' '}
+                              Q{id + 1}:{' '}
                             </span>{' '}
-                            {question.text}{' '}
+                            {question.text}
                           </label>{' '}
-                          <input id={newId} type="checkbox" />
-                          <Answer key={newId}>
+                          <input id={question.id} type="checkbox" />
+                          <Answer key={question.id}>
                             {' '}
                             {typeof question.answer === 'string' ? (
                               <h5 className="answer-main">

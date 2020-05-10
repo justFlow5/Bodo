@@ -307,8 +307,7 @@ const AddQuestionForm = () => {
       saveNumbers();
 
       // add to firebase
-
-      db.ref(`users/${currentUser.uid}/questions/${id}`).update({
+      const dataLoad = {
         job,
         technology: tech,
         text,
@@ -316,7 +315,24 @@ const AddQuestionForm = () => {
         code,
         known: false,
         id,
-      });
+      };
+      const dbLoad = JSON.parse(localStorage.getItem('questions'));
+      const dbLoadTech = dbLoad[tech];
+      const upData = { ...dbLoadTech };
+      dbLoad[tech] = upData;
+      const upDataFull = { ...dbLoad };
+
+      // db.ref(`users/${currentUser.uid}/questions/${tech}`).update({
+      //   job,
+      //   technology: tech,
+      //   text,
+      //   answer,
+      //   code,
+      //   known: false,
+      //   id,
+      // });
+      db.ref(`users/${currentUser.uid}/questions`).set(dbLoad);
+      // db.ref(`users/${currentUser.uid}/questions/${tech}`).set(upData);
     } else {
       addQuestion({
         job: jobText,
@@ -329,7 +345,7 @@ const AddQuestionForm = () => {
       // save number of questions
       saveNumbers();
 
-      db.ref(`users/${currentUser.uid}/questions/${id}`).update({
+      db.ref(`users/${currentUser.uid}/questions/${job}`).update({
         job: jobText,
         text,
         answer,
