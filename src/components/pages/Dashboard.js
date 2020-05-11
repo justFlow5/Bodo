@@ -693,7 +693,7 @@ const Dashboard = () => {
   const sortTech = (arr) => {
     if (sortType === 'alpha') {
       localStorage.setItem(`sortType`, 'alpha');
-      return sortASC(arr);
+      return sortAlpha(arr);
     } else if (sortType === 'desc') {
       localStorage.setItem(`sortType`, 'desc');
       return sortDESC(arr);
