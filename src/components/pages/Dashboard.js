@@ -611,7 +611,12 @@ const SortList = styled.ul`
 
   justify-content: flex-end;
   align-items: center;
-  margin-right: 15px;
+
+  margin-right: 12%;
+
+  @media ${device.laptop} {
+    margin-right: 15px;
+  }
 `;
 
 const SortItem = styled.li`
