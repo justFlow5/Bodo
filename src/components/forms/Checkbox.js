@@ -68,7 +68,7 @@ const Checkbox = ({ id, boxId, technology, updateKnown, known }) => {
 
   useEffect(() => {
     setChecked(known);
-  }, [known]);
+  }, []);
 
   return (
     <>

@@ -9,6 +9,10 @@ import { AuthContext } from '../../contexts/Auth';
 import { device } from '../utils/media';
 // import { groupBy } from '../utils/helperFunctions';
 
+import SortByAlphaIcon from '@material-ui/icons/SortByAlpha';
+import SortASC from '../../images/dashboard/sortASC';
+import SortDESC from '../../images/dashboard/sortDESC';
+
 import Navbar from '../Navbar';
 
 import { JavaScript } from '../../questionsCollection/Qjavascript';
@@ -30,8 +34,6 @@ const fadeIn = keyframes`
 0% {
   top: -110px;
   opacity: 0;
-
-
   }
   100% {
     top: -20px;
@@ -43,8 +45,6 @@ const fadeBottom = keyframes`
 0% {
   bottom: -70px;
   opacity: 0;
-
-
   }
   100% {
     bottom: -10px;
@@ -56,8 +56,6 @@ const fadeInTitle = keyframes`
 0% {
   transform: translateY(-20px);
   opacity: 0;
-
-
   }
   100% {
   transform: translateY(0px);
@@ -70,8 +68,6 @@ const fadeUp = keyframes`
  
   opacity: 0;
   transform: translateY(20px);
-
-
   }
   100% {
     transform: translateY(0px);
@@ -108,12 +104,9 @@ outline: none;
   padding: 0;
   z-index: 10;
   transition: all 0.3s;
-
   @media ${device.laptop} {
     top: 13%;
 }
-
-
   &::before {
     content: 'Categories';
     position: absolute;
@@ -125,27 +118,20 @@ outline: none;
     /* background:  ${({ open }) => (open ? '#E1ECF9' : 'transparent')}; */
     /* background: ${({ open }) => (open ? '#a3aefb' : 'transparent')}; */
     /* background: ${({ open }) => (open ? 'transparent' : '#E1ECF9')}; */
-
     z-index: 11;
     transition: color 0.3s linear;
-
  
-
   }
     &:hover::before  {
       color: ${({ open }) => (open ? '#ADADFF' : '#11355f')};
     }
-
   &:hover > div {
       background: ${({ open }) => (open ? '#ADADFF' : '#11355f')};
   }
-
   &:focus {
     outline: none;
     outline: 0;
-
   }
-
   div {
     width: 2rem;
     height: 0.25rem;
@@ -154,23 +140,16 @@ outline: none;
     position: relative;
     transform-origin: 1px;
     transition: transform 0.3s linear;
-
    
-
-
-
     :first-child {
       transform: ${({ open }) => (open ? 'rotate(45deg)' : 'rotate(0)')};
     }
-
     :nth-child(2) {
       opacity: ${({ open }) => (open ? '0' : '1')};
       /* transform: ${({ open }) =>
         open ? 'translateX(20px)' : 'translateX(0)'}; */
       /* transform: ${({ open }) => (open ? 'opacity' : 'translateX(0)')}; */
-
     }
-
     :nth-child(3) {
       transform: ${({ open }) => (open ? 'rotate(-45deg)' : 'rotate(0)')};
     }
@@ -212,13 +191,10 @@ const SemiCircleContainer = styled.div`
   animation-timing-function: cubic-bezier(0.08, 1.17, 0.96, 0.94);
   /* animation-timing-function: linear; */
   opacity: 0;
-
   animation-duration: 0.4s;
-
   @media ${device.laptop} {
     animation-name: ${fadeIn};
   }
-
   & > div {
     position: relative;
     position: fixed;
@@ -241,7 +217,6 @@ const SemiCircleContainer = styled.div`
     letter-spacing: 0.8px;
     font-weight: 600;
     color: #fff;
-
     @media ${device.laptop} {
       top: -20px;
       bottom: unset;
@@ -249,7 +224,6 @@ const SemiCircleContainer = styled.div`
       height: 160px;
       font-size: 32px;
     }
-
     & > h3 {
       position: absolute;
       z-index: 999;
@@ -265,7 +239,6 @@ const SemiCircleContainer = styled.div`
       /* text-shadow: 2px 2px 2px #236ab9; */
       text-shadow: 2px 2px 2px #005fa3;
       padding: 0px 10px;
-
       @media ${device.laptop} {
         bottom: 27px;
         top: unset;
@@ -273,7 +246,6 @@ const SemiCircleContainer = styled.div`
       }
     }
   }
-
   & > img {
     width: 400px;
     height: 140px;
@@ -308,27 +280,21 @@ const SideNavbar = styled.div`
   bottom: 0;
   width: 100%;
   background: #07274c;
-
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
-
   transition: all 0.3s;
-
   & .simplebar-scrollbar:before {
     background: #a3aefb;
     /* height: 100px; */
   }
-
   & .simplebar-scrollbar {
     height: 150px !important;
   }
-
   & .scrollDown {
     margin-top: 10px;
     text-align: center;
     color: #a3aefb;
     font-size: 12px;
     position: relative;
-
     &::after {
       margin-top: 5px;
       content: ' \\2193';
@@ -336,7 +302,6 @@ const SideNavbar = styled.div`
       transform: scale(2);
     }
   }
-
   @media ${device.laptop} {
     /* top: 55px; */
     /* margin-top: 55px; */
@@ -351,7 +316,6 @@ const SideNavbarList = styled.ul`
   flex-direction: column;
   margin-top: 90px;
   margin-top: 20px;
-
   @media ${device.laptop} {
     margin-top: 200px;
     margin-top: 20px;
@@ -368,7 +332,6 @@ const SideNavbarItem = styled.li`
   display: flex;
   justify-content: center;
   /* justify-content: flex-start; */
-
   align-items: center;
   color: white;
   border-bottom: 1px solid #133863;
@@ -379,45 +342,35 @@ const SideNavbarItem = styled.li`
   color: #a3aefb;
   white-space: nowrap;
   overflow: hidden;
-
   text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1),
     1px 1px 1px rgba(0, 0, 0, 0.5), 2px 2px 2px rgba(163, 174, 251, 0);
-
   transition: all 0.3s;
-
   /* &:focus {
     color: red;
     -webkit-box-shadow: inset 0px 0px 20px 2px rgba(46, 74, 117, 1);
     -moz-box-shadow: inset 0px 0px 20px 2px rgba(46, 74, 117, 1);
     box-shadow: inset 0px 0px 15px 2px rgba(46, 74, 117, 1);
   } */
-
   @media ${device.laptop} {
     /* top: 55px; */
     width: 210px;
   }
-
   &:first-child {
     /* margin-top: 100px; */
     /* padding-top: 0; */
   }
-
   &:hover {
     text-shadow: none;
     color: #d8dcf9;
-
     -webkit-box-shadow: inset 0px 0px 20px 2px rgba(46, 74, 117, 1);
     -moz-box-shadow: inset 0px 0px 20px 2px rgba(46, 74, 117, 1);
     box-shadow: inset 0px 0px 15px 2px rgba(46, 74, 117, 1);
-
     & .numOfQuestions {
       @media ${device.laptop} {
         /* left: 150px; */
-
         /* top: -10px; */
         top: -17px;
         opacity: 1;
-
         /* test */
         /* position: absolute; */
         /* right: 10px; */
@@ -442,7 +395,6 @@ const NumOfQuestions = styled.div`
   /* top: -10px; */
   /* position: absolute; */
   position: relative;
-
   color: #d8dcf9;
   display: flex;
   justify-content: center;
@@ -453,41 +405,15 @@ const NumOfQuestions = styled.div`
   /* right: unset; */
   width: 30px;
   height: 30px;
-
   opacity: 1;
   background: rgba(19, 56, 99, 1);
   font-size: 12px;
-
   /* left: -25px; */
-
   border: 2px solid #200ac7;
   -webkit-box-shadow: 0px 0px 12px 0px rgba(32, 10, 199, 1);
   -moz-box-shadow: 0px 0px 12px 0px rgba(32, 10, 199, 1);
   box-shadow: 0px 0px 12px 0px rgba(32, 10, 199, 1);
-  /* letter-spacing: 0.8px; */
-  /* display: inline-block;
-  position: absolute; */
 
-  /* width: 40px; */
-  /* height: 40px; */
-  /* font-size: 11px; */
-  /* top: -13px;
-  top: -40px;
-  right: -6px;
-  border: 2px solid #a3aefb;
-  padding: 6px; */
-  /* border-radius: 50%; */
-  /* background: transparent; */
-  /* color: #a3aefb; */
-  /* color: #d8dcf9;
-
-
-  border: 2px solid #200ac7;
-  -webkit-box-shadow: 0px 0px 12px 0px rgba(32, 10, 199, 1);
-  -moz-box-shadow: 0px 0px 12px 0px rgba(32, 10, 199, 1);
-  box-shadow: 0px 0px 12px 0px rgba(32, 10, 199, 1); */
-
-  /* transition: all 0.3s ease; */
   transition: all 0.3s cubic-bezier(0.69, 0.9, 0.92, 1.19);
   @media ${device.laptop} {
     display: inline-block;
@@ -497,7 +423,6 @@ const NumOfQuestions = styled.div`
     /* top: -10px; */
     /* position: absolute; */
     position: relative;
-
     color: #d8dcf9;
     display: flex;
     justify-content: center;
@@ -508,18 +433,14 @@ const NumOfQuestions = styled.div`
     /* right: unset; */
     width: 30px;
     height: 30px;
-
     opacity: 0;
     background: rgba(19, 56, 99, 1);
     font-size: 14px;
-
     /* left: -25px; */
-
     border: 2px solid #200ac7;
     -webkit-box-shadow: 0px 0px 15px 0px rgba(32, 10, 199, 1);
     -moz-box-shadow: 0px 0px 15px 0px rgba(32, 10, 199, 1);
     box-shadow: 0px 0px 15px 0px #57a0e0;
-
     /* test */
     position: absolute;
     right: 10px;
@@ -541,24 +462,19 @@ const QuestionsContainer = styled.div`
     width: 60%;
     margin: 200px auto 50px;
   }
-
   & > .title {
     text-align: center;
     line-height: 1.2;
-
     font-size: 35px;
     font-weight: 600;
     letter-spacing: 1px;
     color: #091d34;
-
     animation-name: ${fadeInTitle};
     animation-fill-mode: forwards;
     animation-timing-function: cubic-bezier(0.08, 1.17, 0.96, 0.94);
     /* animation-timing-function: linear; */
     opacity: 0;
-
     animation-duration: 0.3s;
-
     @media ${device.laptop} {
       font-size: 42px;
     }
@@ -579,10 +495,8 @@ const ContentList = styled.ul`
   /* margin-top: 40px; */
   display: flex;
   flex-direction: column;
-
   & .known:hover + label {
     background: #ccccff;
-
     & .question-number {
       color: #6666ff;
     }
@@ -593,9 +507,7 @@ const ContentItem = styled.li`
   display: flex;
   flex-direction: column;
   position: relative;
-
   margin: 5px 20px;
-
   & .question-title {
     font-size: 21px;
     font-weight: 600;
@@ -604,25 +516,19 @@ const ContentItem = styled.li`
     padding: 10px;
     border-radius: 8px;
     cursor: pointer;
-
     transition: all 0.3s;
-
     @media ${device.laptop} {
       font-size: 23px;
     }
-
     &:hover {
       background: #ccccff;
-
       & .question-number {
         color: #6666ff;
       }
     }
-
     & ~ input {
       display: none;
     }
-
     & ~ input:checked + div {
       display: inline-block;
       animation-name: ${fadeUp};
@@ -630,10 +536,8 @@ const ContentItem = styled.li`
       animation-timing-function: cubic-bezier(0.08, 1.17, 0.96, 0.94);
       /* animation-timing-function: linear; */
       /* opacity: 0; */
-
       animation-duration: 0.3s;
     }
-
     & > .question-number {
       font-size: 28px;
       padding-right: 8px;
@@ -647,7 +551,6 @@ const ContentItem = styled.li`
 
 const Answer = styled.div`
   display: none;
-
   & .answer-main {
     font-size: 16px;
     margin: 10px;
@@ -655,30 +558,25 @@ const Answer = styled.div`
     color: #06254a;
     font-weight: 500;
     margin: 10px 20px;
-
     @media ${device.laptop} {
       font-size: 18px;
     }
   }
-
   & .answer-sub {
     color: #06254a;
     font-size: 15px;
     padding-left: 20px;
     line-height: 1.2;
     margin: 10px;
-
     @media ${device.laptop} {
       font-size: 17px;
     }
-
     &::before {
       content: '';
       display: inline-block;
       border-radius: 50%;
       height: 6px;
       width: 6px;
-
       background: #a3aefb;
       margin-right: 10px;
       vertical-align: middle;
@@ -699,9 +597,59 @@ const NoInfo = styled.p`
   font-weight: 600;
   color: #a3aefb;
 `;
+
+const SortContainer = styled.div`
+  margin: 5px;
+  width: 100%;
+  position: relative;
+  text-align: right;
+`;
+const SortList = styled.ul`
+  position: relative;
+
+  display: inline-block;
+
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 15px;
+`;
+
+const SortItem = styled.li`
+  display: inline-block;
+  margin: 0 5px;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+
+  &:hover > svg {
+    fill: white;
+  }
+
+  &:nth-child(2) {
+    width: 25px;
+    height: 25px;
+    position: relative;
+    top: 5px;
+  }
+
+  &.active > svg {
+    fill: white;
+  }
+
+  & svg {
+    fill: #a3aefb;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s;
+  }
+`;
+
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [category, setCategory] = useState('');
+  const [sortType, setSortType] = useState(
+    localStorage.getItem('sortType') || 'alpha'
+  );
   const [data, setData] = useState(
     JSON.parse(localStorage.getItem('questions')) || []
   );
@@ -729,6 +677,27 @@ const Dashboard = () => {
     );
   };
 
+  const sortASC = (arr) => {
+    return arr.sort((a, b) => a[1] - b[1]);
+  };
+
+  const sortDESC = (arr) => {
+    return arr.sort((a, b) => b[1] - a[1]);
+  };
+
+  const sortTech = (arr) => {
+    if (sortType === 'alpha') {
+      localStorage.setItem(`sortType`, 'alpha');
+      return sortASC(arr);
+    } else if (sortType === 'desc') {
+      localStorage.setItem(`sortType`, 'desc');
+      return sortDESC(arr);
+    } else if (sortType === 'asc') {
+      localStorage.setItem(`sortType`, 'asc');
+      return sortASC(arr);
+    }
+  };
+
   const updateKnown = (id, technology, value) => {
     // console.log('updateKnown ID: ', id);
     const allQuestions = JSON.parse(localStorage.getItem('questions'));
@@ -737,13 +706,7 @@ const Dashboard = () => {
 
     // const updatedTechQuestions = allQuestions[technology].map((question) => {
     const updatedTechQuestions = allQuestions[technology].map((question) => {
-      // console.log('technology: ', technology);
-      // console.log('id: ', id);
-      // console.log('question.id: ', question.id);
-      // console.log('question: ', question);
-
       if (question.id === id) {
-        // console.log('EEQUALITY OF ID! : ', question);
         question.known = value;
         return question;
       } else return question;
@@ -853,134 +816,6 @@ const Dashboard = () => {
     getDataFromDb();
   }, []);
 
-  // useEffect(() => {
-  //   const getQuestionsDb = async () => {
-  //     const questions = [];
-  //     var counter = 0;
-  //     const questionsRef = db.ref(`users/${currentUser.uid}/questions`);
-  //     const questionsSnapshot = await questionsRef.once('value');
-  //     const questionObject = questionsSnapshot.val();
-
-  //     // if (questionObject) {
-  //     // const numberOfQuestionsFromDb = Object.keys(questionObject).length;
-  //     // console.log('numberOfQuestionsFromDb: ', numberOfQuestionsFromDb);
-
-  //     questionsSnapshot.forEach((childSnapshot) => {
-  //       console.log('childSnapshot: ', JSON.stringify(childSnapshot.val()));
-  //       let dbQuestion = childSnapshot.val();
-  //       counter += dbQuestion.length;
-  //       console.log('CHECK THIS OUT: ', JSON.stringify(dbQuestion));
-
-  //       questions.push(...dbQuestion);
-  //     });
-  //     console.log('WHAT NOW: ', JSON.stringify(questions));
-  //     console.log('WHAT NOW2: ', questions);
-  //     console.log('WHAT NOW3: ', questions.length);
-
-  //     console.log('COUNTER: ', counter);
-
-  //     if (questions.length === counter) {
-  //       console.log('SETTING DATA!');
-  //       console.log(JSON.stringify(questions));
-
-  //       setData(questions);
-  //     }
-  //     return await questions;
-  //     // }
-  //   };
-  //   getQuestionsDb();
-  // }, []);
-
-  // useEffect(() => {
-  //   // const data1 = { ...data };
-  //   // db.ref(`users/${currentUser.uid}/staticDataStatus`).set(true);
-  //   const loadStaticData = async () => {
-  //     const getInfoFromDb = await db
-  //       .ref(`users/${currentUser.uid}/staticDataStatus`)
-  //       .once('value');
-
-  //     const isStaticDataLoaded = getInfoFromDb.val();
-  //     console.log('isStaticDataLoaded: ', isStaticDataLoaded);
-  //     if (isStaticDataLoaded) {
-  //       // const combData = [...staticQuestions, ...data];
-  //       // const techs = lodash.groupBy(combData, 'technology');
-  //       console.log('DAAATA: ', data);
-  //       localStorage.setItem('questions', JSON.stringify(techs));
-  //       setQuestions(techs);
-
-  //       const numOfTech = JSON.parse(localStorage.getItem('questions'));
-
-  //       const numOfTech2 = Object.keys(numOfTech).map((tech) => {
-  //         return [tech, numOfTech[tech].length];
-  //       });
-
-  //       localStorage.setItem('numOfTech', JSON.stringify(numOfTech2));
-
-  //       // localStorage.setItem('numOfTech', JSON.stringify(numOfTech2))
-  //     } else {
-  //       const combData = [...staticQuestions, ...data];
-
-  //       console.log('combData: ', combData);
-  //       console.log('combData.length: ', combData.length);
-  //       const techs = lodash.groupBy(combData, 'technology');
-
-  //       // addQuestion(techs);
-  //       localStorage.setItem('questions', JSON.stringify(techs));
-  //       setQuestions(techs);
-
-  //       const numOfTech = JSON.parse(localStorage.getItem('questions'));
-
-  //       const numOfTech2 = Object.keys(numOfTech).map((tech) => {
-  //         return [tech, numOfTech[tech].length];
-  //       });
-
-  //       localStorage.setItem('numOfTech', JSON.stringify(numOfTech2));
-
-  //       db.ref(`users/${currentUser.uid}/questions`).set(numOfTech);
-  //       db.ref(`users/${currentUser.uid}/staticDataStatus`).set(true);
-  //       // db.ref(`users/${currentUser.uid}/staticDataStatus`).set(true);
-  //     }
-  //     // console.log('OOKK:', isStaticDataLoaded.val());
-  //     // const isStaticDataLoaded = await db
-  //     //   .ref(`users/${currentUser.uid}/questions/react`)
-  //     //   .once('value');
-
-  //     // console.log('isStaticDataLoaded', isStaticDataLoaded.val());
-
-  //     // console.log('CHECK2', ...data);
-  //     // console.log('CHECK3', ...data1);
-
-  //     // console.log('CHECK3', ...staticQuestions);
-
-  //     // if (!isStaticDataLoaded.val()) {
-
-  //     // TEST ########################
-  //     // const combData = [...staticQuestions, ...data];
-
-  //     // console.log('combData: ', combData);
-  //     // console.log('combData.length: ', combData.length);
-  //     // const techs = lodash.groupBy(combData, 'technology');
-
-  //     // // addQuestion(techs);
-  //     // localStorage.setItem('questions', JSON.stringify(techs));
-  //     // setQuestions(techs);
-
-  //     // const numOfTech = JSON.parse(localStorage.getItem('questions'));
-
-  //     // const numOfTech2 = Object.keys(numOfTech).map((tech) => {
-  //     //   return [tech, numOfTech[tech].length];
-  //     // });
-
-  //     // localStorage.setItem('numOfTech', JSON.stringify(numOfTech2));
-  //     // #####################################
-  //     // db.ref(`users/${currentUser.uid}/staticDataStatus`).set(true);
-  //     // }
-  //   };
-
-  //   loadStaticData();
-  // }, [data]);
-
-  // const classNames={}
   return (
     <>
       {' '}
@@ -1076,11 +911,42 @@ const Dashboard = () => {
         </QuestionsContainer>
         <SideNavbar open={open}>
           <Datalist technologies={numOfTech} setCategory={setCategory} />
+          <SortContainer>
+            <SortList>
+              <SortItem
+                className={sortType === 'asc' ? 'active' : null}
+                title="numeric ascending order"
+                onClick={() => {
+                  setSortType('asc');
+                }}
+              >
+                <SortASC />
+              </SortItem>
+              <SortItem
+                className={sortType === 'alpha' ? 'active' : null}
+                title="alphabetic order"
+                onClick={() => {
+                  setSortType('alpha');
+                }}
+              >
+                <SortByAlphaIcon />
+              </SortItem>
+              <SortItem
+                className={sortType === 'desc' ? 'active' : null}
+                title="numeric descending order"
+                onClick={() => {
+                  setSortType('desc');
+                }}
+              >
+                <SortDESC />
+              </SortItem>
+            </SortList>
+          </SortContainer>
           <SideNavbarList>
             <SimpleBar style={{ maxHeight: '300px' }}>
               {' '}
               {numOfTech &&
-                sortAlpha(numOfTech).map((category) => (
+                sortTech(numOfTech).map((category) => (
                   <SideNavbarItem onClick={() => setCategory(`${category[0]}`)}>
                     {' '}
                     {category[0]}{' '}
