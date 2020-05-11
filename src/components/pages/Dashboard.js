@@ -711,13 +711,21 @@ const Dashboard = () => {
 
     // const updatedTechQuestions = allQuestions[technology].map((question) => {
     const updatedTechQuestions = allQuestions[technology].map((question) => {
+      // console.log('technology: ', technology);
+      // console.log('id: ', id);
+      // console.log('question.id: ', question.id);
+      // console.log('question: ', question);
+
       if (question.id === id) {
+        // console.log('EEQUALITY OF ID! : ', question);
         question.known = value;
         return question;
       } else return question;
     });
 
     allQuestions[technology] = updatedTechQuestions;
+
+    setQuestions(allQuestions);
 
     // console.log('HER GOES UPDATE: ', allQuestions);
     // save to localStorage
@@ -836,7 +844,7 @@ const Dashboard = () => {
               <h3> {category} </h3>{' '}
             </div>{' '}
           </SemiCircleContainer>
-        )}
+        )}{' '}
         <QuestionsContainer>
           {' '}
           {category ? (
@@ -846,7 +854,8 @@ const Dashboard = () => {
                 {numOfTech.map((tech) => {
                   if (tech[0] === category) return tech[1];
                 })}{' '}
-                {category} questions & answers{' '}
+                {category}
+                questions & answers{' '}
               </h3>{' '}
               <ContentContainer>
                 <ContentList>
@@ -863,7 +872,7 @@ const Dashboard = () => {
                             updateKnown={updateKnown}
                             key={newId}
                             known={question.known}
-                          />
+                          />{' '}
                           <label
                             className="question-title"
                             htmlFor={question.id}
@@ -872,9 +881,9 @@ const Dashboard = () => {
                           >
                             <span className="question-number">
                               {' '}
-                              Q{id + 1}:{' '}
+                              Q {id + 1}:{' '}
                             </span>{' '}
-                            {question.text}
+                            {question.text}{' '}
                           </label>{' '}
                           <input id={question.id} type="checkbox" />
                           <Answer key={question.id}>
@@ -913,9 +922,9 @@ const Dashboard = () => {
           ) : (
             <NoInfo> No Category Selected </NoInfo>
           )}{' '}
-        </QuestionsContainer>
+        </QuestionsContainer>{' '}
         <SideNavbar open={open}>
-          <Datalist technologies={numOfTech} setCategory={setCategory} />
+          <Datalist technologies={numOfTech} setCategory={setCategory} />{' '}
           <SortContainer>
             <SortList>
               <SortItem
@@ -926,7 +935,7 @@ const Dashboard = () => {
                 }}
               >
                 <SortASC />
-              </SortItem>
+              </SortItem>{' '}
               <SortItem
                 className={sortType === 'alpha' ? 'active' : null}
                 title="alphabetic order"
@@ -935,7 +944,7 @@ const Dashboard = () => {
                 }}
               >
                 <SortByAlphaIcon />
-              </SortItem>
+              </SortItem>{' '}
               <SortItem
                 className={sortType === 'desc' ? 'active' : null}
                 title="numeric descending order"
@@ -944,11 +953,15 @@ const Dashboard = () => {
                 }}
               >
                 <SortDESC />
-              </SortItem>
-            </SortList>
-          </SortContainer>
+              </SortItem>{' '}
+            </SortList>{' '}
+          </SortContainer>{' '}
           <SideNavbarList>
-            <SimpleBar style={{ maxHeight: '300px' }}>
+            <SimpleBar
+              style={{
+                maxHeight: '300px',
+              }}
+            >
               {' '}
               {numOfTech &&
                 sortTech(numOfTech).map((category) => (
@@ -957,12 +970,12 @@ const Dashboard = () => {
                     {category[0]}{' '}
                     <NumOfQuestions className="numOfQuestions">
                       {' '}
-                      <span>{category[1]}</span>{' '}
+                      <span> {category[1]} </span>{' '}
                     </NumOfQuestions>{' '}
                   </SideNavbarItem>
                 ))}{' '}
-            </SimpleBar>
-            <p className="scrollDown">scroll down</p>
+            </SimpleBar>{' '}
+            <p className="scrollDown"> scroll down </p>{' '}
           </SideNavbarList>{' '}
         </SideNavbar>{' '}
         {/* </PageContent> */}{' '}
