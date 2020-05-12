@@ -7,7 +7,11 @@ const InputContainer = styled.div`
   position: relative;
   width: 100%;
   text-align: center;
-  margin-top: 180px;
+  margin-top: 100px;
+
+  @media ${device.laptop} {
+    margin-top: 180px;
+  }
 `;
 const LanguageDatalist = styled.input`
   width: 80%;
@@ -96,7 +100,7 @@ const Datalist = ({ ref, setCategory, technologies }) => {
         name="technologies"
         list="techs"
         onChange={() => isTech(datalistRef.current.value)}
-      ></LanguageDatalist>
+      ></LanguageDatalist>{' '}
       <SearchIcon />
       <datalist id="techs">
         {' '}
@@ -104,7 +108,7 @@ const Datalist = ({ ref, setCategory, technologies }) => {
           <option value={tech[0]} />
         ))}{' '}
       </datalist>{' '}
-      {console.log('REF: ', ref)}
+      {console.log('REF: ', ref)}{' '}
     </InputContainer>
   );
 };

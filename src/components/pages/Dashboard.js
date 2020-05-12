@@ -14,6 +14,7 @@ import SortASC from '../../images/dashboard/sortASC';
 import SortDESC from '../../images/dashboard/sortDESC';
 
 import Navbar from '../Navbar';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import { JavaScript } from '../../questionsCollection/Qjavascript';
 import { CSS } from '../../questionsCollection/Qcss';
@@ -29,6 +30,9 @@ import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 
 import Checkbox from '../forms/Checkbox';
+import Textarea from '../forms/Textarea';
+
+import Confirmation from '../confirmationInfo/Conf';
 
 const fadeIn = keyframes`
 0% {
@@ -184,7 +188,7 @@ const SemiCircleContainer = styled.div`
   right: 0;
   margin: auto; */
   position: relative;
-  z-index: 2;
+  z-index: 5;
   display: inline-block;
   animation-name: ${fadeBottom};
   animation-fill-mode: forwards;
@@ -276,6 +280,7 @@ const Hamburger = styled.div`
 const SideNavbar = styled.div`
   position: fixed;
   right: 0;
+  z-index: 3;
   top: 0px;
   bottom: 0;
   width: 100%;
@@ -550,7 +555,8 @@ const ContentItem = styled.li`
 `;
 
 const Answer = styled.div`
-  display: none;
+  /* display: none; */
+  display: ${(props) => (props.editMode ? 'inline-block' : 'none')};
   & .answer-main {
     font-size: 16px;
     margin: 10px;
@@ -648,8 +654,146 @@ const SortItem = styled.li`
     transition: all 0.3s;
   }
 `;
+const EditButtonContainer = styled.div`
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  @media ${device.tablet} {
+    justify-content: flex-end;
+  }
+
+  @media ${device.laptop} {
+    justify-content: center;
+  }
+`;
+const EditButton = styled.button`
+  position: relative;
+  display: inline-block;
+  width: 70%;
+  /* height: 30px; */
+  background: #273384;
+  color: #a3aefb;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  line-height: 0.6;
+  border-radius: 7px;
+  padding: 10px;
+  margin: 15px 0;
+  border: 1px solid rgba(32, 10, 199, 1);
+  white-space: nowrap;
+  transition: all 0.3s;
+
+  @media ${device.tablet} {
+    width: 25%;
+
+    height: 45px;
+    margin-right: 5%;
+    font-size: 20px;
+    margin-top: 0;
+  }
+
+  @media ${device.laptop} {
+    height: unset;
+    margin: 15px 0;
+    width: 70%;
+    font-size: 16px;
+  }
+
+  &:hover {
+    background: #2d3b98;
+    color: #d4d9fd;
+  }
+
+  &.editMode {
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(32, 10, 199, 1);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(32, 10, 199, 1);
+    box-shadow: 0px 0px 15px 0px rgba(32, 10, 199, 1);
+    color: #bbc3fc;
+    background: #2d3b98;
+    color: #d4d9fd;
+  }
+`;
+
+const EditItem = styled.div`
+  background: #e6f2ff;
+  /* border: 1px solid #66b3ff; */
+  position: relative;
+  border-radius: 8px;
+  margin: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    -webkit-box-shadow: 0px 0px 14px 3px rgba(76, 161, 175, 1);
+    -moz-box-shadow: 0px 0px 14px 3px rgba(76, 161, 175, 1);
+    box-shadow: 0px 0px 14px 3px rgba(76, 161, 175, 1);
+    /* border: 1px solid #4da6ff; */
+  }
+
+  & > .delete {
+    position: absolute;
+    display: inline-block;
+    top: -4px;
+    right: 3px;
+    cursor: pointer;
+    color: black;
+
+    font-size: 35px;
+    z-index: 2;
+    color: #001f33;
+    transition: color 0.3s;
+
+    &:hover {
+      color: black;
+    }
+  }
+
+  & div {
+    flex: 1 1 auto;
+    border-radius: 0;
+    /* margin: 10px 0; */
+
+    &:first-child {
+      flex: 1 1 100%;
+      border-radius: 8px 8px 0 0;
+
+      /* & .text {
+        border-radius: 0 0 8px 8px;
+      } */
+    }
+
+    &:last-child {
+      border-radius: 0 0 8px 8px;
+
+      /* & .answer {
+        border-radius: 0 0 8px 8px;
+      } */
+    }
+
+    & .text {
+      font-size: 32px;
+    }
+    & .answer {
+      font-size: 20px;
+      text-align: left;
+      font-weight: 500;
+    }
+  }
+`;
 
 const Dashboard = () => {
+  const [editMode, setEditMode] = useState(false);
+  const [updatedData, setUpdatedData] = useState(
+    JSON.parse(localStorage.getItem('updatedQuestions')) || []
+  );
+  const [isSavedData, setIsSavedData] = useState(false);
   const [open, setOpen] = useState(false);
   const [category, setCategory] = useState('');
   const [sortType, setSortType] = useState(
@@ -739,6 +883,68 @@ const Dashboard = () => {
     return Object.keys(questionsObj).map((tech) => {
       return [tech, questionsObj[tech].length];
     });
+  };
+
+  const handleEdit = () => {
+    if (editMode && Object.keys(updatedData).length > 0) {
+      console.log('THE GOES DELETING DATA: ', updatedData);
+      setQuestions(updatedData);
+      localStorage.setItem('questions', JSON.stringify(updatedData));
+      db.ref(`users/${currentUser.uid}/questions`).set(updatedData);
+      setIsSavedData(true);
+      setEditMode(false);
+    } else if (editMode) {
+      setEditMode(false);
+    } else {
+      setEditMode(true);
+      setIsSavedData(false);
+    }
+  };
+
+  // ######################## EDIT DATA ########################################
+
+  const editData = (id, updatedValue, technology, typeOfField, type) => {
+    const updatedTechQuestions = questions[technology].map((question) => {
+      if (question.id === id) {
+        if (type === 'text') question[type] = updatedValue;
+        else if (type === 'answer') question[type] = updatedValue;
+        else {
+          console.log('WHAAAT PAR IS IT: ', type);
+          console.log('question.answer[type] : ', question.answer[type]);
+
+          question.answer[type] = updatedValue;
+        }
+      }
+      return question;
+    });
+
+    let dataStringified = JSON.stringify(questions);
+    let dataCloned = JSON.parse(dataStringified);
+
+    dataCloned[technology] = updatedTechQuestions;
+    setQuestions(dataCloned);
+    setUpdatedData(dataCloned);
+
+    // let dataClone =
+    //   updatedData || JSON.parse(localStorage.getItem('questions'));
+    // dataClone[technology] = updatedTechQuestions;
+
+    // setUpdatedData(dataClone);
+  };
+
+  const deleteQuestion = (id, technology) => {
+    const updatedTechQuestions = questions[technology].filter(
+      (question) => question.id !== id
+    );
+
+    // make deep copy of object
+    let dataStringified = JSON.stringify(questions);
+    let dataCloned = JSON.parse(dataStringified);
+
+    dataCloned[technology] = updatedTechQuestions;
+
+    setQuestions(dataCloned);
+    setUpdatedData(dataCloned);
   };
 
   // ######################## INIT ########################################
@@ -837,11 +1043,11 @@ const Dashboard = () => {
         {/* <PageContent> */} <Navbar />
         <Burger open={open} setOpen={setOpen} />{' '}
         {category && (
-          <SemiCircleContainer>
+          <SemiCircleContainer onClick={() => setOpen(!open)}>
             {' '}
             {/* <img src={semiCircle} /> */}{' '}
             <div>
-              <h3> {category} </h3>{' '}
+              <h3> {editMode ? 'Edit Mode' : category} </h3>{' '}
             </div>{' '}
           </SemiCircleContainer>
         )}{' '}
@@ -854,25 +1060,27 @@ const Dashboard = () => {
                 {numOfTech.map((tech) => {
                   if (tech[0] === category) return tech[1];
                 })}{' '}
-                {category}
-                questions & answers{' '}
+                {category} questions & answers{' '}
               </h3>{' '}
               <ContentContainer>
                 <ContentList>
                   {' '}
                   {questions &&
+                    !editMode &&
                     questions[category].map((question, id) => {
                       let newId = uuid();
                       return (
                         <ContentItem key={question.id}>
-                          <Checkbox
-                            id={question.id}
-                            boxId={newId}
-                            technology={question.technology}
-                            updateKnown={updateKnown}
-                            key={newId}
-                            known={question.known}
-                          />{' '}
+                          {!editMode && (
+                            <Checkbox
+                              id={question.id}
+                              boxId={newId}
+                              technology={question.technology}
+                              updateKnown={updateKnown}
+                              key={newId}
+                              known={question.known}
+                            />
+                          )}{' '}
                           <label
                             className="question-title"
                             htmlFor={question.id}
@@ -881,12 +1089,12 @@ const Dashboard = () => {
                           >
                             <span className="question-number">
                               {' '}
-                              Q {id + 1}:{' '}
+                              Q{id + 1}:{' '}
                             </span>{' '}
                             {question.text}{' '}
-                          </label>{' '}
+                          </label>
                           <input id={question.id} type="checkbox" />
-                          <Answer key={question.id}>
+                          <Answer editMode={editMode}>
                             {' '}
                             {typeof question.answer === 'string' ? (
                               <h5 className="answer-main">
@@ -915,7 +1123,63 @@ const Dashboard = () => {
                           </Answer>{' '}
                         </ContentItem>
                       );
-                    })}{' '}
+                    })}
+                  {/* EDIT MODE */}
+                  {questions &&
+                    editMode &&
+                    questions[category].map((question) => {
+                      return (
+                        // QUESTION
+                        <ContentItem key={question.id}>
+                          <EditItem>
+                            <span
+                              className="delete"
+                              title="delete question"
+                              onClick={() => {
+                                deleteQuestion(
+                                  question.id,
+                                  question.technology
+                                );
+                              }}
+                            >
+                              &times;
+                            </span>
+                            <Textarea
+                              id={question.id}
+                              technology={question.technology}
+                              typeOfField={'text'}
+                              content={question.text}
+                              editData={editData}
+                              type="text"
+                            />
+                            {/* ANSWER */}
+                            <Answer editMode={editMode}>
+                              {typeof question.answer === 'string' ? (
+                                <Textarea
+                                  id={question.id}
+                                  technology={question.technology}
+                                  typeOfField={'answer'}
+                                  content={question.answer}
+                                  editData={editData}
+                                  type="answer"
+                                />
+                              ) : (
+                                Object.keys(question.answer).map((par, id) => (
+                                  <Textarea
+                                    id={question.id}
+                                    technology={question.technology}
+                                    typeOfField={'answer'}
+                                    content={question.answer[par]}
+                                    editData={editData}
+                                    type={id === 0 ? 'answer' : `par${id}`}
+                                  />
+                                ))
+                              )}
+                            </Answer>
+                          </EditItem>
+                        </ContentItem>
+                      );
+                    })}
                 </ContentList>{' '}
               </ContentContainer>{' '}
             </>
@@ -977,8 +1241,16 @@ const Dashboard = () => {
             </SimpleBar>{' '}
             <p className="scrollDown"> scroll down </p>{' '}
           </SideNavbarList>{' '}
+          <EditButtonContainer>
+            <EditButton
+              onClick={handleEdit}
+              className={editMode ? 'editMode' : null}
+            >
+              {editMode ? 'Save Changes' : 'EDIT'}
+            </EditButton>
+          </EditButtonContainer>
         </SideNavbar>{' '}
-        {/* </PageContent> */}{' '}
+        {/* </PageContent> */} <Confirmation isSavedData={isSavedData} />
       </PageContainer>{' '}
     </>
   );

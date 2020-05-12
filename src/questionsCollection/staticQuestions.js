@@ -2,6 +2,7 @@ import {
     uuid
 } from 'uuidv4';
 
+
 export let staticQuestions = [{
         text: 'Have you played around with the new CSS Flexbox or Grid specs?',
         answer: {
@@ -14,7 +15,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
 
     },
 
@@ -34,7 +37,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
 
 
     },
@@ -54,7 +59,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: 'lolek'
+        id: 'lolek',
+        job: 'Frontend Developer'
+
 
     },
 
@@ -69,7 +76,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -84,7 +93,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -99,7 +110,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -118,7 +131,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
 
@@ -131,7 +146,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -143,7 +160,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
 
@@ -158,7 +177,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -171,7 +192,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -184,7 +207,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
 
@@ -203,7 +228,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -219,7 +246,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -235,7 +264,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -252,7 +283,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -263,7 +296,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -274,7 +309,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -285,7 +322,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -298,7 +337,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
 
@@ -312,7 +353,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -326,7 +369,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -342,7 +387,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -358,7 +405,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -373,7 +422,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     // #######################################################################################
@@ -389,7 +440,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -403,7 +456,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -417,7 +472,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -431,7 +488,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -445,7 +504,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -459,7 +520,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -473,7 +536,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -487,7 +552,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -501,7 +568,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -518,7 +587,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -533,7 +604,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -550,7 +623,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -565,7 +640,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -576,7 +653,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -591,7 +670,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -608,7 +689,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -621,7 +704,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -634,7 +719,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
 
@@ -648,7 +735,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
 
@@ -662,7 +751,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
 
@@ -675,7 +766,9 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'HTML',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     // #######################################################################################
@@ -694,7 +787,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -711,7 +806,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -723,7 +820,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -739,7 +838,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -751,7 +852,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -759,6 +862,7 @@ export let staticQuestions = [{
         answer: {
             title: `There are four possible ways to access HTML element in JavaScript which are:`,
             par1: `getElementById() Method: It is used to get the element by its id name.`,
+
             par2: `getElementsByClass() Method: It is used to get all the elements that have the given classname.`,
             par3: `getElementsByTagName() Method: It is used to get all the elements that have the given tag name.`,
             par4: `querySelector() Method: This function takes CSS style selector and returns the first selected element.`,
@@ -768,7 +872,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -782,7 +888,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -799,7 +907,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -817,7 +927,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -834,7 +946,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -851,7 +965,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
 
@@ -869,7 +985,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -881,7 +999,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -898,7 +1018,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
 
@@ -918,7 +1040,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -935,7 +1059,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
 
@@ -954,7 +1080,9 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -971,7 +1099,9 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -989,7 +1119,9 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
 
@@ -1005,7 +1137,9 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1019,7 +1153,9 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1036,7 +1172,9 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1048,7 +1186,9 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1069,7 +1209,9 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1081,7 +1223,9 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
 
@@ -1095,7 +1239,9 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1111,7 +1257,9 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1125,7 +1273,9 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
 
@@ -1142,7 +1292,9 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
 
@@ -1162,7 +1314,9 @@ export let staticQuestions = [{
         level: 'mid',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1180,7 +1334,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1197,7 +1353,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1216,7 +1374,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1230,7 +1390,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1244,7 +1406,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1258,7 +1422,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1277,7 +1443,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1293,7 +1461,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1309,7 +1479,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1325,7 +1497,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1335,7 +1509,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1354,7 +1530,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1370,7 +1548,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1387,7 +1567,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1401,7 +1583,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1417,7 +1601,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1432,7 +1618,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1447,7 +1635,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1467,7 +1657,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1482,7 +1674,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1501,7 +1695,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1517,7 +1713,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
 
@@ -1536,7 +1734,9 @@ export let staticQuestions = [{
         level: 'junior',
         known: false,
         technology: 'JavaScript',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     // #######################################################################################
@@ -1554,7 +1754,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1577,7 +1779,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1600,7 +1804,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1614,7 +1820,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1630,7 +1838,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1644,7 +1854,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1658,7 +1870,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1676,7 +1890,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1694,7 +1910,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1712,7 +1930,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1726,7 +1946,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1741,7 +1963,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
 
@@ -1757,7 +1981,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
 
@@ -1776,7 +2002,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
 
@@ -1793,7 +2021,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1809,7 +2039,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1825,7 +2057,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1840,7 +2074,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1862,7 +2098,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1884,7 +2122,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1902,7 +2142,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1920,7 +2162,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1937,7 +2181,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1958,7 +2204,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1978,7 +2226,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -1994,7 +2244,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -2010,7 +2262,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -2026,7 +2280,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
     {
@@ -2040,7 +2296,9 @@ export let staticQuestions = [{
 
         known: false,
         technology: 'React',
-        id: uuid()
+        id: uuid(),
+        job: 'Frontend Developer'
+
     },
 
 
