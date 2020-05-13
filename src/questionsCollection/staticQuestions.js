@@ -2301,5 +2301,21 @@ export let staticQuestions = [{
 
     },
 
+    {
+        text: 'In ReactJS, why there is a need to capitalize on the components?',
+        answer: {
+            title: `It is necessary because components are not the DOM element but they are constructors. If they are not capitalized, they can cause various issues and can confuse developers with several elements. At the same time, the problem of integration of some elements and commands can be there.
+        `,
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'React',
+        id: uuid(),
+        job: 'Frontend Developer'
+
+    },
+
 
 ]
