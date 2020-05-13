@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import db from '../../firebase/base';
 import { addQuestion, getQuestions } from '../localStorage';
 import lodash from 'lodash';
@@ -294,7 +295,7 @@ const SideNavbar = styled.div`
   & .simplebar-scrollbar {
     height: 150px !important;
   }
-  & .scrollDown {
+  /* & .scrollDown {
     margin-top: 10px;
     text-align: center;
     color: #a3aefb;
@@ -306,7 +307,7 @@ const SideNavbar = styled.div`
       display: block;
       transform: scale(2);
     }
-  }
+  } */
   @media ${device.laptop} {
     /* top: 55px; */
     /* margin-top: 55px; */
@@ -340,7 +341,7 @@ const SideNavbarItem = styled.li`
   align-items: center;
   color: white;
   border-bottom: 1px solid #133863;
-  padding: 30px;
+  padding: 27px;
   font-size: 24px;
   font-weight: 700;
   letter-spacing: 0.8px;
@@ -357,7 +358,7 @@ const SideNavbarItem = styled.li`
     box-shadow: inset 0px 0px 15px 2px rgba(46, 74, 117, 1);
   } */
   @media ${device.laptop} {
-    /* top: 55px; */
+    padding: 30px;
     width: 210px;
   }
   &:first-child {
@@ -504,6 +505,28 @@ const ContentList = styled.ul`
     background: #ccccff;
     & .question-number {
       color: #6666ff;
+    }
+  }
+
+  & .editibleList {
+    & .editibleItem-enter {
+      opacity: 0;
+    }
+
+    .editibleItem-enter-active {
+      opacity: 1;
+      transition: all 500ms cubic-bezier(0.08, 1.17, 0.96, 0.94);
+    }
+
+    .editibleItem-exit {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .editibleItem-exit-active {
+      opacity: 0;
+      transform: translateY(-20%);
+      transition: all 500ms cubic-bezier(0.08, 1.17, 0.96, 0.94);
     }
   }
 `;
@@ -657,21 +680,27 @@ const SortItem = styled.li`
 const EditButtonContainer = styled.div`
   width: 100%;
   position: relative;
-  display: flex;
-  justify-content: center;
+  margin: 15px 0;
+  /* display: flex; */
+  /* justify-content: flex-start; */
+  /* align-items: center; */
+  /* flex-direction: column; */
+text-align: center;
 
-  @media ${device.tablet} {
-    justify-content: flex-end;
-  }
+  /* @media ${device.tablet} { */
+    /* justify-content: flex-end; */
+    
+  /* } */
 
   @media ${device.laptop} {
-    justify-content: center;
+    /* justify-content: center; */
   }
 `;
 const EditButton = styled.button`
   position: relative;
-  display: inline-block;
+  display: block;
   width: 70%;
+  margin: 5px auto;
   /* height: 30px; */
   background: #273384;
   color: #a3aefb;
@@ -682,25 +711,45 @@ const EditButton = styled.button`
   line-height: 0.6;
   border-radius: 7px;
   padding: 10px;
-  margin: 15px 0;
+
   border: 1px solid rgba(32, 10, 199, 1);
   white-space: nowrap;
   transition: all 0.3s;
 
-  @media ${device.tablet} {
-    width: 25%;
+  &:last-child {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s cubic-bezier(0.08, 1.17, 0.96, 0.94);
 
-    height: 45px;
+    &.togglerActive {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @media ${device.mobileL} {
+    width: 50%;
+    margin-top: 7px;
+  }
+
+  @media ${device.tablet} {
+    width: 30%;
+
+    height: 40px;
     margin-right: 5%;
-    font-size: 20px;
-    margin-top: 0;
+    font-size: 17px;
+    margin-top: 15px;
+
+    margin-left: auto;
+    margin-right: auto;
   }
 
   @media ${device.laptop} {
     height: unset;
-    margin: 15px 0;
+    /* margin: 15px 0; */
     width: 70%;
-    font-size: 16px;
+    font-size: 15px;
+    margin-top: 0;
   }
 
   &:hover {
@@ -778,21 +827,47 @@ const EditItem = styled.div`
     }
 
     & .text {
-      font-size: 32px;
+      font-size: 21px;
+
+      @media ${device.mobileL} {
+        font-size: 23px;
+      }
+
+      @media ${device.tablet} {
+        font-size: 27px;
+      }
+      @media ${device.laptop} {
+        font-size: 32px;
+      }
     }
     & .answer {
-      font-size: 20px;
+      font-size: 15px;
       text-align: left;
       font-weight: 500;
+      @media ${device.mobileL} {
+        font-size: 16px;
+      }
+      @media ${device.tablet} {
+        font-size: 17px;
+      }
+
+      @media ${device.laptop} {
+        font-size: 20px;
+      }
     }
   }
 `;
 
+const SaveChangesButton = styled.button`
+  position: fixed;
+  top: 5%;
+  left: 5%;
+  font-size: 15px;
+`;
+
 const Dashboard = () => {
   const [editMode, setEditMode] = useState(false);
-  const [updatedData, setUpdatedData] = useState(
-    JSON.parse(localStorage.getItem('updatedQuestions')) || []
-  );
+
   const [isSavedData, setIsSavedData] = useState(false);
   const [open, setOpen] = useState(false);
   const [category, setCategory] = useState('');
@@ -803,13 +878,27 @@ const Dashboard = () => {
     JSON.parse(localStorage.getItem('questions')) || []
   );
 
+  // NUMBER OF QUESTIONS
   const [numOfTech, setNumOfTech] = useState(
     JSON.parse(localStorage.getItem('numOfTech')) || []
   );
 
+  const [updatedNumOfTech, setUpdatedNumOfTech] = useState(
+    JSON.parse(localStorage.getItem('numOfTech')) || []
+  );
+
+  // END ~~ NUMBER OF QUESTIONS
+
+  // QUESTIONS DATA
   const [questions, setQuestions] = useState(
     JSON.parse(localStorage.getItem('questions')) || []
   );
+
+  const [updatedData, setUpdatedData] = useState(
+    JSON.parse(localStorage.getItem('updatedQuestions')) || []
+  );
+
+  // END ~~ QUESTIONS DATA
 
   const { currentUser } = useContext(AuthContext);
   // console.log('currentUser: ', currentUser);
@@ -887,17 +976,21 @@ const Dashboard = () => {
 
   const handleEdit = () => {
     if (editMode && Object.keys(updatedData).length > 0) {
-      console.log('THE GOES DELETING DATA: ', updatedData);
+      setEditMode(true);
+      // setCategory('Edit Mode');
       setQuestions(updatedData);
       localStorage.setItem('questions', JSON.stringify(updatedData));
+
+      // HANDLE NUMBER OF QUESION UPDATE
+      setNumOfTech(updatedNumOfTech);
+      localStorage.setItem('numOfTech', JSON.stringify(updatedNumOfTech));
+      //END ~~ HANDLE NUMBER OF QUESION UPDATE
+
       db.ref(`users/${currentUser.uid}/questions`).set(updatedData);
       setIsSavedData(true);
-      setEditMode(false);
-    } else if (editMode) {
-      setEditMode(false);
     } else {
       setEditMode(true);
-      setIsSavedData(false);
+      // setCategory('Edit Mode');
     }
   };
 
@@ -908,6 +1001,7 @@ const Dashboard = () => {
       if (question.id === id) {
         if (type === 'text') question[type] = updatedValue;
         else if (type === 'answer') question[type] = updatedValue;
+        else if (type === 'title') question.answer[type] = updatedValue;
         else {
           console.log('WHAAAT PAR IS IT: ', type);
           console.log('question.answer[type] : ', question.answer[type]);
@@ -925,6 +1019,8 @@ const Dashboard = () => {
     setQuestions(dataCloned);
     setUpdatedData(dataCloned);
 
+    setIsSavedData(false);
+
     // let dataClone =
     //   updatedData || JSON.parse(localStorage.getItem('questions'));
     // dataClone[technology] = updatedTechQuestions;
@@ -937,16 +1033,48 @@ const Dashboard = () => {
       (question) => question.id !== id
     );
 
+    // if (updatedTechQuestions[technology].length === 0 )
+
     // make deep copy of object
     let dataStringified = JSON.stringify(questions);
     let dataCloned = JSON.parse(dataStringified);
 
     dataCloned[technology] = updatedTechQuestions;
 
+    // update number of Questions on the sidenavbar
+    const categoriesBefore = getNumberOfQuestions(dataCloned);
+    const categoriesUpdate = updateNumberOfQuestion(categoriesBefore);
+    setNumOfTech(categoriesUpdate);
+    // localStorage.setItem('numOfTech', JSON.stringify(categoriesUpdate));
+    setUpdatedNumOfTech(categoriesUpdate);
+    // END ~~ update number of Questions on the sidenavbar
+
     setQuestions(dataCloned);
+    // localStorage.setItem('questions', JSON.stringify(dataCloned));
     setUpdatedData(dataCloned);
+
+    setIsSavedData(false);
   };
 
+  // Delete category when there are no questions
+
+  const updateNumberOfQuestion = (arr) => {
+    return arr.filter((category) => {
+      if (category[1] !== 0) {
+        return true;
+      } else {
+        // set flag to null and toggle view of the page
+        setCategory('');
+      }
+    });
+  };
+
+  const handleLeaveEditMode = () => {
+    setEditMode(false);
+
+    setQuestions(JSON.parse(localStorage.getItem('questions')));
+    setNumOfTech(JSON.parse(localStorage.getItem('numOfTech')));
+  };
   // ######################## INIT ########################################
 
   const LoadInitialData = async () => {
@@ -1053,7 +1181,7 @@ const Dashboard = () => {
         )}{' '}
         <QuestionsContainer>
           {' '}
-          {category ? (
+          {category.length > 0 ? (
             <>
               <h3 className="title">
                 Top{' '}
@@ -1125,61 +1253,71 @@ const Dashboard = () => {
                       );
                     })}
                   {/* EDIT MODE */}
-                  {questions &&
-                    editMode &&
-                    questions[category].map((question) => {
-                      return (
-                        // QUESTION
-                        <ContentItem key={question.id}>
-                          <EditItem>
-                            <span
-                              className="delete"
-                              title="delete question"
-                              onClick={() => {
-                                deleteQuestion(
-                                  question.id,
-                                  question.technology
-                                );
-                              }}
-                            >
-                              &times;
-                            </span>
-                            <Textarea
-                              id={question.id}
-                              technology={question.technology}
-                              typeOfField={'text'}
-                              content={question.text}
-                              editData={editData}
-                              type="text"
-                            />
-                            {/* ANSWER */}
-                            <Answer editMode={editMode}>
-                              {typeof question.answer === 'string' ? (
+                  <TransitionGroup className="editibleList">
+                    {questions &&
+                      editMode &&
+                      questions[category].map((question) => {
+                        return (
+                          // QUESTION
+                          <CSSTransition
+                            key={question.id}
+                            timeout={500}
+                            classNames="editibleItem"
+                          >
+                            <ContentItem key={question.id}>
+                              <EditItem>
+                                <span
+                                  className="delete"
+                                  title="delete question"
+                                  onClick={() => {
+                                    deleteQuestion(
+                                      question.id,
+                                      question.technology
+                                    );
+                                  }}
+                                >
+                                  &times;
+                                </span>
                                 <Textarea
                                   id={question.id}
                                   technology={question.technology}
-                                  typeOfField={'answer'}
-                                  content={question.answer}
+                                  typeOfField={'text'}
+                                  content={question.text}
                                   editData={editData}
-                                  type="answer"
+                                  type="text"
                                 />
-                              ) : (
-                                Object.keys(question.answer).map((par, id) => (
-                                  <Textarea
-                                    id={question.id}
-                                    technology={question.technology}
-                                    typeOfField={'answer'}
-                                    content={question.answer[par]}
-                                    editData={editData}
-                                    type={id === 0 ? 'answer' : `par${id}`}
-                                  />
-                                ))
-                              )}
-                            </Answer>
-                          </EditItem>
-                        </ContentItem>
-                      );
-                    })}
+                                {/* ANSWER */}
+                                <Answer editMode={editMode}>
+                                  {typeof question.answer === 'string' ? (
+                                    <Textarea
+                                      id={question.id}
+                                      technology={question.technology}
+                                      typeOfField={'answer'}
+                                      content={question.answer}
+                                      editData={editData}
+                                      type="answer"
+                                    />
+                                  ) : (
+                                    Object.keys(
+                                      question.answer
+                                    ).map((par, id) => (
+                                      <Textarea
+                                        id={question.id}
+                                        technology={question.technology}
+                                        typeOfField={'answer'}
+                                        content={question.answer[par]}
+                                        editData={editData}
+                                        type={id === 0 ? 'title' : `par${id}`}
+                                      />
+                                    ))
+                                  )}
+                                </Answer>
+                              </EditItem>
+                            </ContentItem>
+                          </CSSTransition>
+                        );
+                      })}
+                  </TransitionGroup>
                 </ContentList>{' '}
               </ContentContainer>{' '}
             </>
@@ -1239,7 +1377,7 @@ const Dashboard = () => {
                   </SideNavbarItem>
                 ))}{' '}
             </SimpleBar>{' '}
-            <p className="scrollDown"> scroll down </p>{' '}
+            {/* <p className="scrollDown"> scroll down </p>{' '} */}
           </SideNavbarList>{' '}
           <EditButtonContainer>
             <EditButton
@@ -1247,6 +1385,12 @@ const Dashboard = () => {
               className={editMode ? 'editMode' : null}
             >
               {editMode ? 'Save Changes' : 'EDIT'}
+            </EditButton>
+            <EditButton
+              onClick={handleLeaveEditMode}
+              className={editMode ? 'togglerActive' : 'editMode'}
+            >
+              Exit Edit Mode
             </EditButton>
           </EditButtonContainer>
         </SideNavbar>{' '}

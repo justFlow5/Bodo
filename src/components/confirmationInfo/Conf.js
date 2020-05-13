@@ -5,32 +5,36 @@ import { device } from '../utils/media';
 
 import ConfIcon from '../../images/confirmation/ConfirmationIcon';
 
-const fadeIn = keyframes`
+function fadeInBuilder(x1, x2) {
+  const fadeIn = keyframes`
 0% {
-  transform: translateX(-100%);
+  transform: translateX(-${x1}%);
   opacity: 0;
   }
 
   10% {
-    transform: translateX(30%);
+    transform: translateX(${x2}%);
     opacity: 1;
   }
 
   
   90% {
-    transform: translateX(30%);
+    transform: translateX(${x2}%);;
     opacity: 1;
   }
 
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-${x1}%);
   opacity: 0;
   }
 `;
 
+  return fadeIn;
+}
 const Confirmation = styled.div`
   position: fixed;
-  top: 15%;
+  z-index: 999;
+  top: 5%;
   width: 200px;
   height: 50px;
   padding: 6px 10px;
@@ -40,14 +44,20 @@ const Confirmation = styled.div`
   align-items: center;
   opacity: 0;
   transform: translateX(-100%);
-  background: #00e600;
+  /* background: #00e600; */
+  background: #4caf50;
 
-  animation-name: ${fadeIn};
+  animation-name: ${fadeInBuilder(100, 15)};
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.08, 1.17, 0.96, 0.94);
   /* animation-timing-function: linear; */
 
   animation-duration: 5s;
+
+  @media ${device.laptop} {
+    top: 15%;
+    animation-name: ${fadeInBuilder(100, 25)};
+  }
 
   & svg {
     fill: white;
@@ -58,7 +68,7 @@ const Confirmation = styled.div`
 
   & .info {
     color: white;
-    font-size: 17px;
+    font-size: 15px;
     letter-spacing: 0.8px;
     margin-left: 15px;
     line-height: 1.2;

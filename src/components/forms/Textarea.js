@@ -66,7 +66,7 @@ const Input = styled.textarea`
   line-height: 1.3;
   color: black;
 
-  padding: 10px 20px;
+  padding: 10px;
   width: 100%;
   /* border-radius: 8px; */
   border-top: 3px dashed transparent;
@@ -76,6 +76,11 @@ const Input = styled.textarea`
 
   /* transition: all 0.3 ease-in-out 0.3s; */
   transition: all 0.3s;
+
+  @media ${device.laptop} {
+    justify-content: center;
+    padding: 10px 20px;
+  }
 
   &::-webkit-scrollbar {
     display: none;
