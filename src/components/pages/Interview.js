@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { uuid } from 'uuidv4';
+
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import styled, { keyframes } from 'styled-components';
 import Navbar from '../Navbar';
@@ -23,13 +26,64 @@ import { device } from '../utils/media';
 
 const fadeIn = keyframes`
     from {
+      transform: scale(0);
       opacity: 0;
-      transform: translateY(20px);
+      /* transform: translateY(30px); */
+            /* transform: translateX(30px); */
     }
     to {
+      transform: scale(1);
       opacity: 1;
-      transform: translateY(0px);
+      /* transform: translateY(0px); */
+            /* transform: translateX(0px); */
     }
+`;
+const shadowPulse = keyframes`
+
+     0% {
+          box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.3);
+     }
+     100% {
+          box-shadow: 0 0 0 35px rgba(0, 0, 0, 0);
+     }
+`;
+
+const PulseButton = styled.button`
+  position: absolute;
+  bottom: 22%;
+  left: 49%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  color: #1c2222;
+  font-size: 27px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  border-radius: 8px;
+  width: 150px;
+  height: 80px;
+
+  transform: scale(0);
+
+  transition: all 0.3s;
+
+  &.active {
+    transform: scale(1);
+    animation: ${shadowPulse} 1.5s linear 0.3s infinite;
+    transition: all 0.3s;
+
+    &:hover {
+      animation: none;
+      color: #000000;
+      background-color: rgba(255, 255, 255, 0.9);
+      -webkit-box-shadow: 0px 0px 42px 0px rgba(255, 255, 255, 1);
+      -moz-box-shadow: 0px 0px 42px 0px rgba(255, 255, 255, 1);
+      box-shadow: 0px 0px 42px 0px rgba(255, 255, 255, 1);
+    }
+  }
 `;
 
 const InterviewPage = styled.div`
@@ -54,6 +108,11 @@ const InputsSection = styled.section`
   position: relative;
   align-self: normal;
   margin-top: 60px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const FieldsContainer = styled.div`
@@ -103,6 +162,7 @@ const Label = styled.label`
   cursor: pointer;
   text-align: center;
   border: 1px solid transparent;
+  /* border: 2px solid #091d34; */
   padding: 15px 10px 10px;
   border-radius: 12px;
   margin-right: 40px;
@@ -115,8 +175,8 @@ const Label = styled.label`
   }
 
   & > .title {
-    font-size: 17px;
-    color: black;
+    font-size: 13px;
+    color: #091d34;
     font-weight: 600;
     text-align: center;
     margin-top: 7px;
@@ -130,10 +190,12 @@ const Label = styled.label`
   }
 
   & svg {
-    fill: #091d34;
+    /* fill: #091d34; */
     fill: #131517;
+    /* fill: #0000b3; */
     width: 55px;
     height: 55px;
+    transition: all 0.3s;
   }
 `;
 
@@ -159,10 +221,15 @@ const Input = styled.input`
       #00b4db
     );  */
 
-    background: #00b4db;
+    /* background: #00b4db;
 
     background: -webkit-linear-gradient(to right, #0083b0, #00b4db);
-    background: linear-gradient(to right, #0083b0, #00b4db);
+    background: linear-gradient(to right, #0083b0, #00b4db); */
+
+    /* background-color: #abe9cd;
+    background-image: linear-gradient(315deg, #abe9cd 0%, #3eadcf 74%); */
+    background-color: #6a93cb;
+    background-image: linear-gradient(315deg, #6a93cb 0%, #a4bfef 74%);
   }
 `;
 // const StartButton = styled.button`
@@ -217,7 +284,7 @@ const Input = styled.input`
 const TechsContainer = styled.div`
   position: relative;
   width: 100%;
-  animation: ${fadeIn} 0.2s ease-in-out;
+  /* animation: ${fadeIn} 0.2s ease-in-out; */
 `;
 
 const TechsList = styled.form`
@@ -228,48 +295,77 @@ const TechsList = styled.form`
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
+  justify-content: flex-start;
+  /* opacity: 0.01; */
+
+  /* animation: ${fadeIn} 0.3s cubic-bezier(0.08, 1.17, 0.96, 0.94)
+    ${(props) => (props.delay ? `${props.delay}s` : null)} forwards; */
+
+    /* animation: ${fadeIn} 0.3s cubic-bezier(0.08, 1.17, 0.96, 0.94) forwards; */
   margin-top: 40px;
 `;
-
-const TechsItemWrapper = styled.div`
-  width: 90px;
-  height: 90px;
-  position: relative;
-
-  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+const TechItemContainer = styled.div`
+  transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
 
   &:hover {
-    /* filter: drop-shadow(0px 0px 5px rgba(9, 29, 52, 1)); */
     transform: translateY(-5px);
   }
+`;
+const TechsItemWrapper = styled.div`
+  width: 105px;
+  height: 105px;
+  
+  position: relative;
+  margin: 10px 15px;
+  /* opacity: 0; */
+
+
+  /* animation: ${fadeIn} 0.3s ease-in-out; */
+
+  transform: scale(0);
+  animation: ${fadeIn} 0.2s cubic-bezier(0.08, 1.17, 0.96, 0.94) ${(props) =>
+  props.delay ? `${props.delay}s` : null} forwards;
+
+
+
+  /* transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+  
+  &:hover {
+    transform: translateY(-5px);
+  } */
+
+
+    
 `;
 
 const TechsItem = styled.label`
   position: relative;
-
+  padding: 5px;
   width: 100%;
   height: 100%;
 
-  /* background: #80ced6;
-  */
-  background: #84b4b9;
-  /* background: #00b4db; */
-  /* 
-  background: #00b4db;
-
-  background: -webkit-linear-gradient(to right, #0083b0, #00b4db);
-  background: linear-gradient(to right, #0083b0, #00b4db); */
+  /* background: #84b4b9;
+  background: #c1d9db;
+  background: #94bdc1; */
+  background: #aacbce;
 
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 600;
   -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
 
-  transition: all 0.3s;
+
+  /* animation: ${fadeIn} 0.2s cubic-bezier(0.08, 1.17, 0.96, 0.94)
+    ${(props) => (props.delay ? `${props.delay}s` : null)} forwards; */
+
+  transition: all 0.6s;
+
+  
+
 `;
 
 const Checkbox = styled.input`
@@ -280,10 +376,14 @@ const Checkbox = styled.input`
     transform: translateY(-5px);
 
     & label {
-      background: #00b4db;
+      /* background: #00b4db;
 
       background: -webkit-linear-gradient(to right, #0083b0, #00b4db);
-      background: linear-gradient(to right, #0083b0, #00b4db);
+      background: linear-gradient(to right, #0083b0, #00b4db); */
+
+      background-color: #6a93cb;
+      background-image: linear-gradient(315deg, #6a93cb 0%, #a4bfef 74%);
+      transform: rotateY(360deg);
     }
   }
 `;
@@ -364,23 +464,70 @@ const SpeechBubbleArrow = styled.div`
 const Interview = () => {
   const [info, setInfo] = useState('');
   const [stack, setStack] = useState('');
-  const [tech, setTech] = useState('');
+  const [selectedTech, setSelectedTech] = useState([]);
+
+  // const [delay, setDelay] = useState(0);
 
   const [hide, setHide] = useState('');
   const [isCompleted, setIsCompleted] = useState(true);
 
+  const [questions, setQuestions] = useState(
+    JSON.parse(localStorage.getItem('questions')) || []
+  );
+
+  const [numOfTech, setNumOfTech] = useState(
+    JSON.parse(localStorage.getItem('numOfTech')) || []
+  );
+
   const info1 = 'Hi! My name is Jeff. Nice to meet you!';
+
+  // const handleSelectedTech = (tech) => {
+  //   const updatedTech =
+  //   setSelectedTech(...selectedTech, e.target.value)
+  // }
+
+  const listStack = (stack, techs) => {
+    if (stack === 'frontend') {
+      return techs
+        .filter((tech) => tech[2] === 'Frontend Developer' && tech[1] > 5)
+        .map((stackTech) => stackTech[0]);
+    } else if (stack === 'backend') {
+      return techs
+        .filter((tech) => tech[2] === 'Backend Developer' && tech[1] > 5)
+        .map((stackTech) => stackTech[0]);
+    } else if (stack === 'fullstack') {
+      return techs.map((tech) => {
+        if (tech[1] > 5) return tech[0];
+      });
+    } else {
+      setStack('');
+      // return [];
+    }
+  };
 
   const handleChange = (e) => {
     setStack(e.target.value);
   };
 
-  const handleCheckbox = (e) => {
-    // if (!e.target.checked) e.target.checked = true;
-    // else e.target.checked = false;
-    if (!e.target.checked) return true;
-    else return false;
+  const updateSelectedData = (e) => {
+    if (e.target.checked) {
+      const updatedTechs = [...selectedTech];
+      updatedTechs.push(e.target.value);
+      setSelectedTech(updatedTechs);
+    } else {
+      // delete tech nn uncheck
+      const updatedTechs = selectedTech.filter(
+        (tech) => tech !== e.target.value
+      );
+      setSelectedTech(updatedTechs);
+    }
   };
+
+  // useEffect(() => {
+  //   setStack('');
+  //   setStack('');
+
+  // }, [stack]);
 
   return (
     <>
@@ -388,156 +535,149 @@ const Interview = () => {
       <InterviewPage>
         <InputsSection>
           <FieldsContainer>
-            <Title>Choose your stack:</Title>
+            <Title> Choose your stack: </Title>{' '}
             <FieldsList>
-              {/* <form> */}
-              {/* <MuiThemeProvider theme={theme}> */}
-              {/* <Button labelStyle={{ fontSize: '14px' }}> */}
+              {' '}
+              {/* <form> */} {/* <MuiThemeProvider theme={theme}> */}{' '}
+              {/* <Button labelStyle={{ fontSize: '14px' }}> */}{' '}
               <Input
                 type="radio"
                 value="frontend"
                 id="frontend235325324322423"
                 onChange={handleChange}
                 checked={stack === 'frontend'}
-              />
+              />{' '}
               <Label htmlFor="frontend235325324322423">
-                <Frontend2 /> <h3 className="title">Frontend</h3>
+                <Frontend2 /> <h3 className="title"> Frontend </h3>{' '}
               </Label>
-
               <Input
                 type="radio"
                 value="backend"
                 id="backend432354325234"
                 checked={stack === 'backend'}
                 onChange={handleChange}
-              />
+              />{' '}
               <Label htmlFor="backend432354325234">
-                <Backend /> <h3 className="title">Backend</h3>
+                <Backend /> <h3 className="title"> Backend </h3>{' '}
               </Label>
-
               <Input
                 type="radio"
                 value="fullstack"
                 id="fullstack433443"
                 checked={stack === 'fullstack'}
                 onChange={handleChange}
-              />
+              />{' '}
               <Label htmlFor="fullstack433443">
-                <Mean /> <h3 className="title">Fullstack</h3>
-              </Label>
-              {/* </form> */}
+                <Mean /> <h3 className="title"> Fullstack </h3>{' '}
+              </Label>{' '}
+              {/* </form> */}{' '}
             </FieldsList>
-
+            {/* ##################################################################### */}{' '}
+            {/* ############################### TECH SECTIONS        ################*/}{' '}
             {/* ##################################################################### */}
-            {/* ############################### TECH SECTIONS        ################*/}
-            {/* ##################################################################### */}
-
-            <Title>Choose Technology:</Title>
-            {stack === 'frontend' && (
-              <TechsContainer>
-                <TechsList>
-                  <Checkbox
-                    id="HTML111"
-                    type="checkbox"
-                    onChange={handleCheckbox}
-                    value="html"
-                  />
-                  <TechsItemWrapper className="checkbox-label-wrapper">
-                    <TechsItem htmlFor="HTML111">HTML</TechsItem>
-                  </TechsItemWrapper>
-                  <Checkbox
-                    id="CSS111"
-                    type="checkbox"
-                    onChange={handleCheckbox}
-                    value="css"
-                  />
-                  <TechsItemWrapper className="checkbox-label-wrapper">
-                    <TechsItem htmlFor="CSS111">CSS</TechsItem>
-                  </TechsItemWrapper>
-
-                  <Checkbox
-                    id="JavaScript111"
-                    type="checkbox"
-                    onChange={handleCheckbox}
-                    value="javascript"
-                  />
-                  <TechsItemWrapper className="checkbox-label-wrapper">
-                    <TechsItem htmlFor="JavaScript111">JS</TechsItem>
-                  </TechsItemWrapper>
-
-                  <Checkbox
-                    id="react111"
-                    type="checkbox"
-                    onChange={handleCheckbox}
-                    value="react"
-                  />
-                  <TechsItemWrapper className="checkbox-label-wrapper">
-                    <TechsItem htmlFor="react111">React</TechsItem>
-                  </TechsItemWrapper>
-
-                  <Checkbox
-                    id="github111"
-                    type="checkbox"
-                    onChange={handleCheckbox}
-                    value="github"
-                  />
-                  <TechsItemWrapper className="checkbox-label-wrapper">
-                    <TechsItem htmlFor="github111">GitHub</TechsItem>
-                  </TechsItemWrapper>
-                </TechsList>
-              </TechsContainer>
+            {stack && (
+              <>
+                <Title> Choose Technology: </Title>{' '}
+                <TechsContainer>
+                  <TechsList>
+                    {/* <TransitionGroup className="listedTechs"> */}
+                    {stack
+                      ? listStack(stack, numOfTech).map((singleTech, id) => {
+                          let newId = uuid();
+                          return (
+                            <>
+                              {' '}
+                              {/* <CSSTransition
+                          key={newId}
+                          timeout={500}
+                          classNames="singleTech"
+                        > */}
+                              <TechItemContainer>
+                                <Checkbox
+                                  id={newId}
+                                  type="checkbox"
+                                  onChange={updateSelectedData}
+                                  value={singleTech}
+                                />
+                                <TechsItemWrapper
+                                  className="checkbox-label-wrapper"
+                                  delay={id / 4}
+                                >
+                                  <TechsItem htmlFor={newId} className="enter">
+                                    {' '}
+                                    {singleTech}{' '}
+                                  </TechsItem>{' '}
+                                </TechsItemWrapper>{' '}
+                              </TechItemContainer>
+                              {/* </CSSTransition> */}
+                            </>
+                          );
+                        })
+                      : null}
+                    {/* </TransitionGroup> */}
+                  </TechsList>{' '}
+                </TechsContainer>
+              </>
             )}
-          </FieldsContainer>
-        </InputsSection>
+          </FieldsContainer>{' '}
+        </InputsSection>{' '}
         <InterviewSection>
-          <img src={Jeff} />
+          <img src={Jeff} />{' '}
+          <PulseButton
+            className={stack && selectedTech.length > 0 ? 'active' : null}
+          >
+            Start
+          </PulseButton>
           <SpeechBubble>
             <SpeechBubbleText>
               <div>
-                {isCompleted ? (
+                {' '}
+                {stack && selectedTech.length > 0 ? (
+                  <Typist
+                    avgTypingDelay={40}
+                    startDelay={100}
+                    cursor={{
+                      show: false,
+                    }}
+                  >
+                    <p className="interviewer-text"> Alright then! </p>{' '}
+                    <Typist.Delay ms={350} />{' '}
+                    <p className="interviewer-text"> Are you ready ? </p>{' '}
+                  </Typist>
+                ) : (
                   <div>
                     <Typist
                       avgTypingDelay={40}
                       startDelay={100}
-                      cursor={{ show: false }}
+                      cursor={{
+                        show: false,
+                      }}
                     >
-                      <p className="interviewer-text">Hi! My name is Jeff.</p>
-                      <Typist.Delay ms={1250} />
-                      <p className="interviewer-text"> Nice to meet you!</p>
+                      <p className="interviewer-text"> Hi!My name is Jeff. </p>{' '}
+                      <Typist.Delay ms={1250} />{' '}
+                      <p className="interviewer-text"> Nice to meet you! </p>{' '}
                       <Typist.Backspace count={info1.length} delay={1000} />
-
                       <p className="interviewer-text">
                         Before we start our interview, please fill the required
-                        fields.
-                      </p>
-                    </Typist>
+                        fields.{' '}
+                      </p>{' '}
+                    </Typist>{' '}
                   </div>
-                ) : (
-                  <Typist
-                    avgTypingDelay={40}
-                    startDelay={100}
-                    cursor={{ show: false }}
-                  >
-                    <p className="interviewer-text">Alright then!</p>
-                    <Typist.Delay ms={350} />
-                    <p className="interviewer-text"> Are you ready?</p>
-                  </Typist>
-                )}
-              </div>
-            </SpeechBubbleText>
+                )}{' '}
+              </div>{' '}
+            </SpeechBubbleText>{' '}
             <SpeechBubbleArrow />
-          </SpeechBubble>
+          </SpeechBubble>{' '}
         </InterviewSection>
-
         <button
           id="button"
           onClick={() => {
             setIsCompleted(false);
           }}
         >
-          toggle
-        </button>
-      </InterviewPage>
+          toggle{' '}
+        </button>{' '}
+      </InterviewPage>{' '}
     </>
   );
 };

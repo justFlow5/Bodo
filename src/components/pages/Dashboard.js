@@ -794,10 +794,14 @@ const EditItem = styled.div`
     cursor: pointer;
     color: black;
 
-    font-size: 35px;
+    font-size: 25px;
     z-index: 2;
     color: #001f33;
     transition: color 0.3s;
+
+    @media ${device.laptop} {
+      font-size: 35px;
+    }
 
     &:hover {
       color: black;
@@ -970,7 +974,7 @@ const Dashboard = () => {
 
   const getNumberOfQuestions = (questionsObj) => {
     return Object.keys(questionsObj).map((tech) => {
-      return [tech, questionsObj[tech].length];
+      return [tech, questionsObj[tech].length, questionsObj[tech][0].job];
     });
   };
 
