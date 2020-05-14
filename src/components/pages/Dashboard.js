@@ -152,7 +152,7 @@ outline: none;
     :nth-child(2) {
       opacity: ${({ open }) => (open ? '0' : '1')};
       /* transform: ${({ open }) =>
-        open ? 'translateX(20px)' : 'translateX(0)'}; */
+    open ? 'translateX(20px)' : 'translateX(0)'}; */
       /* transform: ${({ open }) => (open ? 'opacity' : 'translateX(0)')}; */
     }
     :nth-child(3) {
@@ -720,6 +720,7 @@ const EditButton = styled.button`
     opacity: 0;
     transform: translateX(100%);
     transition: all 0.3s cubic-bezier(0.08, 1.17, 0.96, 0.94);
+    /* transition: all 0.4s cubic-bezier(.175,.885,.32,1.275); */
 
     &.togglerActive {
       transform: translateX(0);
@@ -1217,7 +1218,7 @@ const Dashboard = () => {
                             className="question-title"
                             htmlFor={question.id}
                             onClick={toggleAnswer}
-                            // key={question.id}
+                          // key={question.id}
                           >
                             <span className="question-number">
                               {' '}
@@ -1234,24 +1235,24 @@ const Dashboard = () => {
                                 {question.answer}{' '}
                               </h5>
                             ) : (
-                              Object.keys(question.answer).map((par, id) => {
-                                if (id === 0) {
-                                  return (
-                                    <h5 className="answer-main">
-                                      {' '}
-                                      {question.answer[par]}{' '}
-                                    </h5>
-                                  );
-                                } else {
-                                  return (
-                                    <p className="answer-sub">
-                                      {' '}
-                                      {question.answer[par]}{' '}
-                                    </p>
-                                  );
-                                }
-                              })
-                            )}{' '}
+                                Object.keys(question.answer).map((par, id) => {
+                                  if (id === 0) {
+                                    return (
+                                      <h5 className="answer-main">
+                                        {' '}
+                                        {question.answer[par]}{' '}
+                                      </h5>
+                                    );
+                                  } else {
+                                    return (
+                                      <p className="answer-sub">
+                                        {' '}
+                                        {question.answer[par]}{' '}
+                                      </p>
+                                    );
+                                  }
+                                })
+                              )}{' '}
                           </Answer>{' '}
                         </ContentItem>
                       );
@@ -1302,19 +1303,19 @@ const Dashboard = () => {
                                       type="answer"
                                     />
                                   ) : (
-                                    Object.keys(
-                                      question.answer
-                                    ).map((par, id) => (
-                                      <Textarea
-                                        id={question.id}
-                                        technology={question.technology}
-                                        typeOfField={'answer'}
-                                        content={question.answer[par]}
-                                        editData={editData}
-                                        type={id === 0 ? 'title' : `par${id}`}
-                                      />
-                                    ))
-                                  )}
+                                      Object.keys(
+                                        question.answer
+                                      ).map((par, id) => (
+                                        <Textarea
+                                          id={question.id}
+                                          technology={question.technology}
+                                          typeOfField={'answer'}
+                                          content={question.answer[par]}
+                                          editData={editData}
+                                          type={id === 0 ? 'title' : `par${id}`}
+                                        />
+                                      ))
+                                    )}
                                 </Answer>
                               </EditItem>
                             </ContentItem>
@@ -1326,8 +1327,8 @@ const Dashboard = () => {
               </ContentContainer>{' '}
             </>
           ) : (
-            <NoInfo> No Category Selected </NoInfo>
-          )}{' '}
+              <NoInfo> No Category Selected </NoInfo>
+            )}{' '}
         </QuestionsContainer>{' '}
         <SideNavbar open={open}>
           <Datalist technologies={numOfTech} setCategory={setCategory} />{' '}

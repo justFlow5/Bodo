@@ -50,6 +50,7 @@ const Confirmation = styled.div`
   animation-name: ${fadeInBuilder(100, 15)};
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.08, 1.17, 0.96, 0.94);
+  /* animation-timing-function: cubic-bezier(.175,.885,.32,1.275); */
   /* animation-timing-function: linear; */
 
   animation-duration: 5s;

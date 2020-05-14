@@ -22,6 +22,8 @@ import Button from '@material-ui/core/Button';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
+import Checkbox from '../forms/Interview_Checkbox';
+
 import { device } from '../utils/media';
 
 const fadeIn = keyframes`
@@ -49,26 +51,72 @@ const shadowPulse = keyframes`
 `;
 
 const PulseButton = styled.button`
-  position: absolute;
-  bottom: 22%;
-  left: 49%;
+  position: fixed;
+  /* bottom: 22%; */
+  /* left: 49%; */
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 10px;
   color: #1c2222;
-  font-size: 27px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.8px;
   cursor: pointer;
   border-radius: 8px;
-  width: 150px;
-  height: 80px;
 
   transform: scale(0);
 
+  bottom: 10%;
+  right: 3%;
+  width: 49px;
   transition: all 0.3s;
+
+  @media ${device.mobileM} {
+    bottom: 11%;
+    right: 2%;
+    width: 70px;
+    font-size: 17px;
+  }
+  @media ${device.mobileL} {
+    font-size: 18px;
+    bottom: 12%;
+    right: 5%;
+    width: 64px;
+  }
+
+  @media (min-width: 670px) {
+    bottom: 17%;
+    right: 4%;
+    width: 105px;
+  }
+
+  @media ${device.tablet} {
+    height: 60px;
+    font-size: 22px;
+    /* bottom: 26%; */
+    bottom: 39%;
+
+    right: 9%;
+  }
+
+  @media ${device.laptop} {
+    width: 120px;
+    height: 60px;
+    font-size: 23px;
+    /* bottom: 30%;
+    right: 16%; */
+    bottom: 22%;
+    right: 17%;
+  }
+  @media ${device.laptopL} {
+    width: 150px;
+    height: 80px;
+    font-size: 27px;
+    bottom: 33%;
+    right: 11%;
+  }
 
   &.active {
     transform: scale(1);
@@ -87,45 +135,54 @@ const PulseButton = styled.button`
 `;
 
 const InterviewPage = styled.div`
-  height: 100%;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 50px;
 
-  & #button {
-    cursor: pointer;
-    position: fixed;
-    top: 50px;
-    right: 50px;
-    z-index: 999;
+  @media ${device.tablet} {
+    height: 100%;
+
+    flex-direction: row;
   }
 `;
 
 const InputsSection = styled.section`
-  width: 59%;
+  width: 100%;
   position: relative;
   align-self: normal;
-  margin-top: 60px;
-  overflow-y: scroll;
+  margin-top: 15px;
+  /* overflow-y: scroll; */
   -ms-overflow-style: none;
   &::-webkit-scrollbar {
     display: none;
   }
+
+  @media ${device.laptop} {
+    width: 65%;
+    margin-top: 60px;
+  }
 `;
 
 const FieldsContainer = styled.div`
-  width: 70%;
-  margin-left: 25%;
-  /* margin: 0 30px 0 50px; */
+  width: 90%;
+  margin: 0 5%;
+  @media ${device.mobileL} {
+    margin-left: 15%;
+    margin-right: 15%;
+    width: 65%;
+  }
 
-  /* background: #79b2f1; */
-  /* border: 1px solid #609ce1; */
-  border-radius: 12px;
-  /* text-align: center; */
+  @media ${device.tablet} {
+    width: 50%;
+  }
 
-  /* padding: 20px 30px 20px 80px; */
+  @media ${device.laptop} {
+    margin: 0 0 0 25%;
+    width: 60%;
+  }
 `;
 
 const FieldsList = styled.form`
@@ -133,13 +190,23 @@ const FieldsList = styled.form`
   margin-bottom: 35px;
   position: relative;
   width: 100%;
-  /* display: flex;
-  flex-direction: row;
-  justify-content: center; */
+  white-space: nowrap;
+
+  @media ${device.mobileL} {
+    width: 90%;
+    text-align: left;
+    margin-left: 2%;
+  }
+  @media ${device.tablet} {
+    width: 90%;
+    text-align: left;
+  }
 `;
 
 const Title = styled.h3`
-  font-size: 32px;
+  line-height: 1.4;
+
+  font-size: 28px;
   font-weight: 700;
   letter-spacing: 0.8px;
   text-align: left;
@@ -147,6 +214,19 @@ const Title = styled.h3`
   border-bottom: 4px solid #0083b0;
 
   color: #091d34;
+
+  @media ${device.mobileL} {
+    /* margin-left: 15%; */
+  }
+
+  @media ${device.tablet} {
+    font-size: 29px;
+    margin-left: unset;
+  }
+
+  @media ${device.laptop} {
+    font-size: 32px;
+  }
 `;
 
 const Label = styled.label`
@@ -155,8 +235,8 @@ const Label = styled.label`
   align-items: center;
   justify-content: center;
   /* margin-left: 45px; */
-  width: 110px;
-  height: 110px;
+  width: 80px;
+  height: 80px;
   display: inline-block;
   position: relative;
   cursor: pointer;
@@ -165,23 +245,55 @@ const Label = styled.label`
   /* border: 2px solid #091d34; */
   padding: 15px 10px 10px;
   border-radius: 12px;
-  margin-right: 40px;
+  margin-right: 10px;
   background: transparent;
   box-shadow: unset;
   transition: all 0.3s;
+
+  @media ${device.mobileM} {
+    width: 85px;
+    height: 85px;
+  }
+
+  @media ${device.mobileL} {
+    width: 95px;
+    height: 95px;
+  }
+
+  @media ${device.tablet} {
+    width: 100px;
+    height: 100px;
+  }
+
+  @media ${device.laptop} {
+    width: 110px;
+    height: 110px;
+    margin-right: 40px;
+  }
 
   &:hover {
     background: rgba(0, 0, 0, 0.05);
   }
 
   & > .title {
-    font-size: 13px;
+    font-size: 10px;
     color: #091d34;
     font-weight: 600;
     text-align: center;
-    margin-top: 7px;
+    margin-top: 5px;
     letter-spacing: 0.6px;
     text-transform: uppercase;
+
+    @media ${device.mobileM} {
+      font-size: 11px;
+    }
+    @media ${device.mobileL} {
+      font-size: 12px;
+    }
+    @media ${device.tablet} {
+      font-size: 13px;
+      margin-top: 7px;
+    }
   }
 
   & > img {
@@ -193,9 +305,19 @@ const Label = styled.label`
     /* fill: #091d34; */
     fill: #131517;
     /* fill: #0000b3; */
-    width: 55px;
-    height: 55px;
+    width: 40px;
+    height: 40px;
     transition: all 0.3s;
+
+    @media ${device.mobileL} {
+      width: 45px;
+      height: 45px;
+    }
+
+    @media ${device.laptop} {
+      width: 55px;
+      height: 55px;
+    }
   }
 `;
 
@@ -232,77 +354,48 @@ const Input = styled.input`
     background-image: linear-gradient(315deg, #6a93cb 0%, #a4bfef 74%);
   }
 `;
-// const StartButton = styled.button`
-//   width: 200px;
-//   height: 60px;
-
-//   background: #609ce1;
-//   background: #5bc3f5;
-//   border-radius: 12px;
-//   cursor: pointer;
-//   font-size: 24px;
-//   letter-spacing: 1px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-
-//   -webkit-box-shadow: unset;
-//   -moz-box-shadow: unset;
-//   box-shadow: unset;
-
-//   transition: all 0.3s;
-
-//   &:hover {
-//     background: #7cace4;
-//     border: 1px solid #7cace4;
-//     -webkit-box-shadow: 0px 0px 13px 3px rgba(110, 242, 255, 1);
-//     -moz-box-shadow: 0px 0px 13px 3px rgba(110, 242, 255, 1);
-//     box-shadow: 0px 0px 13px 3px rgba(110, 242, 255, 1);
-//   }
-//   & .right-arrow {
-//     /* position: absolute; */
-//     display: inline-block;
-//   }
-// `;
-
-// const TechButtonContainer = styled.ul`
-//   display: flex;
-//   justify-content: row;
-// `;
-// const TechButtonItem = styled.li`
-//   width: 120px;
-//   height: 40px;
-//   border: 1px solid #b2b2b2;
-//   background: transparent;
-//   border-radius: 10px;
-//   cursor: pointer;
-//   position: relative;
-//   font-size: 14px;
-//   color: black;
-// `;
 
 const TechsContainer = styled.div`
   position: relative;
   width: 100%;
+
+  &.spaceBottom {
+    padding-bottom: 200px;
+  }
+
+  @media ${device.tablet} {
+  &.spaceBottom {
+      padding-bottom: unset;
+    }
+    }
+
   /* animation: ${fadeIn} 0.2s ease-in-out; */
 `;
 
 const TechsList = styled.form`
   position: relative;
-
   width: 100%;
+
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-between;
-  justify-content: flex-start;
-  /* opacity: 0.01; */
 
-  /* animation: ${fadeIn} 0.3s cubic-bezier(0.08, 1.17, 0.96, 0.94)
-    ${(props) => (props.delay ? `${props.delay}s` : null)} forwards; */
+  justify-content: center;
+  margin-top: 30px;
 
-    /* animation: ${fadeIn} 0.3s cubic-bezier(0.08, 1.17, 0.96, 0.94) forwards; */
-  margin-top: 40px;
+  @media ${device.mobileL} {
+    justify-content: flex-start;
+    width: 100%;
+  }
+  @media ${device.tablet} {
+    width: 100%;
+  }
+
+  @media ${device.laptop} {
+    width: 55px;
+    height: 55px;
+    width: 100%;
+  }
 `;
 const TechItemContainer = styled.div`
   transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -312,30 +405,26 @@ const TechItemContainer = styled.div`
   }
 `;
 const TechsItemWrapper = styled.div`
-  width: 105px;
-  height: 105px;
-  
+  width: 65px;
+  height: 65px;
+
   position: relative;
-  margin: 10px 15px;
-  /* opacity: 0; */
-
-
-  /* animation: ${fadeIn} 0.3s ease-in-out; */
+  margin: 5px 10px;
 
   transform: scale(0);
-  animation: ${fadeIn} 0.2s cubic-bezier(0.08, 1.17, 0.96, 0.94) ${(props) =>
-  props.delay ? `${props.delay}s` : null} forwards;
+  animation: ${fadeIn} 0.2s cubic-bezier(0.08, 1.17, 0.96, 0.94)
+    ${(props) => (props.delay ? `${props.delay}s` : null)} forwards;
 
+  @media ${device.mobileL} {
+    width: 80px;
+    height: 80px;
+  }
 
-
-  /* transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-  
-  &:hover {
-    transform: translateY(-5px);
-  } */
-
-
-    
+  @media ${device.laptop} {
+    margin: 10px 15px;
+    width: 105px;
+    height: 105px;
+  }
 `;
 
 const TechsItem = styled.label`
@@ -353,46 +442,63 @@ const TechsItem = styled.label`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 10px;
   font-weight: 600;
   -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-
-
-  /* animation: ${fadeIn} 0.2s cubic-bezier(0.08, 1.17, 0.96, 0.94)
-    ${(props) => (props.delay ? `${props.delay}s` : null)} forwards; */
-
   transition: all 0.6s;
 
-  
+  @media ${device.mobileL} {
+    font-size: 13px;
+  }
 
-`;
-
-const Checkbox = styled.input`
-  display: none;
-
-  &:checked + .checkbox-label-wrapper {
-    filter: drop-shadow(0px 0px 7px rgba(9, 29, 52, 1));
-    transform: translateY(-5px);
-
-    & label {
-      /* background: #00b4db;
-
-      background: -webkit-linear-gradient(to right, #0083b0, #00b4db);
-      background: linear-gradient(to right, #0083b0, #00b4db); */
-
-      background-color: #6a93cb;
-      background-image: linear-gradient(315deg, #6a93cb 0%, #a4bfef 74%);
-      transform: rotateY(360deg);
-    }
+  @media ${device.laptop} {
+    font-size: 15px;
   }
 `;
 
-const InterviewSection = styled.div`
-  position: relative;
-  width: 40%;
+const InterviewSection = styled.section`
+  display: inline-block;
+  width: 100%;
 
-  text-align: end;
+  @media ${device.tablet} {
+    position: relative;
+    margin-bottom: 50px;
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-align: end;
+  }
+
+  & img {
+    position: fixed;
+    width: 50%;
+    bottom: 6%;
+    right: -8%;
+    @media ${device.tablet} {
+      position: fixed;
+      bottom: unset;
+      width: 50%;
+      height: 50%;
+
+      top: 20%;
+      right: -5%;
+    }
+    @media ${device.laptop} {
+      top: 23%;
+      right: 7%;
+
+      width: 35%;
+      height: 70%;
+    }
+
+    @media ${device.laptopL} {
+      top: 20%;
+      right: 0%;
+      width: 40%;
+    }
+  }
 
   & svg {
     width: 80%;
@@ -400,29 +506,37 @@ const InterviewSection = styled.div`
 `;
 
 const SpeechBubble = styled.div`
-  background: #efefef;
-  border: 1px solid #a7a7a7;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+  display: none;
 
-  line-height: 1.3;
-  margin: 0 auto 40px;
+  @media ${device.tablet} {
+    top: 12%;
+    right: 28%;
 
-  width: 190px;
-  min-height: 60px;
-  font-weight: 500;
-  padding: 15px;
-  position: absolute;
+    background: #efefef;
+    border: 1px solid #a7a7a7;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+    line-height: 1.3;
+    width: 190px;
+    min-height: 60px;
+    font-weight: 500;
+    padding: 15px;
+    text-align: start;
 
-  top: 0;
-  left: 0;
-  text-align: start;
+    position: fixed;
+  }
 
-  /* @media ${device.laptop} {
-    left: 5%;
-  } */
+  @media ${device.laptop} {
+    top: 17%;
+    right: 29%;
+  }
+
+  @media ${device.laptopL} {
+    top: 17%;
+    right: 26%;
+  }
 `;
 const SpeechBubbleText = styled.p`
   font-size: 17px;
@@ -464,27 +578,34 @@ const SpeechBubbleArrow = styled.div`
 const Interview = () => {
   const [info, setInfo] = useState('');
   const [stack, setStack] = useState('');
-  const [selectedTech, setSelectedTech] = useState([]);
+  const [isTechSelected, setIsTechSelected] = useState(false);
+
+  const [stackChanged, setStackChanged] = useState(false);
 
   // const [delay, setDelay] = useState(0);
 
-  const [hide, setHide] = useState('');
   const [isCompleted, setIsCompleted] = useState(true);
 
-  const [questions, setQuestions] = useState(
-    JSON.parse(localStorage.getItem('questions')) || []
-  );
+  // const [questions, setQuestions] = useState(
+  //   JSON.parse(localStorage.getItem('questions')) || []
+  // );
 
   const [numOfTech, setNumOfTech] = useState(
     JSON.parse(localStorage.getItem('numOfTech')) || []
   );
 
   const info1 = 'Hi! My name is Jeff. Nice to meet you!';
+  const typeOfStack = ['frontend', 'backend', 'fullstack'];
 
   // const handleSelectedTech = (tech) => {
   //   const updatedTech =
   //   setSelectedTech(...selectedTech, e.target.value)
   // }
+  // const isTechSelected = () => {
+  //   let data = JSON.parse(localStorage.getItem('selectedTechs'));
+  //   console.log('data.length > 0: ', data.length > 0);
+  //   setSelectedTech(data.length > 0);
+  // };
 
   const listStack = (stack, techs) => {
     if (stack === 'frontend') {
@@ -500,34 +621,56 @@ const Interview = () => {
         if (tech[1] > 5) return tech[0];
       });
     } else {
-      setStack('');
+      // setStack('');
       // return [];
     }
   };
 
   const handleChange = (e) => {
     setStack(e.target.value);
+
+    // setSelectedTech([]);
+    // setStackChanged(true);
   };
 
-  const updateSelectedData = (e) => {
-    if (e.target.checked) {
-      const updatedTechs = [...selectedTech];
-      updatedTechs.push(e.target.value);
-      setSelectedTech(updatedTechs);
+  const handleTechSelection = (tech, typeOfOperation) => {
+    console.log('handleTechSelection: ', tech, typeOfOperation);
+    const currentData = JSON.parse(localStorage.getItem('selectedTechs')) || [];
+    if (typeOfOperation === 'add') {
+      let updatedData = [...currentData, tech];
+
+      localStorage.setItem('selectedTechs', JSON.stringify(updatedData));
+      // return updatedData;
     } else {
-      // delete tech nn uncheck
-      const updatedTechs = selectedTech.filter(
-        (tech) => tech !== e.target.value
-      );
-      setSelectedTech(updatedTechs);
+      let updatedData = currentData.filter((singleTech) => singleTech !== tech);
+      localStorage.setItem('selectedTechs', JSON.stringify(updatedData));
+      // return updatedData;
     }
   };
 
-  // useEffect(() => {
-  //   setStack('');
-  //   setStack('');
+  const updateSelectedData = (checked, tech) => {
+    console.log('e.target.value TECGH: ', tech);
+    // let value = e.target.value;
+    // let checked = e.target.checked;
 
-  // }, [stack]);
+    if (checked) {
+      // const updatedTechs = [...selectedTech];
+      // updatedTechs.push(tech);
+      // setSelectedTech(updatedTechs);
+      handleTechSelection(tech, 'add');
+      // isTechSelected();
+    } else {
+      // delete tech nn uncheck
+      // const updatedTechs = selectedTech.filter((tech) => tech !== tech);
+      // setSelectedTech(updatedTechs);
+      handleTechSelection(tech, 'delete');
+      // isTechSelected();
+    }
+  };
+
+  useEffect(() => {
+    localStorage.setItem('selectedTechs', JSON.stringify([]));
+  }, [stack]);
 
   return (
     <>
@@ -537,9 +680,6 @@ const Interview = () => {
           <FieldsContainer>
             <Title> Choose your stack: </Title>{' '}
             <FieldsList>
-              {' '}
-              {/* <form> */} {/* <MuiThemeProvider theme={theme}> */}{' '}
-              {/* <Button labelStyle={{ fontSize: '14px' }}> */}{' '}
               <Input
                 type="radio"
                 value="frontend"
@@ -578,43 +718,29 @@ const Interview = () => {
             {stack && (
               <>
                 <Title> Choose Technology: </Title>{' '}
-                <TechsContainer>
+                <TechsContainer className={stack ? 'spaceBottom' : null}>
                   <TechsList>
-                    {/* <TransitionGroup className="listedTechs"> */}
-                    {stack
-                      ? listStack(stack, numOfTech).map((singleTech, id) => {
-                          let newId = uuid();
-                          return (
-                            <>
+                    {listStack(stack, numOfTech).map((singleTech, id) => {
+                      let newId = uuid();
+                      return (
+                        <TechItemContainer key={newId}>
+                          <Checkbox
+                            id={newId}
+                            singleTech={singleTech}
+                            updateSelectedData={updateSelectedData}
+                          />
+                          <TechsItemWrapper
+                            className="checkbox-label-wrapper"
+                            delay={id / 4}
+                          >
+                            <TechsItem htmlFor={newId} className="enter">
                               {' '}
-                              {/* <CSSTransition
-                          key={newId}
-                          timeout={500}
-                          classNames="singleTech"
-                        > */}
-                              <TechItemContainer>
-                                <Checkbox
-                                  id={newId}
-                                  type="checkbox"
-                                  onChange={updateSelectedData}
-                                  value={singleTech}
-                                />
-                                <TechsItemWrapper
-                                  className="checkbox-label-wrapper"
-                                  delay={id / 4}
-                                >
-                                  <TechsItem htmlFor={newId} className="enter">
-                                    {' '}
-                                    {singleTech}{' '}
-                                  </TechsItem>{' '}
-                                </TechsItemWrapper>{' '}
-                              </TechItemContainer>
-                              {/* </CSSTransition> */}
-                            </>
-                          );
-                        })
-                      : null}
-                    {/* </TransitionGroup> */}
+                              {singleTech}{' '}
+                            </TechsItem>{' '}
+                          </TechsItemWrapper>{' '}
+                        </TechItemContainer>
+                      );
+                    })}
                   </TechsList>{' '}
                 </TechsContainer>
               </>
@@ -623,16 +749,12 @@ const Interview = () => {
         </InputsSection>{' '}
         <InterviewSection>
           <img src={Jeff} />{' '}
-          <PulseButton
-            className={stack && selectedTech.length > 0 ? 'active' : null}
-          >
-            Start
-          </PulseButton>
+          <PulseButton className={stack ? 'active' : null}>Start</PulseButton>
           <SpeechBubble>
             <SpeechBubbleText>
               <div>
                 {' '}
-                {stack && selectedTech.length > 0 ? (
+                {stack ? (
                   <Typist
                     avgTypingDelay={40}
                     startDelay={100}
@@ -669,14 +791,6 @@ const Interview = () => {
             <SpeechBubbleArrow />
           </SpeechBubble>{' '}
         </InterviewSection>
-        <button
-          id="button"
-          onClick={() => {
-            setIsCompleted(false);
-          }}
-        >
-          toggle{' '}
-        </button>{' '}
       </InterviewPage>{' '}
     </>
   );

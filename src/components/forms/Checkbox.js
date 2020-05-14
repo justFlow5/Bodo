@@ -52,19 +52,9 @@ const Checkbox = ({ id, boxId, technology, updateKnown, known }) => {
   const [checked, setChecked] = useState(false);
 
   const toggleCheckbox = (value) => {
-    // console.log('ID_checkbox: ', id);
-    // console.log('key_checkbox: ', boxId);
     setChecked(value);
-    // setChecked(value);
-    // console.log('checked: ', checked);
     updateKnown(id, technology, value);
   };
-
-  //   const doIt =() => {
-  //       if(known) {
-  //           setChecked(known)
-  //       }
-  //   }
 
   useEffect(() => {
     setChecked(known);
@@ -79,15 +69,15 @@ const Checkbox = ({ id, boxId, technology, updateKnown, known }) => {
         checked={checked}
         onChange={(e) => toggleCheckbox(e.target.checked)}
         // onChange={() => setChecked(!checked)}
-      />
+      />{' '}
       <Tooltip
         title={checked ? 'Mark as new' : 'Mark as known'}
         placement="top"
       >
         <Label htmlFor={boxId} className="known" key={boxId}>
           <DoneSharpIcon />
-        </Label>
-      </Tooltip>
+        </Label>{' '}
+      </Tooltip>{' '}
     </>
   );
 };
