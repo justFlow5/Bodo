@@ -108,7 +108,8 @@ const PulseButton = styled.button`
     /* bottom: 30%;
     right: 16%; */
     bottom: 22%;
-    right: 17%;
+    /* right: 17%; */
+    right: 9%;
   }
   @media ${device.laptopL} {
     width: 150px;
@@ -192,14 +193,13 @@ const FieldsList = styled.form`
   width: 100%;
   white-space: nowrap;
 
-  @media ${device.mobileL} {
+  @media ${device.mobileM} {
     width: 90%;
     text-align: left;
-    margin-left: 2%;
+    margin-left: 4%;
   }
   @media ${device.tablet} {
     width: 90%;
-    text-align: left;
   }
 `;
 
@@ -235,8 +235,8 @@ const Label = styled.label`
   align-items: center;
   justify-content: center;
   /* margin-left: 45px; */
-  width: 80px;
-  height: 80px;
+  /* width: 80px; */
+  /* height: 80px; */
   display: inline-block;
   position: relative;
   cursor: pointer;
@@ -250,9 +250,11 @@ const Label = styled.label`
   box-shadow: unset;
   transition: all 0.3s;
 
+  width: 85px;
+  height: 85px;
   @media ${device.mobileM} {
-    width: 85px;
-    height: 85px;
+    width: 95px;
+    height: 95px;
   }
 
   @media ${device.mobileL} {
@@ -305,13 +307,13 @@ const Label = styled.label`
     /* fill: #091d34; */
     fill: #131517;
     /* fill: #0000b3; */
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     transition: all 0.3s;
 
-    @media ${device.mobileL} {
-      width: 45px;
-      height: 45px;
+    @media ${device.mobileM} {
+      width: 50px;
+      height: 50px;
     }
 
     @media ${device.laptop} {
@@ -487,7 +489,8 @@ const InterviewSection = styled.section`
     }
     @media ${device.laptop} {
       top: 23%;
-      right: 7%;
+      /* right: 7%; */
+      right: 0%;
 
       width: 35%;
       height: 70%;
@@ -509,6 +512,8 @@ const SpeechBubble = styled.div`
   display: none;
 
   @media ${device.tablet} {
+    display: inline-block;
+
     top: 12%;
     right: 28%;
 
@@ -530,7 +535,8 @@ const SpeechBubble = styled.div`
 
   @media ${device.laptop} {
     top: 17%;
-    right: 29%;
+    /* right: 29%; */
+    right: 22%;
   }
 
   @media ${device.laptopL} {
@@ -595,7 +601,6 @@ const Interview = () => {
   );
 
   const info1 = 'Hi! My name is Jeff. Nice to meet you!';
-  const typeOfStack = ['frontend', 'backend', 'fullstack'];
 
   // const handleSelectedTech = (tech) => {
   //   const updatedTech =
@@ -778,7 +783,7 @@ const Interview = () => {
                       <p className="interviewer-text"> Hi!My name is Jeff. </p>{' '}
                       <Typist.Delay ms={1250} />{' '}
                       <p className="interviewer-text"> Nice to meet you! </p>{' '}
-                      <Typist.Backspace count={info1.length} delay={1000} />
+                      <Typist.Backspace count={info1.length + 4} delay={1000} />
                       <p className="interviewer-text">
                         Before we start our interview, please fill the required
                         fields.{' '}

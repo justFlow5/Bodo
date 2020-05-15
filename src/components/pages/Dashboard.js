@@ -15,20 +15,14 @@ import SortASC from '../../images/dashboard/sortASC';
 import SortDESC from '../../images/dashboard/sortDESC';
 
 import Navbar from '../Navbar';
-import Tooltip from '@material-ui/core/Tooltip';
 
-import { JavaScript } from '../../questionsCollection/Qjavascript';
-import { CSS } from '../../questionsCollection/Qcss';
-import { HTML } from '../../questionsCollection/Qhtml';
-import { react } from '../../questionsCollection/Qreact';
 import { staticQuestions } from '../../questionsCollection/staticQuestions';
-
-import semiCircle from '../../images/mainPage/semiCircle.png';
 
 import Datalist from '../forms/Datalist';
 import SimpleBar from 'simplebar-react';
 
 import 'simplebar/dist/simplebar.min.css';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import Checkbox from '../forms/Checkbox';
 import Textarea from '../forms/Textarea';
@@ -122,9 +116,15 @@ outline: none;
     margin-right: 10px;
     /* background:  ${({ open }) => (open ? '#E1ECF9' : 'transparent')}; */
     /* background: ${({ open }) => (open ? '#a3aefb' : 'transparent')}; */
-    /* background: ${({ open }) => (open ? 'transparent' : '#E1ECF9')}; */
+    background: ${({ open }) => (open ? 'transparent' : '#E1ECF9')};
     z-index: 11;
     transition: color 0.3s linear;
+
+    @media ${device.laptop} {
+    top: 13%;
+    background: unset;
+
+}
  
   }
     &:hover::before  {
@@ -152,7 +152,7 @@ outline: none;
     :nth-child(2) {
       opacity: ${({ open }) => (open ? '0' : '1')};
       /* transform: ${({ open }) =>
-    open ? 'translateX(20px)' : 'translateX(0)'}; */
+        open ? 'translateX(20px)' : 'translateX(0)'}; */
       /* transform: ${({ open }) => (open ? 'opacity' : 'translateX(0)')}; */
     }
     :nth-child(3) {
@@ -204,12 +204,12 @@ const SemiCircleContainer = styled.div`
     position: relative;
     position: fixed;
     z-index: 999;
-    bottom: -40px;
-    bottom: -10px;
+
+    bottom: -30px;
     left: 0;
     right: 0;
     margin: auto;
-    width: 300px;
+    width: 215px;
     height: 120px;
     border-radius: 50%;
     background: #091d34;
@@ -222,8 +222,14 @@ const SemiCircleContainer = styled.div`
     letter-spacing: 0.8px;
     font-weight: 600;
     color: #fff;
+
+    @media ${device.tablet} {
+      width: 300px;
+      height: 120px;
+      bottom: -15px;
+    }
     @media ${device.laptop} {
-      top: -20px;
+      top: -30px;
       bottom: unset;
       width: 400px;
       height: 160px;
@@ -232,10 +238,10 @@ const SemiCircleContainer = styled.div`
     & > h3 {
       position: absolute;
       z-index: 999;
-      top: -5px;
+      top: -11px;
       left: 0;
       right: 0;
-      font-size: 24px;
+      font-size: 15px;
       letter-spacing: 1.5px;
       font-weight: 700;
       color: #fff;
@@ -244,10 +250,21 @@ const SemiCircleContainer = styled.div`
       /* text-shadow: 2px 2px 2px #236ab9; */
       text-shadow: 2px 2px 2px #005fa3;
       padding: 0px 10px;
+
+      @media ${device.mobileL} {
+        font-size: 18px;
+      }
+
+      @media ${device.tablet} {
+        top: -5px;
+
+        font-size: 20px;
+      }
+
       @media ${device.laptop} {
         bottom: 27px;
-        top: unset;
         font-size: 36px;
+        top: unset;
       }
     }
   }
@@ -625,6 +642,7 @@ const NoInfo = styled.p`
   font-size: 36px;
   font-weight: 600;
   color: #a3aefb;
+  cursor: pointer;
 `;
 
 const SortContainer = styled.div`
@@ -1204,6 +1222,7 @@ const Dashboard = () => {
                       let newId = uuid();
                       return (
                         <ContentItem key={question.id}>
+                          {' '}
                           {!editMode && (
                             <Checkbox
                               id={question.id}
@@ -1218,14 +1237,14 @@ const Dashboard = () => {
                             className="question-title"
                             htmlFor={question.id}
                             onClick={toggleAnswer}
-                          // key={question.id}
+                            // key={question.id}
                           >
                             <span className="question-number">
                               {' '}
-                              Q{id + 1}:{' '}
+                              {`Q${id + 1}`}:{' '}
                             </span>{' '}
                             {question.text}{' '}
-                          </label>
+                          </label>{' '}
                           <input id={question.id} type="checkbox" />
                           <Answer editMode={editMode}>
                             {' '}
@@ -1235,28 +1254,28 @@ const Dashboard = () => {
                                 {question.answer}{' '}
                               </h5>
                             ) : (
-                                Object.keys(question.answer).map((par, id) => {
-                                  if (id === 0) {
-                                    return (
-                                      <h5 className="answer-main">
-                                        {' '}
-                                        {question.answer[par]}{' '}
-                                      </h5>
-                                    );
-                                  } else {
-                                    return (
-                                      <p className="answer-sub">
-                                        {' '}
-                                        {question.answer[par]}{' '}
-                                      </p>
-                                    );
-                                  }
-                                })
-                              )}{' '}
+                              Object.keys(question.answer).map((par, id) => {
+                                if (id === 0) {
+                                  return (
+                                    <h5 className="answer-main">
+                                      {' '}
+                                      {question.answer[par]}{' '}
+                                    </h5>
+                                  );
+                                } else {
+                                  return (
+                                    <p className="answer-sub">
+                                      {' '}
+                                      {question.answer[par]}{' '}
+                                    </p>
+                                  );
+                                }
+                              })
+                            )}{' '}
                           </Answer>{' '}
                         </ContentItem>
                       );
-                    })}
+                    })}{' '}
                   {/* EDIT MODE */}
                   <TransitionGroup className="editibleList">
                     {questions &&
@@ -1290,9 +1309,10 @@ const Dashboard = () => {
                                   content={question.text}
                                   editData={editData}
                                   type="text"
-                                />
-                                {/* ANSWER */}
+                                />{' '}
+                                {/* ANSWER */}{' '}
                                 <Answer editMode={editMode}>
+                                  {' '}
                                   {typeof question.answer === 'string' ? (
                                     <Textarea
                                       id={question.id}
@@ -1303,32 +1323,36 @@ const Dashboard = () => {
                                       type="answer"
                                     />
                                   ) : (
-                                      Object.keys(
-                                        question.answer
-                                      ).map((par, id) => (
-                                        <Textarea
-                                          id={question.id}
-                                          technology={question.technology}
-                                          typeOfField={'answer'}
-                                          content={question.answer[par]}
-                                          editData={editData}
-                                          type={id === 0 ? 'title' : `par${id}`}
-                                        />
-                                      ))
-                                    )}
-                                </Answer>
-                              </EditItem>
-                            </ContentItem>
+                                    Object.keys(
+                                      question.answer
+                                    ).map((par, id) => (
+                                      <Textarea
+                                        key={id}
+                                        id={question.id}
+                                        technology={question.technology}
+                                        typeOfField={'answer'}
+                                        content={question.answer[par]}
+                                        editData={editData}
+                                        type={id === 0 ? 'title' : `par${id}`}
+                                      />
+                                    ))
+                                  )}
+                                </Answer>{' '}
+                              </EditItem>{' '}
+                            </ContentItem>{' '}
                           </CSSTransition>
                         );
-                      })}
-                  </TransitionGroup>
+                      })}{' '}
+                  </TransitionGroup>{' '}
                 </ContentList>{' '}
               </ContentContainer>{' '}
             </>
           ) : (
-              <NoInfo> No Category Selected </NoInfo>
-            )}{' '}
+            <NoInfo onClick={() => setOpen(!open)}>
+              {' '}
+              No Category Selected{' '}
+            </NoInfo>
+          )}{' '}
         </QuestionsContainer>{' '}
         <SideNavbar open={open}>
           <Datalist technologies={numOfTech} setCategory={setCategory} />{' '}
@@ -1382,24 +1406,24 @@ const Dashboard = () => {
                   </SideNavbarItem>
                 ))}{' '}
             </SimpleBar>{' '}
-            {/* <p className="scrollDown"> scroll down </p>{' '} */}
+            {/* <p className="scrollDown"> scroll down </p>{' '} */}{' '}
           </SideNavbarList>{' '}
           <EditButtonContainer>
             <EditButton
               onClick={handleEdit}
               className={editMode ? 'editMode' : null}
             >
-              {editMode ? 'Save Changes' : 'EDIT'}
-            </EditButton>
+              {editMode ? 'Save Changes' : 'EDIT'}{' '}
+            </EditButton>{' '}
             <EditButton
               onClick={handleLeaveEditMode}
               className={editMode ? 'togglerActive' : 'editMode'}
             >
-              Exit Edit Mode
-            </EditButton>
-          </EditButtonContainer>
+              Exit Edit Mode{' '}
+            </EditButton>{' '}
+          </EditButtonContainer>{' '}
         </SideNavbar>{' '}
-        {/* </PageContent> */} <Confirmation isSavedData={isSavedData} />
+        {/* </PageContent> */} <Confirmation isSavedData={isSavedData} />{' '}
       </PageContainer>{' '}
     </>
   );

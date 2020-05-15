@@ -10,11 +10,9 @@ import { device } from '../utils/media';
 
 const Input = styled.input`
   display: none;
-
   &:checked + label {
     background: #275efe;
     border: 1px solid #275efe;
-
     & > svg {
       fill: white;
     }
@@ -34,11 +32,9 @@ const Label = styled.label`
   border-radius: 7px;
   background: #e6f0ff;
   transition: all 0.3s;
-
   &:hover {
     border: 1px solid #275efe;
   }
-
   & > svg {
     fill: #e6f0ff;
     position: relative;
@@ -61,6 +57,7 @@ const Checkbox = ({ id, boxId, technology, updateKnown, known }) => {
   }, []);
 
   return (
+    // <>
     <>
       <Input
         id={boxId}
@@ -70,14 +67,14 @@ const Checkbox = ({ id, boxId, technology, updateKnown, known }) => {
         onChange={(e) => toggleCheckbox(e.target.checked)}
         // onChange={() => setChecked(!checked)}
       />{' '}
-      <Tooltip
-        title={checked ? 'Mark as new' : 'Mark as known'}
-        placement="top"
-      >
-        <Label htmlFor={boxId} className="known" key={boxId}>
+      <Label htmlFor={boxId} className="known" key={boxId}>
+        <Tooltip
+          title={checked ? 'Mark as new' : 'Mark as known'}
+          placement="top"
+        >
           <DoneSharpIcon />
-        </Label>{' '}
-      </Tooltip>{' '}
+        </Tooltip>
+      </Label>{' '}
     </>
   );
 };
