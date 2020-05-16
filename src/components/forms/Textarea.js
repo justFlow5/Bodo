@@ -76,6 +76,7 @@ const Input = styled.textarea`
 
   /* transition: all 0.3 ease-in-out 0.3s; */
   transition: all 0.3s;
+  scrollbar-width: none;
 
   @media ${device.laptop} {
     justify-content: center;

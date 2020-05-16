@@ -116,7 +116,12 @@ outline: none;
     margin-right: 10px;
     /* background:  ${({ open }) => (open ? '#E1ECF9' : 'transparent')}; */
     /* background: ${({ open }) => (open ? '#a3aefb' : 'transparent')}; */
-    background: ${({ open }) => (open ? 'transparent' : '#E1ECF9')};
+    background: ${({ open, editMode }) => {
+      if (!open && editMode) return `transparent`;
+      else if (!open && !editMode) return '#E1ECF9';
+      else if (open) return `transparent`;
+    }};
+
     z-index: 11;
     transition: color 0.3s linear;
 
@@ -161,12 +166,13 @@ outline: none;
   }
 `;
 
-const Burger = ({ open, setOpen }) => {
+const Burger = ({ open, setOpen, editMode }) => {
   return (
     <>
       <StyledBurger
         className="hamburg"
         open={open}
+        editMode={editMode}
         onClick={() => setOpen(!open)}
       >
         {/* <span>Categories</span> */} <div />
@@ -1192,7 +1198,7 @@ const Dashboard = () => {
       <PageContainer>
         {' '}
         {/* <PageContent> */} <Navbar />
-        <Burger open={open} setOpen={setOpen} />{' '}
+        <Burger open={open} setOpen={setOpen} editMode={editMode} />{' '}
         {category && (
           <SemiCircleContainer onClick={() => setOpen(!open)}>
             {' '}
@@ -1309,10 +1315,9 @@ const Dashboard = () => {
                                   content={question.text}
                                   editData={editData}
                                   type="text"
-                                />{' '}
-                                {/* ANSWER */}{' '}
+                                />
+                                {/* ANSWER */}
                                 <Answer editMode={editMode}>
-                                  {' '}
                                   {typeof question.answer === 'string' ? (
                                     <Textarea
                                       id={question.id}
@@ -1337,9 +1342,9 @@ const Dashboard = () => {
                                       />
                                     ))
                                   )}
-                                </Answer>{' '}
-                              </EditItem>{' '}
-                            </ContentItem>{' '}
+                                </Answer>
+                              </EditItem>
+                            </ContentItem>
                           </CSSTransition>
                         );
                       })}{' '}

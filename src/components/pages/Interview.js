@@ -24,6 +24,8 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 import Checkbox from '../forms/Interview_Checkbox';
 
+import InterviewMode from '../Interview/InterviewMode';
+
 import { device } from '../utils/media';
 
 const fadeIn = keyframes`
@@ -586,7 +588,7 @@ const Interview = () => {
   const [stack, setStack] = useState('');
   const [isTechSelected, setIsTechSelected] = useState(false);
 
-  const [stackChanged, setStackChanged] = useState(false);
+  const [enterInterviewMode, setEnterInterviewMode] = useState(false);
 
   // const [delay, setDelay] = useState(0);
 
@@ -679,7 +681,7 @@ const Interview = () => {
 
   return (
     <>
-      <Navbar />
+      {!enterInterviewMode && <Navbar />}
       <InterviewPage>
         <InputsSection>
           <FieldsContainer>
@@ -754,7 +756,12 @@ const Interview = () => {
         </InputsSection>{' '}
         <InterviewSection>
           <img src={Jeff} />{' '}
-          <PulseButton className={stack ? 'active' : null}>Start</PulseButton>
+          <PulseButton
+            className={stack ? 'active' : null}
+            onClick={() => setEnterInterviewMode(true)}
+          >
+            Start
+          </PulseButton>
           <SpeechBubble>
             <SpeechBubbleText>
               <div>
@@ -796,6 +803,10 @@ const Interview = () => {
             <SpeechBubbleArrow />
           </SpeechBubble>{' '}
         </InterviewSection>
+        {/* INTERVIEW MODE */}
+        {/* {enterInterviewMode && ( */}
+        <InterviewMode enterInterviewMode={enterInterviewMode} />
+        {/* )} */}
       </InterviewPage>{' '}
     </>
   );
