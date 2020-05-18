@@ -59,7 +59,7 @@ export let staticQuestions = [{
         note: '',
         known: false,
         technology: 'CSS',
-        id: 'lolek',
+        id: uuid(),
         job: 'Frontend Developer'
 
 
@@ -779,8 +779,7 @@ export let staticQuestions = [{
         answer: {
             title: `Type coercion is the process of converting value from one type to another (such as string to number, object to boolean, and so on). Any type, be it primitive or an object, is a valid subject for type coercion. To recall, primitives are: number, string, boolean, null, undefined + Symbol (added in ES6). Type coercion can be explicit and implicit.`,
             par1: `When a developer expresses the intention to convert between types by writing the appropriate code, like Number(value), it’s called explicit type coercion (or type casting).`,
-            par2: `Since JavaScript is a weakly-typed language, values can also be converted between different types automatically, and it is called implicit type coercion. It usually happens when you apply operators to values of different types, like
-      1 == null, 2/’5', null + new Date(), or it can be triggered by the surrounding context, like with if (value) {…}, where value is coerced to boolean.`,
+            par2: `Since JavaScript is a weakly-typed language, values can also be converted between different types automatically, and it is called implicit type coercion. It usually happens when you apply operators to values of different types, like 1 == null, 2/’5', null + new Date(), or it can be triggered by the surrounding context, like with if (value) {…}, where value is coerced to boolean.`,
             par3: `Implicit type coercion is a double edge sword: it’s a great source of frustration and defects, but also a useful mechanism that allows us to write less code without losing the readability.`
         },
         note: '',
@@ -916,8 +915,7 @@ export let staticQuestions = [{
         text: 'Explain arrays in JavaScript.',
         answer: {
             title: `In JavaScript, array is a single variable that is used to store different elements. It is often used when we want to store list of elements and access them by a single variable. Unlike most languages where array is a reference to the multiple variable, in JavaScript array is a single variable that stores multiple elements.`,
-            par1: `An array in JavaScript can hold different elements.
-      We can store Numbers, Strings and Boolean in a single array.`,
+            par1: `An array in JavaScript can hold different elements. We can store Numbers, Strings and Boolean in a single array.`,
             par2: `Array in JavaScript are indexed from 0 `,
             par3: `Length property of an Array returns the length of an Array. Length of an Array is always one more than the highest index of an Array.`,
 
@@ -1195,14 +1193,11 @@ export let staticQuestions = [{
         text: 'What are the benefits of using spread syntax in ES6 and how is it different from rest syntax? ',
         answer: {
             title: `Why use arrow functions almost everywhere?`,
-            par1: `Copying an array.
-      The traditional way was to use the Array.prototype.slice()method. But with the spread operator, it just takes three dots …`,
+            par1: `Copying an array. The traditional way was to use the Array.prototype.slice()method. But with the spread operator, it just takes three dots …`,
             par2: `Concatenating arrays. This objective was previously achieved by using the Array.prototype.concat() method. Now it can be easily achieved using the spread operator.`,
             par3: `Spreading elements together with an individual element`,
             par4: `Spreading elements on function calls. `,
-            par5: `Spread syntax for object literals. The traditional way of achieving this was by using the Object.assign() method.
-      The Object.assign() method can be used to copy the values of all enumerables’ own properties from one or more source objects to a target object, and it will return the target object.
-      But with the spread operator, three dots simply get the job done.`,
+            par5: `Spread syntax for object literals. The traditional way of achieving this was by using the Object.assign() method. The Object.assign() method can be used to copy the values of all enumerables’ own properties from one or more source objects to a target object, and it will return the target object. But with the spread operator, three dots simply get the job done.`,
             par6: `It is a collection of all remaining elements (hence, the name rest, as in “the rest of the elements”) into an array. Spread operator is the opposite to rest parameter, where rest parameter collects items into an array, the spread operator unpacks the collected elements into single elements.`,
         },
         note: '',
@@ -1250,8 +1245,7 @@ export let staticQuestions = [{
             title: `There are many awesome use cases of generators.`,
             par1: `When you implement an iterator, you have to manually make an iterator object with a next() method. Also, you have to manually save the state. Often times, it becomes really hard to do that. Since generators are also iterables, they can be used to implement iterables without the extra boilerplate code. `,
             par2: `Generators can also receive values using the next(val) function. Then the generator is called an observer since it wakes up when it receives new values. In a sense, it keeps observing for values and acts when it gets one.`,
-            par3: `Ifinite Data Streams.
-      It’s possible to create generators that never end.`,
+            par3: `Infinite Data Streams. It’s possible to create generators that never end.`,
         },
         note: '',
         level: 'mid',
@@ -1431,9 +1425,7 @@ export let staticQuestions = [{
         text: `What's the difference between event.preventDefault() and event.stopPropagation() methods?`,
         answer: {
             title: `Event propagation is a mechanism of how events propagate through the DOM tree to arrive at its target.`,
-            par1: `Event Propagation has three phases: Capturing Phase (the event starts from the window down until it reaches the event.target),
-      Target Phase (the event has reached the event.target)
-      Bubling Phase (the event bubbles up from the event.target element up until it reaches the window).`,
+            par1: `Event Propagation has three phases: Capturing Phase (the event starts from the window down until it reaches the event.target), Target Phase (the event has reached the event.target)  Bubling Phase (the event bubbles up from the event.target element up until it reaches the window).`,
             par2: `The event.preventDefault() method prevents the default behavior of an element. If we use form element it prevents form submitting. If we use a href element it prevents navigating. If we use contextMenu element it prevents displaying.`,
             par3: `The event.stopPropagation() method stops the propagation of an event from occurring in the bubbling or capturing phase.`,
 
@@ -1643,15 +1635,10 @@ export let staticQuestions = [{
     {
         text: `What are the ways to deal with Asynchronous Code in JavasScript?`,
         answer: {
-            title: `JavaScript is synchronous by default and is single threaded.
-      This means that code cannot create new threads and it will execute your code block by order after hoisting. Asynchronous means that things can happen independently of the main program flow.`,
-            par1: `A callback is a simple function that’s passed as a value to another function, and will only be executed when the event happens.
-      With a callback you can guarantee that function B is only called after function A is finished with its thing because function A is actually the one responsible for calling function B. Callbacks are great for simple cases, However every callback adds a level of nesting, and when you have lots of callbacks, the code starts to get complicated very quickly.`,
-            par2: `Promises is one way to deal with callback dilemma and prevent writing too many callbacks in your code. Once a promise has been called, it will start in pending state. This means that the caller function continues the execution, while it waits for the promise to do its own processing, and give the caller function some feedback.
-      At this point, the caller function waits for it to either return the promise in a resolved state, or in a rejected state, but the function continues its execution while the promise does it work. The resulting promise object has internal properties: state (initially “pending”, then changes to either “fulfilled” or “rejected”) and
-      result (an arbitrary value of your choosing, initially undefined).`,
-            par3: `Since ES2017 asynchronous JavaScript is even simpler with the async/await syntax. In a more comfortable fashion, they reduce the boilerplate around promises, and the “don’t break the chain” limitation of chaining promises.
-      Async keyword placed before a function and the keyword await makes JavaScript wait until that promise settles and returns its result. Prepending the async keyword to any function means that the function will return a promise and wraps non-promises in it. await literally makes JavaScript wait until the promise settles, and then go on with the result. That doesn’t cost any CPU resources, because the engine can do other jobs meanwhile: execute other scripts, handle events etc.`
+            title: `JavaScript is synchronous by default and is single threaded. This means that code cannot create new threads and it will execute your code block by order after hoisting. Asynchronous means that things can happen independently of the main program flow.`,
+            par1: `A callback is a simple function that’s passed as a value to another function, and will only be executed when the event happens. With a callback you can guarantee that function B is only called after function A is finished with its thing because function A is actually the one responsible for calling function B. Callbacks are great for simple cases, However every callback adds a level of nesting, and when you have lots of callbacks, the code starts to get complicated very quickly.`,
+            par2: `Promises is one way to deal with callback dilemma and prevent writing too many callbacks in your code. Once a promise has been called, it will start in pending state. This means that the caller function continues the execution, while it waits for the promise to do its own processing, and give the caller function some feedback. At this point, the caller function waits for it to either return the promise in a resolved state, or in a rejected state, but the function continues its execution while the promise does it work. The resulting promise object has internal properties: state (initially “pending”, then changes to either “fulfilled” or “rejected”) and result (an arbitrary value of your choosing, initially undefined).`,
+            par3: `Since ES2017 asynchronous JavaScript is even simpler with the async/await syntax. In a more comfortable fashion, they reduce the boilerplate around promises, and the “don’t break the chain” limitation of chaining promises. Async keyword placed before a function and the keyword await makes JavaScript wait until that promise settles and returns its result. Prepending the async keyword to any function means that the function will return a promise and wraps non-promises in it. await literally makes JavaScript wait until the promise settles, and then go on with the result. That doesn’t cost any CPU resources, because the engine can do other jobs meanwhile: execute other scripts, handle events etc.`
         },
         note: '',
         level: 'junior',
@@ -1723,11 +1710,10 @@ export let staticQuestions = [{
     {
         text: `What's the difference between Spread operator and Rest operator?`,
         answer: {
-            title: `Javascript's ECMA6 came out with a cool new features; 
-    ... is one of these new Javascript functionalities. It can be used in two
-     different ways; as a spread operator OR as a rest parameter.
-     Rest parameter: collects all remaining elements into an array.
-     Spread operator: allows iterables( arrays / objects / strings ) to be expanded into
+            title: `Javascript's ECMA6 came out with a cool new features;... is one of these new Javascript functionalities. It can be used in two
+     different ways; as a spread operator OR as a rest parameter.`,
+            par1: `Rest parameter: collects all remaining elements into an array.`,
+            par2: `Spread operator: allows iterables( arrays / objects / strings ) to be expanded into
       single arguments/elements.`
         },
         note: '',
@@ -2083,15 +2069,10 @@ export let staticQuestions = [{
         text: 'What are the most common approaches for styling a React application?',
         answer: {
             title: `CSS Classes, Inline CSS, Pre-processors Such as Sass, Stylus, and Less, CSS-in-JS Modules Such as Styled Components, Emotion, and Styled-jsx`,
-            par1: `CSS Classes
-        React allows class names to be specified for a component, like class names are specified for a DOM element in HTML.
-        When developers first start using React after developing traditional web applications, they often use CSS classes for styling because they are already familiar with the approach.`,
-            par2: `Inline CSS.
-        Styling React elements using inline CSS allows styles to be completely scoped to an element using a well-understood, standard approach. However, there are certain styling features that are not available with inline styles. For example, the styling of :hover pseudo-classes.`,
-            par3: `Pre-processors Such as Sass, Stylus, and Less
-        Pre-processors are often used on React projects. This is because, like CSS, they are well understood by developers and are often already in use if React is being integrated into a legacy application.`,
-            par4: `CSS-in-JS Modules Such as Styled Components, Emotion, and Styled-jsx
-        CSS-in-JS modules are a popular option for styling React applications because they integrate closely with React components. For example, they allow styles to change based on React props at runtime. Also, by default, most of these systems scope all styles to the respective component being styled.`,
+            par1: `CSS Classes React allows class names to be specified for a component, like class names are specified for a DOM element in HTML. When developers first start using React after developing traditional web applications, they often use CSS classes for styling because they are already familiar with the approach.`,
+            par2: `Inline CSS. Styling React elements using inline CSS allows styles to be completely scoped to an element using a well-understood, standard approach. However, there are certain styling features that are not available with inline styles. For example, the styling of :hover pseudo-classes.`,
+            par3: `Pre-processors Such as Sass, Stylus, and Less Pre-processors are often used on React projects. This is because, like CSS, they are well understood by developers and are often already in use if React is being integrated into a legacy application.`,
+            par4: `CSS-in-JS Modules Such as Styled Components, Emotion, and Styled-jsx CSS-in-JS modules are a popular option for styling React applications because they integrate closely with React components. For example, they allow styles to change based on React props at runtime. Also, by default, most of these systems scope all styles to the respective component being styled.`,
 
         },
         note: '',
@@ -2107,15 +2088,10 @@ export let staticQuestions = [{
         text: 'What are the most common approaches for styling a React application?',
         answer: {
             title: `CSS Classes, Inline CSS, Pre-processors Such as Sass, Stylus, and Less, CSS-in-JS Modules Such as Styled Components, Emotion, and Styled-jsx`,
-            par1: `CSS Classes
-        React allows class names to be specified for a component, like class names are specified for a DOM element in HTML.
-        When developers first start using React after developing traditional web applications, they often use CSS classes for styling because they are already familiar with the approach.`,
-            par2: `Inline CSS.
-        Styling React elements using inline CSS allows styles to be completely scoped to an element using a well-understood, standard approach. However, there are certain styling features that are not available with inline styles. For example, the styling of :hover pseudo-classes.`,
-            par3: `Pre-processors Such as Sass, Stylus, and Less
-        Pre-processors are often used on React projects. This is because, like CSS, they are well understood by developers and are often already in use if React is being integrated into a legacy application.`,
-            par4: `CSS-in-JS Modules Such as Styled Components, Emotion, and Styled-jsx
-        CSS-in-JS modules are a popular option for styling React applications because they integrate closely with React components. For example, they allow styles to change based on React props at runtime. Also, by default, most of these systems scope all styles to the respective component being styled.`,
+            par1: `CSS Classes React allows class names to be specified for a component, like class names are specified for a DOM element in HTML. When developers first start using React after developing traditional web applications, they often use CSS classes for styling because they are already familiar with the approach.`,
+            par2: `Inline CSS. Styling React elements using inline CSS allows styles to be completely scoped to an element using a well-understood, standard approach. However, there are certain styling features that are not available with inline styles. For example, the styling of :hover pseudo-classes.`,
+            par3: `Pre-processors Such as Sass, Stylus, and Less Pre-processors are often used on React projects. This is because, like CSS, they are well understood by developers and are often already in use if React is being integrated into a legacy application.`,
+            par4: `CSS-in-JS Modules Such as Styled Components, Emotion, and Styled-jsx CSS-in-JS modules are a popular option for styling React applications because they integrate closely with React components. For example, they allow styles to change based on React props at runtime. Also, by default, most of these systems scope all styles to the respective component being styled.`,
 
         },
         note: '',

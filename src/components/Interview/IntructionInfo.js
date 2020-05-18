@@ -75,6 +75,9 @@ const InfoContentText = styled.h3`
   line-height: 1.2;
   text-align: left;
 
+  /* top: 50%;
+  transform: translateY(-50%); */
+
   &.goodluck {
     font-size: 24px;
   }
@@ -105,7 +108,14 @@ const NextButton = styled.button`
   }
 `;
 
-const Instruction = ({ activateOverlay, setIsQuestion }) => {
+const Instruction = ({
+  questions,
+  activateOverlay,
+  setIsQuestion,
+  // getRandomQuestions,
+  setDrawnQuestions,
+  typeOfQuestionDraw,
+}) => {
   const [step, setStep] = useState(1);
 
   const [hide, setHide] = useState('');
@@ -130,6 +140,11 @@ const Instruction = ({ activateOverlay, setIsQuestion }) => {
   const endingInfo = `At the end of the interview You will be given a verdict whether You passed the interview.`;
 
   const goodluck = `Good luck!`;
+
+  // get random integer (inclusively - exlusively)
+  const randomNumber = (min, max) => {
+    return Math.floor(Math.random() * (max - min)) + min;
+  };
 
   const handleIntruction = () => {
     let categories = selectedCategories.join(', ');
@@ -165,10 +180,87 @@ const Instruction = ({ activateOverlay, setIsQuestion }) => {
     }
   };
 
+  const getRandomQuestions = (
+    setOfQuestions,
+    selectedCategories,
+    typeOfDistribution,
+    saveDrawnQuestions
+  ) => {
+    console.log('DrawnQuestions FUNCTIOn');
+    console.log('typeOfDistribution: ', typeOfDistribution);
+
+    const selectedNumbers = [];
+    const selectedQuestions = [];
+    if (typeOfDistribution === 'single-category') {
+      let selectedCategory = selectedCategories[0];
+
+      for (let i = 0; i < 5; i++) {
+        let randomNumberQ = randomNumber(
+          0,
+          setOfQuestions[selectedCategory].length
+        );
+
+        if (!selectedNumbers.includes(randomNumberQ)) {
+          let selectedQuestion =
+            setOfQuestions[selectedCategory][randomNumberQ];
+
+          selectedQuestions.push(selectedQuestion);
+          selectedNumbers.push(randomNumberQ);
+        }
+        // else {
+        //   i = -1;
+        // }
+      }
+    } else if (typeOfDistribution === 'between-categories') {
+      const numOfCat = selectedCategories.length;
+      console.log('numOfCat: ', numOfCat);
+
+      const selectedQuestionsId = [];
+      for (let i = 0; i < 5; i++) {
+        console.log('hello');
+        let randomNumberCategory = randomNumber(0, numOfCat);
+        console.log('randomNumberCategory: ', randomNumberCategory);
+        let choosenCategory = selectedCategories[randomNumberCategory];
+        console.log('choosenCategory: ', choosenCategory);
+
+        let randomNumberQuestion = randomNumber(
+          0,
+          setOfQuestions[choosenCategory].length
+        );
+        console.log('randomNumberQuestion: ', randomNumberQuestion);
+
+        let choosenQuestion =
+          setOfQuestions[choosenCategory][randomNumberQuestion];
+        console.log('choosenQuestion: ', choosenQuestion);
+
+        if (!selectedQuestionsId.includes(choosenQuestion.id)) {
+          console.log('if (!selectedQuestionsId.includes: ', choosenQuestion);
+
+          selectedQuestions.push(choosenQuestion);
+          selectedQuestionsId.push(choosenQuestion.id);
+        }
+        // else i -= 1;
+      }
+    } else if (typeOfDistribution === 'many-categories') {
+      selectedCategories.forEach((category) => {
+        let randomNumberQ = randomNumber(0, setOfQuestions[category].length);
+        selectedQuestions.push(setOfQuestions[category][randomNumberQ]);
+      });
+    }
+    console.log('DrawnQuestions: ', selectedQuestions);
+
+    selectedQuestions.length === 5 && saveDrawnQuestions(selectedQuestions);
+    selectedQuestions.length === 5 &&
+      console.log('DrawnQuestions: ', selectedQuestions);
+  };
+
   const handleSkip = () => {
     activateOverlay(false);
     setIsQuestion(true);
     setHide('hide');
+    // getRandomQuestions()setOfQuestions,
+    // selectedCategories,
+    // typeOfDistribution
   };
 
   useEffect(() => {
@@ -178,6 +270,18 @@ const Instruction = ({ activateOverlay, setIsQuestion }) => {
       setIsQuestion(true);
     }
   }, [step]);
+
+  useEffect(() => {
+    console.log('questions: ', questions);
+    console.log('selectedCategories: ', questions);
+
+    getRandomQuestions(
+      questions,
+      selectedCategories,
+      typeOfQuestionDraw,
+      setDrawnQuestions
+    );
+  }, []);
 
   return (
     <InfoContainer>

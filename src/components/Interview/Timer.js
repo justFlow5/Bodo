@@ -18,7 +18,7 @@ const StyledTimer = styled.div`
 `;
 
 const Timer = ({ activateOverlay, setIsTimer, setIsAnswer, setIsQuestion }) => {
-  const [counter, setCounter] = useState(10);
+  const [counter, setCounter] = useState(2);
 
   useEffect(() => {
     if (counter > 0) setTimeout(() => setCounter(counter - 1), 1000);

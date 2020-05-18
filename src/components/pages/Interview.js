@@ -589,6 +589,7 @@ const Interview = () => {
   const [isTechSelected, setIsTechSelected] = useState(false);
 
   const [enterInterviewMode, setEnterInterviewMode] = useState(false);
+  const [typeOfQuestionDraw, setTypeOfQuestionDraw] = useState('');
 
   // const [delay, setDelay] = useState(0);
 
@@ -604,16 +605,6 @@ const Interview = () => {
 
   const info1 = 'Hi! My name is Jeff. Nice to meet you!';
 
-  // const handleSelectedTech = (tech) => {
-  //   const updatedTech =
-  //   setSelectedTech(...selectedTech, e.target.value)
-  // }
-  // const isTechSelected = () => {
-  //   let data = JSON.parse(localStorage.getItem('selectedTechs'));
-  //   console.log('data.length > 0: ', data.length > 0);
-  //   setSelectedTech(data.length > 0);
-  // };
-
   const listStack = (stack, techs) => {
     if (stack === 'frontend') {
       return techs
@@ -628,16 +619,11 @@ const Interview = () => {
         if (tech[1] > 5) return tech[0];
       });
     } else {
-      // setStack('');
-      // return [];
     }
   };
 
   const handleChange = (e) => {
     setStack(e.target.value);
-
-    // setSelectedTech([]);
-    // setStackChanged(true);
   };
 
   const handleTechSelection = (tech, typeOfOperation) => {
@@ -647,32 +633,30 @@ const Interview = () => {
       let updatedData = [...currentData, tech];
 
       localStorage.setItem('selectedTechs', JSON.stringify(updatedData));
-      // return updatedData;
     } else {
       let updatedData = currentData.filter((singleTech) => singleTech !== tech);
       localStorage.setItem('selectedTechs', JSON.stringify(updatedData));
-      // return updatedData;
     }
   };
 
   const updateSelectedData = (checked, tech) => {
-    console.log('e.target.value TECGH: ', tech);
-    // let value = e.target.value;
-    // let checked = e.target.checked;
-
     if (checked) {
-      // const updatedTechs = [...selectedTech];
-      // updatedTechs.push(tech);
-      // setSelectedTech(updatedTechs);
       handleTechSelection(tech, 'add');
-      // isTechSelected();
     } else {
-      // delete tech nn uncheck
-      // const updatedTechs = selectedTech.filter((tech) => tech !== tech);
-      // setSelectedTech(updatedTechs);
       handleTechSelection(tech, 'delete');
-      // isTechSelected();
     }
+  };
+
+  const getQuestionDistribution = (questions) => {
+    if (questions.length === 1) setTypeOfQuestionDraw('single-category');
+    else if (questions.length >= 5) setTypeOfQuestionDraw('many-categories');
+    else setTypeOfQuestionDraw('between-categories');
+  };
+
+  const handleEnterInterviewMode = () => {
+    setEnterInterviewMode(true);
+    let selectedCat = JSON.parse(localStorage.getItem('selectedTechs'));
+    getQuestionDistribution(selectedCat);
   };
 
   useEffect(() => {
@@ -758,7 +742,7 @@ const Interview = () => {
           <img src={Jeff} />{' '}
           <PulseButton
             className={stack ? 'active' : null}
-            onClick={() => setEnterInterviewMode(true)}
+            onClick={handleEnterInterviewMode}
           >
             Start
           </PulseButton>
@@ -805,7 +789,10 @@ const Interview = () => {
         </InterviewSection>
         {/* INTERVIEW MODE */}
         {/* {enterInterviewMode && ( */}
-        <InterviewMode enterInterviewMode={enterInterviewMode} />
+        <InterviewMode
+          enterInterviewMode={enterInterviewMode}
+          typeOfQuestionDraw={typeOfQuestionDraw}
+        />
         {/* )} */}
       </InterviewPage>{' '}
     </>

@@ -3,6 +3,8 @@ import styled, { keyframes } from 'styled-components';
 import Interviewers from '../../images/interview/interviewers.jpg';
 import IntructionInfo from './IntructionInfo';
 import Timer from './Timer';
+import Rating from './Rating';
+import Verdict from './Verdict';
 
 import { device } from '../utils/media';
 
@@ -115,10 +117,19 @@ const QuestionContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   animation: ${fadeIn} 0.3s linear 0.4s forwards;
+
+  max-height: 90%;
+  overflow-y: scroll;
+
   transition: all 0.3s;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 const QuestionContent = styled.h3`
-  font-size: 21px;
+  font-size: 28px;
   line-height: 1.3;
   color: #d4dae0bf;
   color: #d4dae0e6;
@@ -126,39 +137,143 @@ const QuestionContent = styled.h3`
   color: ${({ isAnswer }) => (isAnswer ? `black` : `#d4dae0e6`)};
 `;
 
-const QuestionAnswer = styled.h3`
+const AnswerContainer = styled.h3`
   font-size: 21px;
   line-height: 1.3;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 
   color: ${({ isAnswer }) => (isAnswer ? `black` : `#d4dae0e6`)};
 
   & .titleAnswer {
     font-size: 18px;
+    margin: 10px;
   }
 
   & .mainAnswer {
     font-size: 16px;
+    margin: 10px;
   }
 
   & .subAnswer {
     font-size: 16px;
+    margin: 10px;
   }
 `;
 
-const InterviewMode = ({ enterInterviewMode }) => {
+const NextQuestionButton = styled.button`
+  position: absolute;
+  margin-top: 50px;
+  border-radius: 6px;
+  bottom: 5px;
+  right: 10px;
+  cursor: pointer;
+  width: 160px;
+  height: 40px;
+  padding: 6px 14px;
+  background: #4e5555;
+  color: #bdbfbf;
+  font-size: 20px;
+  letter-spacing: 0.8px;
+  transition: all 0.3s;
+
+  &:hover {
+    background: #232b2b;
+    color: #d3d4d4;
+  }
+
+  &:disabled,
+  &[disabled] {
+    cursor: not-allowed;
+
+    &:hover {
+      background: #4e5555;
+      color: #bdbfbf;
+      cursor: not-allowed;
+    }
+  }
+`;
+
+const AnswerDivider = styled.div`
+  width: 100%;
+  height: 3px;
+  position: relative;
+`;
+
+const InterviewMode = ({ enterInterviewMode, typeOfQuestionDraw }) => {
   const [overlay, activateOverlay] = useState(true);
   const [isAnswer, setIsAnswer] = useState(false);
   const [isQuestion, setIsQuestion] = useState(false);
-
   const [isTimer, setIsTimer] = useState(false);
 
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [ratingData, setRatingData] = useState([]);
+  const [rateUpdate, setRateUpdate] = useState(false);
+  const [average, setAverage] = useState();
+
+  const [ratingValue, setRatingValue] = useState(0);
+
+  const [showVerdict, setShowVerdict] = useState(false);
+
+  //   const [typeOfQuestionDraw, setTypeOfQuestionDraw] = useState('');
+  const [drawnQuestions, setDrawnQuestions] = useState([]);
+
+  const [questions, setQuestions] = useState(
+    JSON.parse(localStorage.getItem('questions'))
+  );
+  const [selectedCategories, setSelectedCategories] = useState(
+    JSON.parse(localStorage.getItem('selectedTechs'))
+  );
+
   const showTimer = () => {
-    setTimeout(() => setIsTimer(true), 6000);
+    setTimeout(() => setIsTimer(true), 3000);
+  };
+
+  const handleConfirmation = () => {
+    if (ratingData.length < 4) {
+      setIsAnswer(false);
+      setCurrentQuestion(currentQuestion + 1);
+      activateOverlay(false);
+      showTimer();
+      setRateUpdate(false);
+      setRatingData([...ratingData, ratingValue]);
+      setRatingValue(0);
+    } else {
+      // THE FINAL ANSWER CONFIRMATION
+      setIsAnswer(false);
+      setIsQuestion(false);
+      // setCurrentQuestion(currentQuestion + 1);
+      // activateOverlay(false);
+      setRateUpdate(false);
+      setRatingData([...ratingData, ratingValue]);
+      setRatingValue(0);
+    }
+  };
+
+  const getAverage = (arrayOfRates) => {
+    return arrayOfRates.reduce((a, b) => a + b) / arrayOfRates.length;
   };
 
   useEffect(() => {
     if (!overlay) showTimer(true);
   }, [overlay]);
+
+  useEffect(() => {
+    console.log('ratingData: ', ratingData);
+  }, [ratingData]);
+
+  // useEffect(() => {
+  //   if (currentQuestion > 1) showTimer(true);
+  // }, [currentQuestion]);
+
+  useEffect(() => {
+    if (ratingData.length === 5) {
+      console.log('getAverage(ratingData): ', getAverage(ratingData));
+      setAverage(getAverage(ratingData));
+      setShowVerdict(true);
+    }
+  }, [ratingData]);
 
   return (
     <Overlay className={enterInterviewMode ? 'active' : null}>
@@ -170,8 +285,13 @@ const InterviewMode = ({ enterInterviewMode }) => {
       {enterInterviewMode && (
         <>
           <IntructionInfo
+            questions={questions}
             activateOverlay={activateOverlay}
             setIsQuestion={setIsQuestion}
+            typeOfQuestionDraw={typeOfQuestionDraw}
+            // getRandomQuestions={getRandomQuestions}
+            setDrawnQuestions={setDrawnQuestions}
+            typeOfQuestionDraw={typeOfQuestionDraw}
           />
           {isTimer && (
             <TimerContainer>
@@ -184,24 +304,58 @@ const InterviewMode = ({ enterInterviewMode }) => {
             </TimerContainer>
           )}
           {/* QUESTION */}
+          {/* {currentQuestion <=5?  */}
           {(isAnswer || isQuestion) && (
             <QuestionContainer isAnswer={isAnswer}>
               <QuestionContent isAnswer={isAnswer}>
-                Initially, we utilise useState react hook to create a new state
-                variable counter in the functional component. counter holds the
-                number of seconds the counter should start with. Then a native
-                JavaScript function,
+                {drawnQuestions[currentQuestion].text}
               </QuestionContent>
-              {isAnswer && (
-                <QuestionAnswer isAnswer={isAnswer}>
-                  Teraz możesz przeglądać strony w trybie prywatnym. Inni
-                  użytkownicy tego urządzenia nie zobaczą Twojej aktywności.
-                  Pamiętaj tylko, że zakładki i pobrane pliki zostaną zapisane.
-                  Więcej informacji
-                </QuestionAnswer>
+              {isAnswer && drawnQuestions.length > 0 && (
+                <>
+                  <AnswerContainer isAnswer={isAnswer}>
+                    {typeof drawnQuestions[currentQuestion].answer ===
+                    'string' ? (
+                      <p className="mainAnswer">
+                        {' '}
+                        {drawnQuestions[currentQuestion].answer}{' '}
+                      </p>
+                    ) : (
+                      Object.keys(drawnQuestions[currentQuestion].answer)
+                        .reverse()
+                        .map((ans, id) =>
+                          ans === 'title' ? (
+                            <p className="titleAnswer">
+                              {drawnQuestions[currentQuestion].answer[ans]}
+                            </p>
+                          ) : (
+                            <p className="subAnswer">
+                              {drawnQuestions[currentQuestion].answer[ans]}
+                            </p>
+                          )
+                        )
+                    )}
+
+                    <Rating
+                      // setRatingData={setRatingData}
+                      ratingData={ratingData}
+                      setRateUpdate={setRateUpdate}
+                      ratingValue={ratingValue}
+                      setRatingValue={setRatingValue}
+                    />
+                    <NextQuestionButton
+                      disabled={rateUpdate ? false : true}
+                      onClick={handleConfirmation}
+                    >
+                      Accept
+                    </NextQuestionButton>
+                  </AnswerContainer>
+                </>
               )}
             </QuestionContainer>
           )}
+          {showVerdict ? (
+            <Verdict ratingData={ratingData} average={average} />
+          ) : null}
           }
         </>
       )}
