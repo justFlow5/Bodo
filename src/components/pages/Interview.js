@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { uuid } from 'uuidv4';
 
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import styled, { keyframes } from 'styled-components';
 import Navbar from '../Navbar';
@@ -26,7 +27,10 @@ import Checkbox from '../forms/Interview_Checkbox';
 
 import InterviewMode from '../Interview/InterviewMode';
 
+import InterviewIcon from '../../images/interview/Information';
+
 import { device } from '../utils/media';
+import InformationIcon from '../../images/interview/Information';
 
 const fadeIn = keyframes`
     from {
@@ -207,7 +211,7 @@ const FieldsList = styled.form`
 
 const Title = styled.h3`
   line-height: 1.4;
-
+  position: relative;
   font-size: 28px;
   font-weight: 700;
   letter-spacing: 0.8px;
@@ -228,6 +232,58 @@ const Title = styled.h3`
 
   @media ${device.laptop} {
     font-size: 32px;
+  }
+
+  &.selectTechTitle > .iconContainer {
+    display: inline-block;
+    position: absolute;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    top: -15px;
+    right: 0px;
+
+    &:hover .tooltip {
+      animation: ${fadeIn} 0.2s cubic-bezier(0.08, 1.17, 0.96, 0.94) forwards;
+    }
+
+    & svg {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      fill: black;
+      top: -15px;
+      right: -25px;
+    }
+  }
+`;
+
+const CustomTooltip = styled.div`
+  &.tooltip {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    transform: scale(0);
+    opacity: 0;
+    font-size: 11px;
+    border-radius: 6px;
+    width: 185px;
+    overflow: hidden;
+    font-weight: 300;
+    z-index: 999;
+
+    position: fixed;
+    left: 20px;
+    bottom: 70px;
+
+    @media ${device.tablet} {
+      position: absolute;
+      /* top: -10px; */
+      /* right: -10px; */
+      left: unset;
+      right: -240px;
+      bottom: -80px;
+    }
   }
 `;
 
@@ -708,7 +764,28 @@ const Interview = () => {
             {/* ##################################################################### */}
             {stack && (
               <>
-                <Title> Choose Technology: </Title>{' '}
+                <Title className="selectTechTitle">
+                  {' '}
+                  Choose Technology:
+                  {/* <Tooltip
+                    title="Listed below are techs that have at least 5 questions stored in our database"
+                    placement="bottom-end"
+                  >
+                    <div className="iconContainer">
+                      <InformationIcon />
+                    </div>
+                  </Tooltip> */}
+                  <div className="iconContainer">
+                    <CustomTooltip
+                      className="tooltip"
+                      // text="Listed below are techs that have at least 5 questions stored in our database"
+                    >
+                      Listed here are techs that have at least 5 questions
+                      stored in our database
+                    </CustomTooltip>
+                    <InformationIcon />
+                  </div>
+                </Title>{' '}
                 <TechsContainer className={stack ? 'spaceBottom' : null}>
                   <TechsList>
                     {listStack(stack, numOfTech).map((singleTech, id) => {
