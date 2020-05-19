@@ -608,15 +608,15 @@ const Interview = () => {
   const listStack = (stack, techs) => {
     if (stack === 'frontend') {
       return techs
-        .filter((tech) => tech[2] === 'Frontend Developer' && tech[1] > 5)
+        .filter((tech) => tech[2] === 'Frontend Developer' && tech[1] >= 5)
         .map((stackTech) => stackTech[0]);
     } else if (stack === 'backend') {
       return techs
-        .filter((tech) => tech[2] === 'Backend Developer' && tech[1] > 5)
+        .filter((tech) => tech[2] === 'Backend Developer' && tech[1] >= 5)
         .map((stackTech) => stackTech[0]);
     } else if (stack === 'fullstack') {
       return techs.map((tech) => {
-        if (tech[1] > 5) return tech[0];
+        if (tech[1] >= 5) return tech[0];
       });
     } else {
     }
