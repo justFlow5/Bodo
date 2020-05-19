@@ -136,7 +136,7 @@ const PulseButton = styled.button`
     width: 150px;
     height: 80px;
     font-size: 27px;
-    bottom: 33%;
+    bottom: 25%;
     right: 11%;
   }
 
@@ -162,11 +162,12 @@ const InterviewPage = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 15px;
 
   @media ${device.tablet} {
     height: 100%;
-
+    margin-top: 50px;
+    overflow: hidden;
     flex-direction: row;
   }
 `;
@@ -192,32 +193,39 @@ const FieldsContainer = styled.div`
   width: 90%;
   margin: 0 5%;
   @media ${device.mobileL} {
-    margin-left: 15%;
+    margin-left: 7%;
     margin-right: 15%;
     width: 65%;
   }
 
   @media ${device.tablet} {
-    width: 50%;
+    width: 60%;
+    margin-left: 15%;
   }
 
   @media ${device.laptop} {
     margin: 0 0 0 25%;
-    width: 60%;
+    width: 65%;
+  }
+
+  @media ${device.laptopL} {
+    margin: 0 0 0 25%;
+    width: 55%;
   }
 `;
 
 const FieldsList = styled.form`
-  margin-top: 35px;
+  margin-top: 30px;
   margin-bottom: 35px;
   position: relative;
   width: 100%;
+
   white-space: nowrap;
 
   @media ${device.mobileM} {
     width: 90%;
     text-align: left;
-    margin-left: 4%;
+    margin-left: 5%;
   }
   @media ${device.tablet} {
     width: 90%;
@@ -233,6 +241,8 @@ const Title = styled.h3`
   text-align: left;
   display: inline;
   border-bottom: 4px solid #0083b0;
+  white-space: nowrap;
+  /* word-break: keep-all; */
 
   color: #091d34;
 
@@ -286,7 +296,7 @@ const CustomTooltip = styled.div`
     overflow: hidden;
     font-weight: 300;
     z-index: 999;
-
+    white-space: break-spaces;
     position: fixed;
     left: 20px;
     bottom: 70px;
@@ -330,26 +340,32 @@ const Label = styled.label`
   box-shadow: unset;
   transition: all 0.3s;
 
-  width: 85px;
-  height: 85px;
+  width: 90px;
+  height: 90px;
   @media ${device.mobileM} {
-    width: 95px;
-    height: 95px;
+    width: 100px;
+    height: 100px;
   }
 
   @media ${device.mobileL} {
-    width: 95px;
-    height: 95px;
+    width: 105px;
+    height: 105px;
   }
 
   @media ${device.tablet} {
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
   }
 
   @media ${device.laptop} {
     width: 110px;
     height: 110px;
+    margin-right: 40px;
+  }
+
+  @media ${device.laptopL} {
+    width: 115px;
+    height: 115px;
     margin-right: 40px;
   }
 
@@ -376,6 +392,11 @@ const Label = styled.label`
       font-size: 13px;
       margin-top: 7px;
     }
+
+    @media ${device.laptopL} {
+      font-size: 13px;
+      margin-top: 10px;
+    }
   }
 
   & > img {
@@ -387,18 +408,23 @@ const Label = styled.label`
     /* fill: #091d34; */
     fill: #131517;
     /* fill: #0000b3; */
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     transition: all 0.3s;
 
     @media ${device.mobileM} {
-      width: 50px;
-      height: 50px;
+      width: 55px;
+      height: 55px;
     }
 
     @media ${device.laptop} {
-      width: 55px;
-      height: 55px;
+      width: 60px;
+      height: 60px;
+    }
+
+    @media ${device.laptopL} {
+      width: 65px;
+      height: 65px;
     }
   }
 `;
@@ -466,11 +492,12 @@ const TechsList = styled.form`
   margin-top: 30px;
 
   @media ${device.mobileL} {
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
     width: 100%;
   }
   @media ${device.tablet} {
     width: 100%;
+    /* justify-content: center; */
   }
 
   @media ${device.laptop} {
@@ -681,7 +708,7 @@ const Interview = () => {
     JSON.parse(localStorage.getItem('numOfTech')) || []
   );
 
-  const info1 = 'Hi! My name is Jeff. Nice to meet you!';
+  const info1 = `Hi! My name is Jeff. Nice to meet you!`;
 
   const listStack = (stack, techs) => {
     if (stack === 'frontend') {

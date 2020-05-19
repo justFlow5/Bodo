@@ -276,7 +276,7 @@ const Instruction = ({
   };
 
   useEffect(() => {
-    if (step > 6) {
+    if (step > 5) {
       setHide('hide');
       activateOverlay(false);
       setIsQuestion(true);

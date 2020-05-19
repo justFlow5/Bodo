@@ -136,31 +136,38 @@ const LogoHolder = styled.div`
   position: relative;
   /* left: -10px; */
   /* position: fixed; */
-  margin-bottom: 30px;
-  /* left: 50%; */
-  /* transform: translateX(-50%); */
-  /* top: 20px; */
+  margin-bottom: 15px;
+
   cursor: pointer;
+
+  @media ${device.mobileL} {
+    margin-bottom: 30px;
+  }
   & span {
     font-family: 'Merienda', cursive;
-    font-size: 55px;
+    font-size: 45px;
     color: #113ee0;
+
+    @media ${device.mobileL} {
+      font-size: 55px;
+    }
   }
   & img {
     display: inline-block;
     /* margin: 0 auto; */
     /* width: 200px; */
-    width: 70px;
+    width: 50px;
     pointer-events: none;
     animation: ${rotate} 0.7s ease-out 1s;
-    /* width: 210px; */
-    /* margin-bottom: 40px; */
+    @media ${device.mobileL} {
+      width: 70px;
+    }
   }
 `;
 
 const SignIpUpWindow = styled.div`
   width: 85vw;
-  height: 75vh;
+  height: 80vh;
   border: 1px solid #a8a8a8;
   border-radius: 6px;
   background: #add8e6;
@@ -195,7 +202,11 @@ const SignIpUpWindow = styled.div`
 const TitleContainer = styled.h3`
   position: relative;
   width: 100%;
-  margin: 20px auto 30px;
+  margin: 15px auto 0;
+
+  @media ${device.mobileL} {
+    margin: 20px auto 30px;
+  }
 `;
 
 const Title = styled.h3`
@@ -291,7 +302,7 @@ const AnonimousButton = styled(Button)`
 
 const Footer = styled.div`
   width: 70%;
-  margin: 10px auto 5px;
+  margin: 10px auto 0;
   margin-top: auto;
   text-align: center;
   /* display: flex; */
@@ -304,11 +315,17 @@ const Footer = styled.div`
   transform: translateX(-50%);
   /* margin-top: 5px; */
   padding-top: 10px;
+
+  @media ${device.mobileL} {
+    margin: 10px auto 5px;
+  }
+
   & span {
     color: black;
-    font-size: 14px;
-    /* margin: 0 auto; */
-    /* transition: all 0.3s; */
+    font-size: 12px;
+    @media ${device.mobileL} {
+      font-size: 14px;
+    }
     &:hover {
       text-decoration: underline;
       color: #87bdd8;

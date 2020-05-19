@@ -37,9 +37,9 @@ const Overlay = styled.section`
   left: 100%;
   right: 0;
   background-color: #008cba;
-  overflow: hidden;
   width: 0;
   height: 100%;
+  overflow: hidden;
 
   & > .picWrapper {
     position: relative;

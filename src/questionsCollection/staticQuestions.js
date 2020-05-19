@@ -2528,7 +2528,7 @@ export let staticQuestions = [{
     `,
             par1: `This question is often used to assess how well you perform under pressure as well as your problem-solving abilities.  
         `,
-            par2: ` Keep in mind stories are more memorable than facts and figures, so strive to “show” instead of “tell.”
+            par2: `Keep in mind stories are more memorable than facts and figures, so strive to “show” instead of “tell.”
 
     `,
             par3: `This is also an excellent opportunity to show your human side and how you’re willing to go the extra mile without being asked.`,
@@ -2634,7 +2634,7 @@ export let staticQuestions = [{
     `,
             par1: `Avoid saying anything negative about your former employer, managers or colleagues. 
         `,
-            par2: ` Make this answer about your career growth and your enthusiasm for joining their organization.
+            par2: `Make this answer about your career growth and your enthusiasm for joining their organization.
     `,
 
 
@@ -2708,7 +2708,7 @@ export let staticQuestions = [{
         answer: {
             title: `Example: What I liked most about my last position the ability to contribute in a collaborative way with other teams. Each team member was encouraged to bring new ideas to the project which were respectfully considered by all. For example, we once worked with a client who was relying on us to solve a critical issue. Our team met to discuss the situation. After I recommended a plan to resolve the issue, we took time considering the pros and the cons of the solution, building on how to make the idea better and more comprehensive. When we implemented it, it worked better and faster than everyone expected. The client was very pleased.
     `,
-            par1: `ie your answer to this question into the company’s needs and focus on explaining your proven performance at your last job.
+            par1: `Tie your answer to this question into the company’s needs and focus on explaining your proven performance at your last job.
         `,
             par2: `Be specific and provide an example.
     `,
@@ -2726,6 +2726,260 @@ export let staticQuestions = [{
 
     },
 
+    // #######################################################################################
+    // #############################           REDUX          ######### #########################
+    // ###########################################################################################
 
+    {
+        text: 'What are the core principles of Redux?',
+        answer: {
+            par1: `Single source of truth: The state of your whole application is stored in an object tree within a single store. The single state tree makes it easier to keep track of changes over time and debug or inspect the application.
+        `,
+            par2: `State is read-only: The only way to change the state is to emit an action, an object describing what happened. This ensures that neither the views nor the network callbacks will ever write directly to the state.
+    `,
+            par3: `Changes are made with pure functions: To specify how the state tree is transformed by actions, you write reducers. Reducers are just pure functions that take the previous state and an action as parameters, and return the next state.
+    `,
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'Redux',
+        id: uuid(),
+        job: 'Frontend Developer'
+    },
+
+    {
+        text: 'What is the difference between mapStateToProps() and mapDispatchToProps()?',
+        answer: {
+            par1: `mapStateToProps() is a utility which helps your component get updated state (which is updated by some other components)
+        `,
+            par2: `mapDispatchToProps() is a utility which will help your component to fire an action event (dispatching action which may cause change of application state)
+    `,
+            par3: `Changes are made with pure functions: To specify how the state tree is transformed by actions, you write reducers. Reducers are just pure functions that take the previous state and an action as parameters, and return the next state.
+    `,
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'Redux',
+        id: uuid(),
+        job: 'Frontend Developer'
+    },
+
+    {
+        text: 'Can I dispatch an action in reducer?',
+        answer: {
+            title: `Dispatching an action within a reducer is an anti-pattern. Your reducer should be without side effects, simply digesting the action payload and returning a new state object. Adding listeners and dispatching actions within the reducer can lead to chained actions and other side effects.
+        `,
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'Redux',
+        id: uuid(),
+        job: 'Frontend Developer'
+    },
+
+
+    {
+        text: 'What is the difference between React context and React Redux?',
+        answer: {
+            title: `You can use Context in your application directly and is going to be great for passing down data to deeply nested components which what it was designed for. Whereas Redux is much more powerful and provides a large number of features that the Context API doesn't provide. Also, React Redux uses context internally but it doesn't expose this fact in the public API.
+        `,
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'Redux',
+        id: uuid(),
+        job: 'Frontend Developer'
+    },
+
+
+    {
+        text: 'What is the difference between React context and React Redux?',
+        answer: {
+            title: `You can use Context in your application directly and is going to be great for passing down data to deeply nested components which what it was designed for. Whereas Redux is much more powerful and provides a large number of features that the Context API doesn't provide. Also, React Redux uses context internally but it doesn't expose this fact in the public API.
+        `,
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'Redux',
+        id: uuid(),
+        job: 'Frontend Developer'
+    },
+
+
+    {
+        text: 'Why are Redux state functions called reducers?',
+        answer: {
+            title: `Reducers always return the accumulation of the state (based on all previous and current actions). Therefore, they act as a reducer of state. Each time a Redux reducer is called, the state and action are passed as parameters. This state is then reduced (or accumulated) based on the action, and then the next state is returned. You could reduce a collection of actions and an initial state (of the store) on which to perform these actions to get the resulting final state.
+        `,
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'Redux',
+        id: uuid(),
+        job: 'Frontend Developer'
+    },
+
+    {
+        text: 'What is the difference between component and container in React Redux?',
+        answer: {
+            par1: `Component is a class or function component that describes the presentational part of your application.
+        `,
+            par2: `Container is an informal term for a component that is connected to a Redux store. Containers subscribe to Redux state updates and dispatch actions, and they usually don't render DOM elements; they delegate rendering to presentational child components.`
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'Redux',
+        id: uuid(),
+        job: 'Frontend Developer'
+    },
+
+    {
+        text: 'What is the purpose of the constants in Redux?',
+        answer: {
+            par1: `Constants allows you to easily find all usages of that specific functionality across the project when you use an IDE. It also prevents you from introducing silly bugs caused by typos – in which case, you will get a ReferenceError immediately.
+        `,
+            par2: `Normally we will save them in a single file (constants.js or actionTypes.js).`
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'Redux',
+        id: uuid(),
+        job: 'Frontend Developer'
+    },
+
+    {
+        text: 'How to structure Redux top level directories?',
+        answer: {
+            title: `This structure works well for small and medium size apps.
+
+            `,
+            par1: `Components: Used for dumb components unaware of Redux.
+        `,
+            par2: `Containers: Used for smart components connected to Redux.`,
+            par3: `Actions: Used for all action creators, where file names correspond to part of the app.`,
+            par4: `Reducers: Used for all reducers, where files name correspond to state key.        `,
+            par5: `Store: Used for store initialization.
+        `,
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'Redux',
+        id: uuid(),
+        job: 'Frontend Developer'
+    },
+
+    {
+        text: 'What is Redux Thunk?',
+        answer: {
+
+            par1: `Redux Thunk middleware allows you to write action creators that return a function instead of an action.
+        `,
+            par2: `The thunk can be used to delay the dispatch of an action, or to dispatch only if a certain condition is met.`,
+            par3: `The inner function receives the store methods dispatch() and getState() as parameters.`,
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'Redux',
+        id: uuid(),
+        job: 'Frontend Developer'
+    },
+
+    {
+        text: 'What are the differences between redux-saga and redux-thunk?',
+        answer: {
+            title: `Both Redux Thunk and Redux Saga take care of dealing with side effects.`,
+
+            par1: ` In most of the scenarios, Thunk uses Promises to deal with them, whereas Saga uses Generators.
+        `,
+            par2: `Thunk is simple to use and Promises are familiar to many developers, Sagas/Generators are more powerful but you will need to learn them.`,
+            par3: `But both middleware can coexist, so you can start with Thunks and introduce Sagas when/if you need them.`,
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'Redux',
+        id: uuid(),
+        job: 'Frontend Developer'
+    },
+
+    {
+        text: 'What is Redux DevTools?',
+        answer: {
+            title: `Redux DevTools is a live-editing time travel environment for Redux with hot reloading, action replay, and customizable UI.`,
+
+            par1: `If you don't want to bother with installing Redux DevTools and integrating it into your project, consider using Redux DevTools Extension for Chrome and Firefox.
+        `,
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'Redux',
+        id: uuid(),
+        job: 'Frontend Developer'
+    },
+
+    {
+        text: 'What are the features of Redux DevTools?',
+        answer: {
+
+            par1: `Lets you inspect every state and action payload.
+        `,
+            par2: `Lets you go back in time by cancelling actions.
+        `,
+            par3: `If you change the reducer code, each staged action will be re-evaluated.
+        `,
+            par4: `If the reducers throw, you will see during which action this happened, and what the error was.
+        `,
+            par5: `With persistState() store enhancer, you can persist debug sessions across page reloads.
+        `,
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'Redux',
+        id: uuid(),
+        job: 'Frontend Developer'
+    },
 
 ]

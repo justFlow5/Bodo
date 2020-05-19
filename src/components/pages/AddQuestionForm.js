@@ -205,9 +205,9 @@ const AddQuestionForm = () => {
   const [newTechnology, setNewTechnology] = useState('');
   const [text, setText] = useState('');
   const [answer, setAnswer] = useState('');
-  const [code, setCode] = useState('');
+  // const [code, setCode] = useState('');
   const [job, setJob] = useState('Frontend Developer');
-  const [jobText, setJobText] = useState('');
+  // const [jobText, setJobText] = useState('');
 
   const [showJob, setShowJob] = useState(true);
 
@@ -277,13 +277,13 @@ const AddQuestionForm = () => {
     }
   };
 
-  const isJobReadOnly = () => {
-    if (job !== 'otherjob') {
-      return { readOnly: true };
-    } else {
-      return { readOnly: false };
-    }
-  };
+  // const isJobReadOnly = () => {
+  //   if (job !== 'HR') {
+  //     return { readOnly: true };
+  //   } else {
+  //     return { readOnly: false };
+  //   }
+  // };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -291,14 +291,14 @@ const AddQuestionForm = () => {
 
     let tech = technology === 'other' ? newTechnology : technology;
 
-    if (job !== 'otherjob') {
+    if (job !== 'HR') {
       // add to localStorage
       addQuestion({
         job,
         technology: tech,
         text,
         answer,
-        code,
+        // code,
         known: false,
         id,
       });
@@ -312,7 +312,7 @@ const AddQuestionForm = () => {
         technology: tech,
         text,
         answer,
-        code,
+        // code,
         known: false,
         id,
       };
@@ -335,24 +335,24 @@ const AddQuestionForm = () => {
       db.ref(`users/${currentUser.uid}/staticDataStatus`).set(true);
       // db.ref(`users/${currentUser.uid}/questions/${tech}`).set(upData);
     } else {
-      addQuestion({
-        job: jobText,
+      const newHr = {
+        job: 'other',
+        technology: 'HR',
         text,
         answer,
         known: false,
         id,
-      });
+      };
+      addQuestion(newHr);
+      saveNumbers();
+      const allQ = JSON.parse(localStorage.getItem('questions'));
+      const currentHR = allQ.HR;
+      const upDateHR = [...currentHR, newHr];
 
       // save number of questions
-      saveNumbers();
 
-      db.ref(`users/${currentUser.uid}/questions/${job}`).update({
-        job: jobText,
-        text,
-        answer,
-        known: false,
-        id,
-      });
+      db.ref(`users/${currentUser.uid}/questions/HR`).set(upDateHR);
+      db.ref(`users/${currentUser.uid}/staticDataStatus`).set(true);
     }
 
     // if (isQuestion(id)) {
@@ -360,7 +360,7 @@ const AddQuestionForm = () => {
 
     setText('');
     setAnswer('');
-    setCode('');
+    // setCode('');
 
     // }
   };
@@ -423,22 +423,22 @@ const AddQuestionForm = () => {
             />
 
             <MyFormControlLabel
-              value="otherjob"
+              value="HR"
               control={
                 <Radio
                   color="primary"
-                  checked={job === 'otherjob'}
+                  checked={job === 'HR'}
                   onChange={handleJobChange}
                 />
               }
-              label="Other"
+              label="HR Question"
               color="primary"
             />
           </RadioContainer>
         </RadioGroup>
         {/*  */}
 
-        {job !== 'otherjob' && (
+        {job !== 'HR' && (
           <FormControl component="fieldset">
             <FormLabel component="legend">Choose Technology</FormLabel>
             <RadioGroup
@@ -528,30 +528,33 @@ const AddQuestionForm = () => {
         )}
         {/*  */}
         <FieldsContainer>
-          <MyTextField
-            required
-            variant="standard"
-            label="Job"
-            multiline
-            value={
-              job === 'Frontend Developer' || job === 'Backend Developer'
-                ? job
-                : jobText
-            }
-            onChange={(e) => setJobText(e.target.value)}
-            InputProps={isJobReadOnly()}
-          />
+          {job !== 'HR' && (
+            <>
+              <MyTextField
+                required
+                variant="standard"
+                label="Job"
+                multiline
+                // value={
+                //   job === 'Frontend Developer' || job === 'Backend Developer'
+                //     ? job
+                //     : jobText
+                // }
+                value={job}
+                // onChange={(e) => setJobText(e.target.value)}
+                InputProps={true}
+              />
 
-          {job !== 'otherjob' && (
-            <MyFormControlLabelTech
-              variant="standard"
-              label="Technology"
-              value={technology === 'other' ? newTechnology : technology}
-              onChange={(e) => setNewTechnology(e.target.value)}
-              required
-              autoFocus
-              InputProps={isTechReadOnly()}
-            ></MyFormControlLabelTech>
+              <MyFormControlLabelTech
+                variant="standard"
+                label="Technology"
+                value={technology === 'other' ? newTechnology : technology}
+                onChange={(e) => setNewTechnology(e.target.value)}
+                required
+                autoFocus
+                InputProps={isTechReadOnly()}
+              ></MyFormControlLabelTech>
+            </>
           )}
 
           <MyTextField
@@ -571,7 +574,7 @@ const AddQuestionForm = () => {
             onChange={(e) => setAnswer(e.target.value)}
             required
           />
-          {job !== 'otherjob' && (
+          {/* {job !== 'otherjob' && (
             <MyTextField
               variant="standard"
               label="Code"
@@ -581,7 +584,7 @@ const AddQuestionForm = () => {
               value={code}
               onChange={(e) => setCode(e.target.value)}
             />
-          )}
+          )} */}
         </FieldsContainer>
 
         <SaveButton
