@@ -128,16 +128,18 @@ const Instruction = ({
     'You will be asked 5 questions from the selected category.'
   );
 
-  const oneCategory = 'You will be asked 5 questions from';
+  const oneCategory = 'You will be asked 5';
+  const manyCats =
+    'You will be asked 1 question for each of these technologies';
 
-  const manyCategories =
-    'You will be asked 5 questions from each of the selected category.';
+  // const manyCategories =
+  //   'You will be asked 5 questions from each of the selected category.';
 
   const questionTime = 'For each question You will be given 1 min to answer.';
   const questionTimeEnd =
     'When the time is over You will be asked to evaluate the quality of your answer given the correct one.';
 
-  const endingInfo = `At the end of the interview You will be given a verdict whether You passed the interview.`;
+  const endingInfo = `At the end of the interview You will be given a feedback whether or not You passed the interview.`;
 
   const goodluck = `Good luck!`;
 
@@ -146,7 +148,7 @@ const Instruction = ({
     return Math.floor(Math.random() * (max - min)) + min;
   };
 
-  const handleIntruction = () => {
+  const handleIntruction = (step, typeOfInterview) => {
     let categories = selectedCategories.join(', ');
     switch (step) {
       case 1:
@@ -154,9 +156,9 @@ const Instruction = ({
         //   ? `${oneCategory} ${selectedCategories.join(', ')}`
         //   : null;
         // break;
-        return selectedCategories.length > 0
-          ? `${oneCategory} ${categories}.`
-          : null;
+        return typeOfInterview === 'many-categories'
+          ? `${manyCats} ${categories} questions + 1 HR question.`
+          : `${oneCategory} ${categories} + 1 HR question.`;
 
         // return `${oneCategory} ${selectedCategories.join(', ')}`;
 
@@ -191,6 +193,16 @@ const Instruction = ({
 
     const selectedNumbers = [];
     const selectedQuestions = [];
+
+    // GET HR QUESTION
+    // console.log('setOfQuestions: ', setOfQuestions);
+
+    let randomNumberQ = randomNumber(0, setOfQuestions.HR.length);
+    console.log('HR RANDOM NUMBER: ', randomNumberQ);
+    let selectedQuestion = setOfQuestions.HR[randomNumberQ];
+    selectedQuestions.push(selectedQuestion);
+
+    // 5 questions for the same gcateogrys
     if (typeOfDistribution === 'single-category') {
       let selectedCategory = selectedCategories[0];
 
@@ -240,15 +252,17 @@ const Instruction = ({
         } else i -= 1;
       }
     } else if (typeOfDistribution === 'many-categories') {
+      // while (selectedQuestions.length < 4) {
       selectedCategories.forEach((category) => {
         let randomNumberQ = randomNumber(0, setOfQuestions[category].length);
         selectedQuestions.push(setOfQuestions[category][randomNumberQ]);
       });
+      // }
     }
     console.log('DrawnQuestions: ', selectedQuestions);
 
-    selectedQuestions.length === 5 && saveDrawnQuestions(selectedQuestions);
-    selectedQuestions.length === 5 &&
+    selectedQuestions.length === 6 && saveDrawnQuestions(selectedQuestions);
+    selectedQuestions.length === 6 &&
       console.log('DrawnQuestions: ', selectedQuestions);
   };
 
@@ -262,7 +276,7 @@ const Instruction = ({
   };
 
   useEffect(() => {
-    if (step > 5) {
+    if (step > 6) {
       setHide('hide');
       activateOverlay(false);
       setIsQuestion(true);
@@ -289,7 +303,7 @@ const Instruction = ({
         </span>
         <InfoContentText className={step === 5 ? 'goodluck' : null}>
           {' '}
-          {handleIntruction(step)}
+          {handleIntruction(step, typeOfQuestionDraw)}
         </InfoContentText>
         <ButtonContainer>
           {/* <NextButton onClick={() => handleIntruction('back')}>back</NextButton> */}

@@ -76,6 +76,7 @@ const GoBackButton = styled.button`
   letter-spacing: 0.8px;
   background: #4e5555;
   color: #ececec;
+  text-shadow: 1px 1px 1px ${({ color }) => color};
   transition: all 0.3s;
   &:hover {
     background: #232b2b;
@@ -143,6 +144,7 @@ const Verdict = ({ rateData, average }) => {
       <VerdictContent>{verdict}</VerdictContent>
       {/* <Link to="/interview"> */}
       <GoBackButton
+        color={() => chooseColor()}
         onClick={() => {
           window.location.reload(false);
         }}

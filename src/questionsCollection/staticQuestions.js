@@ -2293,5 +2293,439 @@ export let staticQuestions = [{
 
     },
 
+    // #######################################################################################
+    // #############################           HR QUESTIONS           #########################
+    // ###########################################################################################
+    {
+        text: 'Tell me a little about yourself.',
+        answer: {
+            title: `Example: I am one of the top graduates of my batch in College. I am known in school as an organizer, having held several committees and organizations since my first year. I am a dedicated person who never stops working on something until it is perfect. It would be a pleasure for me to discuss how I can be such an asset to your company.
+    `,
+            par1: `Try to cover your accomplishment in your answer.`,
+            par2: `Talk about the work or project that resembles the requirement of the position.
+    `,
+            par3: `Mention what led you to this point in your career and why the job is the perfect match for you`,
+            par4: `End your answer by telling them you want the positionand why`,
+            par5: `Use selective terminology in your answer like problem-solving, innovative, fast-paced, creative and so on`,
+            par6: `Don’t narrate anything that is personal`,
+            par7: `Don’t speak the same thing that is already mentioned in your resume`,
+            par8: `Don’t counter question your interviewer by saying – “What do you want to know?” (Sounds Rude)`,
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'HR',
+        id: uuid(),
+        job: 'other'
+
+    },
+
+    {
+        text: 'Why do you want to work for this company?',
+        answer: {
+            title: `Example: Your company made its fortune in making great products that help people do X. But on top of that, it is the kind of place where I can fit in and excel, so I was thrilled to see you have this opening.  Your company believes in providing superior service, and I share the same value. It enables me to not only fit into your organization but complement the team as well.
+    `,
+            par1: `Conduct thorough research of the company and company’s top executive before facing interview
+        `,
+            par2: `Learn about the company’s vision and how you can contribute to it
+
+    `,
+            par3: `As a professional, you should able to demonstrate your eagerness to work for the company`,
+            par4: `Demonstrate evidence that you understand the employer’s business`,
+            par5: `Mention why you rely on XYZ company for your growth and why it is the best place to utilize your skill and experience for the benefit of the company`,
+            par6: `Demonstrate your belief in the company’s product or service`,
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'HR',
+        id: uuid(),
+        job: 'other'
+
+    },
+
+    {
+        text: 'Do you consider yourself successful?',
+        answer: {
+            title: `Example: I feel successful when I meet my short term as well as the long-term goals. I try to achieve the set goals and work hard as much as I can. I try to reach those goals and achieve the desired outcome. I want to recognize myself as someone with a progressive attitude who does his best and gives 100% to attain goals.  To me, success is not just my personal achievements but also by the efforts of the people around me.
+    `,
+            par1: `Summarize your career goals
+        `,
+            par2: `Don’t say something that sounds self-centric
+
+    `,
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'HR',
+        id: uuid(),
+        job: 'other'
+
+    },
+
+    {
+        text: 'What would you consider your greatest strengths & weakness?',
+        answer: {
+            title: `Example:I am very comfortable working with different groups of people. My strength is my analytical and planning skills, developed over the years. It helps me to complete my work before the deadline. I am a little bit nervous while speaking in a group, but I have given many presentations to overcome this.
+    `,
+            par1: `Focus mostly on strengths
+        `,
+            par2: `Show the interviewer how you are putting effort to overcome the weakness
+
+    `,
+            par3: `Mention about your real weakness but do mention about how you are going to fix it`,
+            par4: `Make sure your strength and weakness don’t contradict each other`,
+            par5: `Research well about the position you are applying for and identify the area where you can apply your strength`,
+            par6: `Choose a weakness that is acceptable for the job in hand`,
+            par7: `Don’t confuse interests with strength or dislikes with weakness`,
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'HR',
+        id: uuid(),
+        job: 'other'
+
+    },
+
+    {
+        text: 'What motivates you?',
+        answer: {
+            title: `Example: Many things motivate me. My goal is to be the best of what I can be, often motivates me to go beyond my own expectations. When I see myself being productive every day, it motivates me to continue.
+    `,
+            par1: `Sometimes, the best solution is, to be honest- you can say money is your motivational factor, but it should be your last option
+        `,
+            par2: `Mention things like Job satisfaction, working towards a goal, contributing to a team effort, or developing your skills. Provide a specific example that supports your response
+
+    `,
+            par3: `Excitement for new challenges`,
+            par4: `Quest for personal development`,
+            par5: `Do not mention that you are motivated by bragging rights, material things or fear of being disciplined`,
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'HR',
+        id: uuid(),
+        job: 'other'
+
+    },
+
+    {
+        text: 'Why should we hire you?',
+        answer: {
+            title: `For this particular job, I have the perfect combination of skills and experience that is required. I also bring rich experience of strong analytical and problem-solving skills that I have gained while working with other companies. My dedication to excellent work standards will add value to the team and the company.
+    `,
+            par1: `Emphasize on your uniqueness but keep it concise
+        `,
+            par2: `Highlight your strength, skills, and accomplishments
+
+    `,
+            par3: `Give an example that describes you as a quick learner`,
+            par4: `State or provide some evidence that shows how you contributed to the growth of the previous company in terms of revenue, goodwill, and brand`,
+            par5: `Include the research you made on the company. For a smaller company (2 to 50 employees), you can say- “your company is open to new innovative ideas.”`,
+
+            par6: `Try to avoid saying- I need a job, money, or this place is close to where I live`,
+            par7: `Focus on what can you do for the company rather than what they can do for you`,
+            par8: `NEVER DO THIS- comparing your skills to others. The natural instinct to this question is we usually start comparing our skills to others when this question is put through.`,
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'HR',
+        id: uuid(),
+        job: 'other'
+
+    },
+
+    {
+        text: 'What is your greatest fear?',
+        answer: {
+            title: `Example: I work too hard sometimes and care too much about my work. I take my tasks back home and work even during the weekends. You can call me a workaholic, but my family always points out that this is not right. Slowly and steadily I am realizing that speed and working smartly are the key. So, I have begun to reach out to my colleagues for ready-to-use workarounds so that I can give more time to my family.
+    `,
+            par1: `Don’t simply talk about your weaknesses, your interviewer genuinely wants you to talk about your loopholes! Try to resist the urge to give him/her more points to reject you. Answer diplomatically.
+        `,
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'HR',
+        id: uuid(),
+        job: 'other'
+
+    },
+
+    {
+        text: 'What makes you unique?',
+        answer: {
+            title: `Example: What makes me unique is my experience of having spent four years in retail. Because I’ve had first-hand experience fielding shoppers’ questions, feedback and complaints, I know what customers want. I know what it takes to create a positive consumer experience because I’ve had that direct interaction, working directly with consumers in person.
+    `,
+            par1: `Employers often ask this question to identify why you might be more qualified than other candidates they’re interviewing. To answer, focus on why hiring you would benefit the employer.
+        `,
+            par2: `Highlight your strength, skills, and accomplishments
+
+    `,
+            par3: `Since you don’t know the other applicants, it can be challenging to think about your answer in relation to them. Addressing why your background makes you a good fit will let employers know why your traits and qualifications make you well prepared.`,
+
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'HR',
+        id: uuid(),
+        job: 'other'
+
+    },
+
+
+    {
+        text: 'Where do you see yourself in five years?',
+        answer: {
+            title: `Example: In five years, I’d like to be an industry expert in my field, able to train and mentor students and entry-level designers alike. I would also like to gain specialized experience in user experience to be a well-rounded contributor working with design and marketing teams on large-scale projects that make a difference both in the company and the global community.
+    `,
+            par1: `Understanding how you imagine your life in the future can help employers understand whether the trajectory of the role and company fits in with your personal development goals. 
+        `,
+            par2: `To answer, provide general ideas about the skills you want to develop, the types of roles you would like to be in and things you would like to have accomplished.
+
+    `,
+            par3: `It can also be a helpful practice to think about what your ideal resume might look like five years from now. Think about the following categories and how they might look in the future:`,
+
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'HR',
+        id: uuid(),
+        job: 'other'
+
+    },
+
+    {
+        text: 'Can you tell me about a difficult work situation and how you overcame it?',
+        answer: {
+            title: `Example: It was the first day of my boss’s two-week vacation and our agency’s highest-paying client threatened to leave because he didn’t feel he was getting the personalized service he was promised. I spent my lunch hour on the phone with him, talking through his concerns. We even brainstormed ideas for his next campaign. He was so grateful for the personal attention that he signed another six-month contract before my boss even returned from her trip.
+    `,
+            par1: `This question is often used to assess how well you perform under pressure as well as your problem-solving abilities.  
+        `,
+            par2: ` Keep in mind stories are more memorable than facts and figures, so strive to “show” instead of “tell.”
+
+    `,
+            par3: `This is also an excellent opportunity to show your human side and how you’re willing to go the extra mile without being asked.`,
+
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'HR',
+        id: uuid(),
+        job: 'other'
+
+
+
+    },
+
+    {
+        text: 'What is your salary range expectation?',
+        answer: {
+            title: `Example: My salary expectation is between $XX,XXX and $XX,XXX, which is the average salary for a candidate with my level of experience in this city. However, I am flexible.
+    `,
+            par1: `Interviewers ask this question to make sure your expectations are in line with the amount they’ve budgeted for the role. 
+        `,
+            par2: ` If you give a salary range exceedingly lower or higher than the market value of the position, it gives the impression that you don’t know your worth.
+    `,
+            par3: `Research the typical compensation range for the role and tend toward the higher side of your range. Be sure to let the hiring manager know if you’re flexible with your rate.`,
+
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'HR',
+        id: uuid(),
+        job: 'other'
+
+
+
+    },
+
+
+
+    {
+        text: 'Do you have any questions?',
+        answer: {
+            title: `Example: “What do you love about working for this company?”,  “What would success look like in this role?”, “What are some of the challenges people typically face in this position?”
+    `,
+            par1: `This might be one of the most important questions asked during the interview process because it allows you to explore any subject that hasn’t been addressed and shows the interviewer you’re excited about the role. 
+        `,
+            par2: `By this point, you’ll likely have already covered most of the basics about the position and the company, so take time to ask the interviewer questions about their own experiences with the company and gain tips on how you can succeed if hired.
+    `,
+
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'HR',
+        id: uuid(),
+        job: 'other'
+
+
+
+    },
+
+
+    {
+        text: 'How do you handle stress?',
+        answer: {
+            title: `Example: I’m able to stay calm when I focus on the bigger picture and break down my projects into smaller tasks. What is the ultimate goal I’m trying to achieve? From there, I make a list of action items with reasonable deadlines. Even if the big project is due tomorrow, I ask myself, ‘What’s something I can tackle in the next 30 minutes?’ Before I know it, I’ve made significant progress and that impossible project doesn’t seem so impossible.
+    `,
+            par1: `This isn’t a trick question to see if you get stressed at work or not. Rather, how you handle a stressful moment is an indicator of your ability to solve problems.
+        `,
+            par2: `Employers want to hire candidates who react to stress in a constructive manner, so it’s important that your answer to this question demonstrates personal growth.
+    `,
+
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'HR',
+        id: uuid(),
+        job: 'other'
+
+
+
+    },
+
+    {
+        text: 'What did you like least about your last position?',
+        answer: {
+            title: `Example: While I enjoyed my time learning and growing in my last job, there was a lack of opportunity in the way I wanted to progress in my career. I deeply enjoy being challenged and getting better at what I do, which I understand is a top priority for managers at your organization. That’s why I’m excited to continue having conversations about this opportunity.
+    `,
+            par1: `Avoid saying anything negative about your former employer, managers or colleagues. 
+        `,
+            par2: ` Make this answer about your career growth and your enthusiasm for joining their organization.
+    `,
+
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'HR',
+        id: uuid(),
+        job: 'other'
+
+
+
+    },
+
+    {
+        text: 'What is your greatest accomplishment?',
+        answer: {
+            title: `Example: In my last role, I managed all social media content. I noticed other brands were experimenting with videos and seeing great engagement from their customers, so I asked my boss if we could do a low-budget test. She agreed, so I produced a video cheaply in-house that drove double the engagement we normally saw on our social channels. It also drove conversions, with 30% of viewers visiting to our website within a week of seeing the video.
+    `,
+            par1: `It’s easy to get hung up on figuring out your single most impressive accomplishment. Instead, think of a few achievements that showcase your work ethic and values.
+        `,
+            par2: `If you can, pick examples that also tie back to the job you’re applying for. 
+    `,
+            par3: `The STAR method is a great tool to ensure you highlight not only your role but how you drove business results.
+    `,
+
+
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'HR',
+        id: uuid(),
+        job: 'other'
+
+
+
+    },
+
+    {
+        text: 'What are your greatest weaknesses?',
+        answer: {
+            title: `Example: Earlier in my career I noticed that because I was so enthusiastic about my work, I had a tendency to say ‘yes’ when I should have been saying ‘no.’ At one point I ended up so overwhelmed by my workload, taking on so many projects, that I was working evenings and weekends. It was stressful, and that stress affected my production quality. I realized this was counterproductive, so I started using workload management tools to set better expectations for myself and my teammates.
+    `,
+            par1: `It can feel awkward to discuss your weaknesses in an environment where you’re expected to focus on your accomplishments. However, when answered correctly, sharing your weaknesses can show that you are self-aware and want to continuously get better at your job—traits that are extremely attractive to many employers.
+        `,
+            par2: `Remember to start with the weakness and then discuss the measures you’ve taken to improve. This way, you’re finishing your answer on a positive note.
+    `,
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'HR',
+        id: uuid(),
+        job: 'other'
+
+
+
+    },
+
+    {
+        text: 'What did you like most about your last position?',
+        answer: {
+            title: `Example: What I liked most about my last position the ability to contribute in a collaborative way with other teams. Each team member was encouraged to bring new ideas to the project which were respectfully considered by all. For example, we once worked with a client who was relying on us to solve a critical issue. Our team met to discuss the situation. After I recommended a plan to resolve the issue, we took time considering the pros and the cons of the solution, building on how to make the idea better and more comprehensive. When we implemented it, it worked better and faster than everyone expected. The client was very pleased.
+    `,
+            par1: `ie your answer to this question into the company’s needs and focus on explaining your proven performance at your last job.
+        `,
+            par2: `Be specific and provide an example.
+    `,
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'HR',
+        id: uuid(),
+        job: 'other'
+
+
+
+    },
+
+
 
 ]

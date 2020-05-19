@@ -5,6 +5,7 @@ import IntructionInfo from './IntructionInfo';
 import Timer from './Timer';
 import Rating from './Rating';
 import Verdict from './Verdict';
+import ExitIcon from '../../images/interview/Exit';
 
 import { device } from '../utils/media';
 
@@ -129,7 +130,7 @@ const QuestionContainer = styled.div`
   }
 `;
 const QuestionContent = styled.h3`
-  font-size: 28px;
+  font-size: 26px;
   line-height: 1.3;
   color: #d4dae0bf;
   color: #d4dae0e6;
@@ -147,7 +148,7 @@ const AnswerContainer = styled.h3`
   color: ${({ isAnswer }) => (isAnswer ? `black` : `#d4dae0e6`)};
 
   & .titleAnswer {
-    font-size: 18px;
+    font-size: 21px;
     margin: 10px;
   }
 
@@ -195,11 +196,70 @@ const NextQuestionButton = styled.button`
   }
 `;
 
-const AnswerDivider = styled.div`
-  width: 100%;
-  height: 3px;
-  position: relative;
+const Exit = styled.button`
+  & svg {
+    width: 65px;
+    height: 65px;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    fill: ${({ color }) => color};
+    cursor: pointer;
+    /* transform: rotateY(0deg); */
+    /* padding: 10px; */
+    transition: all 0.5s ease-out;
+    &:hover {
+      transform: rotateY(360deg);
+    }
+  }
 `;
+
+// const Exit = styled.button`
+//   /* width: 160px; */
+//   /* height: 30px; */
+//   /* padding: 8px 15px; */
+//   /* border-radius: 5px; */
+//   width: 50px;
+//   height: 50px;
+//   padding: 10px;
+//   background: blue;
+//   cursor: pointer;
+//   position: fixed;
+//   top: 10px;
+//   left: 10px;
+//   font-size: 18px;
+//   letter-spacing: 0.9px;
+//   border-radius: 50%;
+
+//   &:hover {
+//     &::before {
+//       opacity: 1;
+//       transform: rotate(180deg) translateX(15px);
+//     }
+//   }
+
+//   &::before {
+//     content: '\\2192';
+//     font-size: 25px;
+//     color: white;
+//     position: absolute;
+//     /* transform: scale(3); */
+//     transform: rotate(180deg) translateX(0px);
+//     opacity: 0;
+
+//     /* padding-right: 10px; */
+//     transition: all 0.3s;
+//   }
+
+//   &:hover > h3 {
+//     /* padding-right: 10px; */
+//   }
+
+//   & > h3 {
+//     font-size: 18px;
+//     letter-spacing: 0.9px;
+//   }
+// `;
 
 const InterviewMode = ({ enterInterviewMode, typeOfQuestionDraw }) => {
   const [overlay, activateOverlay] = useState(true);
@@ -321,7 +381,7 @@ const InterviewMode = ({ enterInterviewMode, typeOfQuestionDraw }) => {
                       </p>
                     ) : (
                       Object.keys(drawnQuestions[currentQuestion].answer)
-                        .reverse()
+                        // .reverse()
                         .map((ans, id) =>
                           ans === 'title' ? (
                             <p className="titleAnswer">
@@ -356,6 +416,14 @@ const InterviewMode = ({ enterInterviewMode, typeOfQuestionDraw }) => {
           {showVerdict ? (
             <Verdict ratingData={ratingData} average={average} />
           ) : null}
+          <Exit
+            color={overlay ? 'white' : 'black'}
+            onClick={() => {
+              window.location.reload(false);
+            }}
+          >
+            <ExitIcon />
+          </Exit>
           }
         </>
       )}

@@ -46,6 +46,21 @@ const fadeIn = keyframes`
             /* transform: translateX(0px); */
     }
 `;
+
+const fadeOut = keyframes`
+    from {
+      transform: scale(1);
+      opacity: 1;
+      /* transform: translateY(30px); */
+            /* transform: translateX(30px); */
+    }
+    to {
+      transform: scale(0);
+      opacity: 0;
+      /* transform: translateY(0px); */
+            /* transform: translateX(0px); */
+    }
+`;
 const shadowPulse = keyframes`
 
      0% {
@@ -251,7 +266,7 @@ const Title = styled.h3`
       position: relative;
       width: 100%;
       height: 100%;
-      fill: black;
+      fill: #091d34;
       top: -15px;
       right: -25px;
     }
@@ -276,13 +291,20 @@ const CustomTooltip = styled.div`
     left: 20px;
     bottom: 70px;
 
+    
+/* 
+    &.appear {
+    animation: ${fadeOut} 0.3s cubic-bezier(0.08, 1.17, 0.96, 0.94) forwards;
+
+    } */
+
     @media ${device.tablet} {
       position: absolute;
       /* top: -10px; */
       /* right: -10px; */
       left: unset;
-      right: -240px;
-      bottom: -80px;
+      right: -220px;
+      bottom: -65px;
     }
   }
 `;
@@ -671,10 +693,9 @@ const Interview = () => {
         .filter((tech) => tech[2] === 'Backend Developer' && tech[1] >= 5)
         .map((stackTech) => stackTech[0]);
     } else if (stack === 'fullstack') {
-      return techs.map((tech) => {
-        if (tech[1] >= 5) return tech[0];
-      });
-    } else {
+      return techs
+        .filter((tech) => tech[2] !== 'other' && tech[1] >= 5)
+        .map((stackTech) => stackTech[0]);
     }
   };
 
