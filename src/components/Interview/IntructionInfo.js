@@ -206,10 +206,9 @@ const Instruction = ({
 
           selectedQuestions.push(selectedQuestion);
           selectedNumbers.push(randomNumberQ);
+        } else {
+          i -= 1;
         }
-        // else {
-        //   i = -1;
-        // }
       }
     } else if (typeOfDistribution === 'between-categories') {
       const numOfCat = selectedCategories.length;
@@ -238,8 +237,7 @@ const Instruction = ({
 
           selectedQuestions.push(choosenQuestion);
           selectedQuestionsId.push(choosenQuestion.id);
-        }
-        // else i -= 1;
+        } else i -= 1;
       }
     } else if (typeOfDistribution === 'many-categories') {
       selectedCategories.forEach((category) => {

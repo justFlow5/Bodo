@@ -60,6 +60,7 @@ const FeedbackTitle = styled.h1`
   line-height: 1.4;
   font-weight: 600;
   letter-spacing: 0.8px;
+  text-shadow: 2px 2px 2px ${({ color }) => color};
   transition: all 0.3s;
 `;
 
@@ -74,7 +75,7 @@ const GoBackButton = styled.button`
   font-size: 19px;
   letter-spacing: 0.8px;
   background: #4e5555;
-  color: #bdbfbf;
+  color: #ececec;
   transition: all 0.3s;
   &:hover {
     background: #232b2b;
@@ -128,7 +129,7 @@ const Verdict = ({ rateData, average }) => {
   const chooseColor = () => {
     if (average < 3) return `#ff3333`;
     else if (average < 4) return `#456aaf`;
-    else return `#14b521`;
+    else return `#23e832`;
   };
 
   return average >= 0 ? (
@@ -138,7 +139,7 @@ const Verdict = ({ rateData, average }) => {
         <span className="divider">/</span>
         <span className="max">5</span>
       </Score>
-      <FeedbackTitle>Feedback</FeedbackTitle>
+      <FeedbackTitle color={() => chooseColor()}>Feedback</FeedbackTitle>
       <VerdictContent>{verdict}</VerdictContent>
       {/* <Link to="/interview"> */}
       <GoBackButton
