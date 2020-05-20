@@ -33,7 +33,7 @@ html {
   /* background: #E1ECF9; */
   /* background: #acccf1; */
   background: #e1ecf9;
-  height: 100%;
+  /* height: 100%; */
   position: relative;
   }
 

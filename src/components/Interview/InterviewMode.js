@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Interviewers from '../../images/interview/interviewers.jpg';
+import Interviewer from '../../images/interview/interviewer.jpg';
+
 import IntructionInfo from './IntructionInfo';
 import Timer from './Timer';
 import Rating from './Rating';
@@ -69,6 +71,22 @@ const Overlay = styled.section`
       filter: blur(0px) brightness(100%);
       -webkit-filter: blur(0px) brightness(100%);
     }
+
+    &.single {
+      display: inline-block;
+
+      @media ${device.tablet} {
+        display: none;
+      }
+    }
+
+    &.many {
+      display: none;
+
+      @media ${device.tablet} {
+        display: inline-block;
+      }
+    }
   }
 
   transition: 0.5s ease;
@@ -80,8 +98,11 @@ const Overlay = styled.section`
 `;
 
 const TimerContainer = styled.div`
-  height: 150px;
-  width: 220px;
+  border-radius: 5px 0 0 0;
+
+  height: 96px;
+  width: 130px;
+
   background: rgba(255, 255, 255, 0.7);
   display: flex;
   justify-content: center;
@@ -92,34 +113,33 @@ const TimerContainer = styled.div`
   transform: translateX(100%);
   animation: ${fadeInTimer} 0.3s ease forwards;
 
-  /* transition: all 0.3s ease;
-
-  &.active {
-    transform: translateX(0%);
-  } */
+  @media ${device.tablet} {
+    height: 150px;
+    width: 220px;
+  }
 `;
 
 const QuestionContainer = styled.div`
   background: ${({ isAnswer }) =>
     isAnswer ? `rgba(255, 255, 255, 0.7)` : `rgba(25, 28, 29, 0.6)`};
-  width: 45%;
+  width: 90%;
   /* height: 80px; */
   border-radius: 14px;
   display: inline-block;
   position: absolute;
   padding: 15px 20px;
-  top: 20px;
   opacity: 0;
   transform: scale(0);
 
+  top: 13%;
   left: 0;
   right: 0;
+  max-height: 80%;
 
   margin-left: auto;
   margin-right: auto;
   animation: ${fadeIn} 0.3s linear 0.4s forwards;
 
-  max-height: 90%;
   overflow-y: scroll;
 
   transition: all 0.3s;
@@ -128,14 +148,36 @@ const QuestionContainer = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+
+  @media ${device.mobileL} {
+    width: 70%;
+  }
+
+  @media ${device.tablet} {
+    width: 50%;
+    top: 20px;
+    max-height: 90%;
+    padding: 15px 30px;
+  }
 `;
 const QuestionContent = styled.h3`
-  font-size: 26px;
+  font-size: ${({ isAnswer }) => (isAnswer ? `26px` : `21px`)};
+  /* font-size: 26px; */
   line-height: 1.3;
   color: #d4dae0bf;
   color: #d4dae0e6;
+  text-align: center;
+  margin-bottom: ${({ isAnswer }) => (isAnswer ? `20px` : `0px`)};
+
+  /* margin-bottom: 20px; */
+  padding: ${({ isAnswer }) => (isAnswer ? `15px 20px 0` : `0px`)};
+  /* padding: 15px 20px 0; */
 
   color: ${({ isAnswer }) => (isAnswer ? `black` : `#d4dae0e6`)};
+
+  @media ${device.tablet} {
+    font-size: 30px;
+  }
 `;
 
 const AnswerContainer = styled.h3`
@@ -148,8 +190,19 @@ const AnswerContainer = styled.h3`
   color: ${({ isAnswer }) => (isAnswer ? `black` : `#d4dae0e6`)};
 
   & .titleAnswer {
-    font-size: 21px;
-    margin: 10px;
+    font-size: 15px;
+
+    @media ${device.mobileL} {
+      font-size: 17px;
+    }
+
+    @media ${device.tablet} {
+      font-size: 19px;
+    }
+    @media ${device.laptop} {
+      font-size: 21px;
+      margin: 10px;
+    }
   }
 
   & .mainAnswer {
@@ -158,8 +211,13 @@ const AnswerContainer = styled.h3`
   }
 
   & .subAnswer {
-    font-size: 16px;
-    margin: 10px;
+    font-size: 14px;
+    margin: 6px 10px;
+
+    @media ${device.tablet} {
+      font-size: 16px;
+      margin: 10px;
+    }
   }
 `;
 
@@ -170,12 +228,14 @@ const NextQuestionButton = styled.button`
   bottom: 5px;
   right: 10px;
   cursor: pointer;
-  width: 160px;
-  height: 40px;
+
+  width: 135px;
+  height: 35px;
+  font-size: 16px;
+
   padding: 6px 14px;
   background: #4e5555;
   color: #bdbfbf;
-  font-size: 20px;
   letter-spacing: 0.8px;
   transition: all 0.3s;
 
@@ -193,6 +253,18 @@ const NextQuestionButton = styled.button`
       color: #bdbfbf;
       cursor: not-allowed;
     }
+  }
+
+  @media ${device.mobileL} {
+    width: 145px;
+    height: 38px;
+    font-size: 17px;
+  }
+
+  @media ${device.tablet} {
+    width: 160px;
+    height: 40px;
+    font-size: 20px;
   }
 `;
 
@@ -340,7 +412,12 @@ const InterviewMode = ({ enterInterviewMode, typeOfQuestionDraw }) => {
       <img
         src={Interviewers}
         alt="interviewers"
-        className={overlay ? '' : 'overlayOff'}
+        className={overlay ? 'many' : 'many overlayOff'}
+      />
+      <img
+        src={Interviewer}
+        alt="interviewers"
+        className={overlay ? 'single' : 'single overlayOff'}
       />
       {enterInterviewMode && (
         <>
@@ -381,7 +458,7 @@ const InterviewMode = ({ enterInterviewMode, typeOfQuestionDraw }) => {
                       </p>
                     ) : (
                       Object.keys(drawnQuestions[currentQuestion].answer)
-                        // .reverse()
+                        .sort()
                         .map((ans, id) =>
                           ans === 'title' ? (
                             <p className="titleAnswer">

@@ -11,7 +11,7 @@ const RatingContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
-  margin-top: 20px;
+  margin-top: 35px;
   align-items: center;
   padding-bottom: 50px;
 
@@ -30,11 +30,27 @@ const RatingContainer = styled.div`
 const LabelContainer = styled.div`
   position: relative;
   display: inline-block;
-  font-size: 14px;
+  font-size: 12px;
   width: 50%;
-  margin-left: 20px;
-  padding: 10px 20px;
+  margin-left: 10px;
+  padding: 0;
   height: 55px;
+  top: -10px;
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media ${device.tablet} {
+    width: 50%;
+    /* top: unset; */
+    margin-left: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    display: inline-block;
+    text-align: left;
+  }
 `;
 
 const useStyles = makeStyles({

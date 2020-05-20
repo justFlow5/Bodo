@@ -501,8 +501,8 @@ const TechsList = styled.form`
   }
 
   @media ${device.laptop} {
-    width: 55px;
-    height: 55px;
+    /* width: 55px;
+    height: 55px; */
     width: 100%;
   }
 `;
@@ -583,7 +583,7 @@ const InterviewSection = styled.section`
   & img {
     position: fixed;
     width: 50%;
-    bottom: 6%;
+    bottom: 4%;
     right: -8%;
     @media ${device.tablet} {
       position: fixed;

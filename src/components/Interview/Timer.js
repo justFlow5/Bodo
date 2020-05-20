@@ -4,17 +4,28 @@ import styled, { keyframes } from 'styled-components';
 import { device } from '../utils/media';
 
 const StyledTimer = styled.div`
-  font-size: 42px;
-  border: 5px solid #005580;
+  border: 3px solid #005580;
+
   border-radius: 50px;
-  width: 45px;
-  height: 45px;
-  padding: 40px;
+
+  width: 30px;
+  height: 30px;
+  padding: 30px;
+  font-size: 27px;
+
   display: flex;
   justify-content: center;
   align-items: center;
   color: #005580;
   background: #cce0ff;
+
+  @media ${device.tablet} {
+    font-size: 42px;
+    width: 45px;
+    height: 45px;
+    padding: 40px;
+    border: 5px solid #005580;
+  }
 `;
 
 const Timer = ({ activateOverlay, setIsTimer, setIsAnswer, setIsQuestion }) => {

@@ -26,7 +26,7 @@ const InfoContainer = styled.div`
 
 const InfoContent = styled.div`
   position: relative;
-  width: 300px;
+  width: 250px;
   height: 170px;
   border: 1px solid #a6a6a6;
   border-radius: 4px;
@@ -43,6 +43,10 @@ const InfoContent = styled.div`
   -moz-box-shadow: 0px 0px 26px -6px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 26px -6px white;
   transition: all 0.3s;
+
+  @media ${device.tablet} {
+    width: 300px;
+  }
 
   &.hide {
     display: none;
@@ -68,11 +72,11 @@ const InfoContent = styled.div`
 `;
 
 const InfoContentText = styled.h3`
-  font-size: 15px;
+  font-size: 14px;
   color: black;
   padding: 15px 20px;
-  margin-bottom: 10px;
-  line-height: 1.2;
+  margin-bottom: 5px;
+  line-height: 1.3;
   text-align: left;
 
   /* top: 50%;
@@ -80,6 +84,10 @@ const InfoContentText = styled.h3`
 
   &.goodluck {
     font-size: 24px;
+  }
+
+  @media ${device.mobileL} {
+    font-size: 16px;
   }
 `;
 
@@ -96,15 +104,17 @@ const NextButton = styled.button`
   cursor: pointer;
   width: 30%;
   height: 30px;
-  color: black;
-  border: 1px solid black;
+  color: #3a3737;
+  border: 1px solid #ad9f9f;
   border-radius: 5px;
+  letter-spacing: 0.8px;
   text-align: center;
-  font-size: 14px;
+  font-size: 15px;
   transition: all 0.3s;
 
   &:hover {
-    background: silver;
+    background: #d0d0d0;
+    color: black;
   }
 `;
 
@@ -158,7 +168,7 @@ const Instruction = ({
         // break;
         return typeOfInterview === 'many-categories'
           ? `${manyCats} ${categories} questions + 1 HR question.`
-          : `${oneCategory} ${categories} + 1 HR question.`;
+          : `${oneCategory} ${categories} questions + 1 HR question.`;
 
         // return `${oneCategory} ${selectedCategories.join(', ')}`;
 
