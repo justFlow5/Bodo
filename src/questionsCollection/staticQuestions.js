@@ -2299,7 +2299,7 @@ export let staticQuestions = [{
     {
         text: 'Tell me a little about yourself.',
         answer: {
-            title: `Example: I am one of the top graduates of my batch in College. I am known in school as an organizer, having held several committees and organizations since my first year. I am a dedicated person who never stops working on something until it is perfect. It would be a pleasure for me to discuss how I can be such an asset to your company.
+            title: `,,I am one of the top graduates of my batch in College. I am known in school as an organizer, having held several committees and organizations since my first year. I am a dedicated person who never stops working on something until it is perfect. It would be a pleasure for me to discuss how I can be such an asset to your company."
     `,
             par1: `Try to cover your accomplishment in your answer.`,
             par2: `Talk about the work or project that resembles the requirement of the position.
@@ -2325,7 +2325,7 @@ export let staticQuestions = [{
     {
         text: 'Why do you want to work for this company?',
         answer: {
-            title: `Example: Your company made its fortune in making great products that help people do X. But on top of that, it is the kind of place where I can fit in and excel, so I was thrilled to see you have this opening.  Your company believes in providing superior service, and I share the same value. It enables me to not only fit into your organization but complement the team as well.
+            title: `,,Your company made its fortune in making great products that help people do X. But on top of that, it is the kind of place where I can fit in and excel, so I was thrilled to see you have this opening.  Your company believes in providing superior service, and I share the same value. It enables me to not only fit into your organization but complement the team as well."
     `,
             par1: `Conduct thorough research of the company and company’s top executive before facing interview
         `,
@@ -2350,7 +2350,7 @@ export let staticQuestions = [{
     {
         text: 'Do you consider yourself successful?',
         answer: {
-            title: `Example: I feel successful when I meet my short term as well as the long-term goals. I try to achieve the set goals and work hard as much as I can. I try to reach those goals and achieve the desired outcome. I want to recognize myself as someone with a progressive attitude who does his best and gives 100% to attain goals.  To me, success is not just my personal achievements but also by the efforts of the people around me.
+            title: `,,I feel successful when I meet my short term as well as the long-term goals. I try to achieve the set goals and work hard as much as I can. I try to reach those goals and achieve the desired outcome. I want to recognize myself as someone with a progressive attitude who does his best and gives 100% to attain goals.  To me, success is not just my personal achievements but also by the efforts of the people around me."
     `,
             par1: `Summarize your career goals
         `,
@@ -2372,7 +2372,7 @@ export let staticQuestions = [{
     {
         text: 'What would you consider your greatest strengths & weakness?',
         answer: {
-            title: `Example:I am very comfortable working with different groups of people. My strength is my analytical and planning skills, developed over the years. It helps me to complete my work before the deadline. I am a little bit nervous while speaking in a group, but I have given many presentations to overcome this.
+            title: `,,I am very comfortable working with different groups of people. My strength is my analytical and planning skills, developed over the years. It helps me to complete my work before the deadline. I am a little bit nervous while speaking in a group, but I have given many presentations to overcome this."
     `,
             par1: `Focus mostly on strengths
         `,
@@ -2399,7 +2399,7 @@ export let staticQuestions = [{
     {
         text: 'What motivates you?',
         answer: {
-            title: `Example: Many things motivate me. My goal is to be the best of what I can be, often motivates me to go beyond my own expectations. When I see myself being productive every day, it motivates me to continue.
+            title: `,,Many things motivate me. My goal is to be the best of what I can be, often motivates me to go beyond my own expectations. When I see myself being productive every day, it motivates me to continue."
     `,
             par1: `Sometimes, the best solution is, to be honest- you can say money is your motivational factor, but it should be your last option
         `,
@@ -2425,7 +2425,7 @@ export let staticQuestions = [{
     {
         text: 'Why should we hire you?',
         answer: {
-            title: `For this particular job, I have the perfect combination of skills and experience that is required. I also bring rich experience of strong analytical and problem-solving skills that I have gained while working with other companies. My dedication to excellent work standards will add value to the team and the company.
+            title: `,,For this particular job, I have the perfect combination of skills and experience that is required. I also bring rich experience of strong analytical and problem-solving skills that I have gained while working with other companies. My dedication to excellent work standards will add value to the team and the company."
     `,
             par1: `Emphasize on your uniqueness but keep it concise
         `,
@@ -2455,7 +2455,7 @@ export let staticQuestions = [{
     {
         text: 'What is your greatest fear?',
         answer: {
-            title: `Example: I work too hard sometimes and care too much about my work. I take my tasks back home and work even during the weekends. You can call me a workaholic, but my family always points out that this is not right. Slowly and steadily I am realizing that speed and working smartly are the key. So, I have begun to reach out to my colleagues for ready-to-use workarounds so that I can give more time to my family.
+            title: `,,I work too hard sometimes and care too much about my work. I take my tasks back home and work even during the weekends. You can call me a workaholic, but my family always points out that this is not right. Slowly and steadily I am realizing that speed and working smartly are the key. So, I have begun to reach out to my colleagues for ready-to-use workarounds so that I can give more time to my family."
     `,
             par1: `Don’t simply talk about your weaknesses, your interviewer genuinely wants you to talk about your loopholes! Try to resist the urge to give him/her more points to reject you. Answer diplomatically.
         `,
@@ -2473,7 +2473,7 @@ export let staticQuestions = [{
     {
         text: 'What makes you unique?',
         answer: {
-            title: `Example: What makes me unique is my experience of having spent four years in retail. Because I’ve had first-hand experience fielding shoppers’ questions, feedback and complaints, I know what customers want. I know what it takes to create a positive consumer experience because I’ve had that direct interaction, working directly with consumers in person.
+            title: `,,What makes me unique is my experience of having spent four years in retail. Because I’ve had first-hand experience fielding shoppers’ questions, feedback and complaints, I know what customers want. I know what it takes to create a positive consumer experience because I’ve had that direct interaction, working directly with consumers in person."
     `,
             par1: `Employers often ask this question to identify why you might be more qualified than other candidates they’re interviewing. To answer, focus on why hiring you would benefit the employer.
         `,
@@ -2499,7 +2499,7 @@ export let staticQuestions = [{
     {
         text: 'Where do you see yourself in five years?',
         answer: {
-            title: `Example: In five years, I’d like to be an industry expert in my field, able to train and mentor students and entry-level designers alike. I would also like to gain specialized experience in user experience to be a well-rounded contributor working with design and marketing teams on large-scale projects that make a difference both in the company and the global community.
+            title: `,,In five years, I’d like to be an industry expert in my field, able to train and mentor students and entry-level designers alike. I would also like to gain specialized experience in user experience to be a well-rounded contributor working with design and marketing teams on large-scale projects that make a difference both in the company and the global community."
     `,
             par1: `Understanding how you imagine your life in the future can help employers understand whether the trajectory of the role and company fits in with your personal development goals. 
         `,
@@ -2524,7 +2524,7 @@ export let staticQuestions = [{
     {
         text: 'Can you tell me about a difficult work situation and how you overcame it?',
         answer: {
-            title: `Example: It was the first day of my boss’s two-week vacation and our agency’s highest-paying client threatened to leave because he didn’t feel he was getting the personalized service he was promised. I spent my lunch hour on the phone with him, talking through his concerns. We even brainstormed ideas for his next campaign. He was so grateful for the personal attention that he signed another six-month contract before my boss even returned from her trip.
+            title: `,,It was the first day of my boss’s two-week vacation and our agency’s highest-paying client threatened to leave because he didn’t feel he was getting the personalized service he was promised. I spent my lunch hour on the phone with him, talking through his concerns. We even brainstormed ideas for his next campaign. He was so grateful for the personal attention that he signed another six-month contract before my boss even returned from her trip."
     `,
             par1: `This question is often used to assess how well you perform under pressure as well as your problem-solving abilities.  
         `,
@@ -2551,7 +2551,7 @@ export let staticQuestions = [{
     {
         text: 'What is your salary range expectation?',
         answer: {
-            title: `Example: My salary expectation is between $XX,XXX and $XX,XXX, which is the average salary for a candidate with my level of experience in this city. However, I am flexible.
+            title: `,,My salary expectation is between $XX,XXX and $XX,XXX, which is the average salary for a candidate with my level of experience in this city. However, I am flexible."
     `,
             par1: `Interviewers ask this question to make sure your expectations are in line with the amount they’ve budgeted for the role. 
         `,
@@ -2579,7 +2579,7 @@ export let staticQuestions = [{
     {
         text: 'Do you have any questions?',
         answer: {
-            title: `Example: “What do you love about working for this company?”,  “What would success look like in this role?”, “What are some of the challenges people typically face in this position?”
+            title: `“What do you love about working for this company?”,  “What would success look like in this role?”, “What are some of the challenges people typically face in this position?”
     `,
             par1: `This might be one of the most important questions asked during the interview process because it allows you to explore any subject that hasn’t been addressed and shows the interviewer you’re excited about the role. 
         `,

@@ -80,14 +80,16 @@ width: 100%;
 height: 100%;
 height: 100vh;
 position: relative;
- background: url(${Background}) no-repeat;
+  background: url(${Background}) no-repeat;
   background-size: cover;
   /* padding-bottom: 100px; */
   background-color: #fff;
   z-index: 1;
- 
+
+
+
   & .left {
-    width: 100px;
+    width: 85px;
     position: absolute;
     /* top: 60%; */
     top:65%;
@@ -95,6 +97,9 @@ position: relative;
     left: 0;
     z-index: 999;
     background: no-repeat;
+    @media ${device.mobileL} {
+      width: 100px;
+}
 
     @media ${device.tablet} {
      
@@ -109,7 +114,7 @@ position: relative;
 
   & .right {
     position: absolute;
-    top: 50%;
+    top: 40%;
     right: 0;
   
     width: 160px;
@@ -119,11 +124,11 @@ position: relative;
 
     background: no-repeat;
 
-    @media ${device.mobileL} {
+    /* @media ${device.mobileL} {
   
       top: 40%;
 
-}
+} */
     @media ${device.tablet} {
       width: 230px;
       top: 30%;

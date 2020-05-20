@@ -29,8 +29,10 @@ const Interview_Checkbox = ({ id, singleTech, updateSelectedData }) => {
   const [checked, setChecked] = useState(false);
 
   const toggleCheckbox = (e) => {
-    setChecked(e.target.checked);
-    updateSelectedData(e.target.checked, e.target.name);
+    setChecked(!checked);
+    updateSelectedData(e.target.checked, singleTech);
+    console.log('e.target.checked: ', checked);
+    console.log('e.target.id: ', e.target.id);
   };
 
   //   useEffect(() => {
@@ -41,7 +43,7 @@ const Interview_Checkbox = ({ id, singleTech, updateSelectedData }) => {
     <Checkbox
       id={id}
       type="checkbox"
-      name={singleTech}
+      // name={singleTech}
       onChange={(e) => toggleCheckbox(e)}
       checked={checked}
     />

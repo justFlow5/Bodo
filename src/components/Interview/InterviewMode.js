@@ -8,8 +8,10 @@ import Timer from './Timer';
 import Rating from './Rating';
 import Verdict from './Verdict';
 import ExitIcon from '../../images/interview/Exit';
+import StopIcon from '../../images/interview/StopIcon';
 
 import { device } from '../utils/media';
+import InformationIcon from '../../images/interview/Information';
 
 const fadeIn = keyframes`
     from {
@@ -116,6 +118,58 @@ const TimerContainer = styled.div`
   @media ${device.tablet} {
     height: 150px;
     width: 220px;
+  }
+`;
+
+const StopIconContainer = styled.div`
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  display: inline-block;
+  top: 3px;
+  right: 3px;
+  cursor: pointer;
+  z-index: 1000;
+
+  @media ${device.tablet} {
+    width: 30px;
+    height: 30px;
+  }
+
+  &[aria-label]:after {
+    opacity: 0;
+    content: attr(aria-label);
+    padding: 4px 8px;
+    border-radius: 7px;
+    position: absolute;
+    height: 35px;
+    width: 150px;
+    left: -430%;
+    top: -140%;
+    white-space: pre-wrap;
+    line-height: 1.4;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    font-size: 11px;
+  }
+
+  &[aria-label]:hover:after {
+    opacity: 1;
+    /* transition-delay: 0.3s; */
+  }
+
+  & svg {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    fill: #40434a;
+    transition: all 0.3s;
+    &:hover {
+      fill: black;
+    }
   }
 `;
 
@@ -338,6 +392,7 @@ const InterviewMode = ({ enterInterviewMode, typeOfQuestionDraw }) => {
   const [isAnswer, setIsAnswer] = useState(false);
   const [isQuestion, setIsQuestion] = useState(false);
   const [isTimer, setIsTimer] = useState(false);
+  const [isCountDown, setIsCountDown] = useState(true);
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [ratingData, setRatingData] = useState([]);
@@ -360,6 +415,14 @@ const InterviewMode = ({ enterInterviewMode, typeOfQuestionDraw }) => {
 
   const showTimer = () => {
     setTimeout(() => setIsTimer(true), 3000);
+  };
+
+  const showAnswer = () => {
+    console.log('IM CLICKEDD HELL YEHA');
+    setIsTimer(false);
+    activateOverlay(true);
+    setIsAnswer(true);
+    setIsQuestion(true);
   };
 
   const handleConfirmation = () => {
@@ -432,11 +495,21 @@ const InterviewMode = ({ enterInterviewMode, typeOfQuestionDraw }) => {
           />
           {isTimer && (
             <TimerContainer>
+              <StopIconContainer
+                onClick={showAnswer}
+                aria-label="I have nothing more to add - stop timer"
+              >
+                <StopIcon />
+              </StopIconContainer>
+
+              {/* </div> */}
               <Timer
-                activateOverlay={activateOverlay}
-                setIsTimer={setIsTimer}
-                setIsAnswer={setIsAnswer}
-                setIsQuestion={setIsQuestion}
+                // activateOverlay={activateOverlay}
+                // setIsTimer={setIsTimer}
+                // setIsAnswer={setIsAnswer}
+                // setIsQuestion={setIsQuestion}
+                showAnswer={showAnswer}
+                isTimer={isTimer}
               />
             </TimerContainer>
           )}
@@ -458,14 +531,16 @@ const InterviewMode = ({ enterInterviewMode, typeOfQuestionDraw }) => {
                       </p>
                     ) : (
                       Object.keys(drawnQuestions[currentQuestion].answer)
-                        .sort()
+                        .sort((a, b) =>
+                          a.toLowerCase() > b.toLowerCase() ? -1 : 1
+                        )
                         .map((ans, id) =>
                           ans === 'title' ? (
-                            <p className="titleAnswer">
+                            <p className="titleAnswer" id={id}>
                               {drawnQuestions[currentQuestion].answer[ans]}
                             </p>
                           ) : (
-                            <p className="subAnswer">
+                            <p className="subAnswer" id={id}>
                               {drawnQuestions[currentQuestion].answer[ans]}
                             </p>
                           )

@@ -689,7 +689,7 @@ const SpeechBubbleArrow = styled.div`
 `;
 
 const Interview = () => {
-  const [info, setInfo] = useState('');
+  const [isChange, setIsChange] = useState(false);
   const [stack, setStack] = useState('');
   const [isTechSelected, setIsTechSelected] = useState(false);
 
@@ -766,6 +766,12 @@ const Interview = () => {
   useEffect(() => {
     localStorage.setItem('selectedTechs', JSON.stringify([]));
   }, [stack]);
+
+  useEffect(() => {
+    const selectedTechs = JSON.parse(localStorage.getItem('selectedTechs'));
+    selectedTechs.length > 0 && setIsTechSelected(true);
+    console.log('selectedTechs: ', selectedTechs);
+  }, [isChange]);
 
   return (
     <>
