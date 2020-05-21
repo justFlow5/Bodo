@@ -140,34 +140,49 @@ const LogoHolder = styled.div`
 
   cursor: pointer;
 
-  @media ${device.mobileL} {
-    margin-bottom: 30px;
+  @media ${device.mobileS} {
+    margin-bottom: 20px;
+  }
+
+  @media ${device.mobileM} {
+    margin-bottom: 45px;
   }
   & span {
     font-family: 'Merienda', cursive;
     font-size: 45px;
     color: #113ee0;
 
-    @media ${device.mobileL} {
+    @media ${device.mobileM} {
       font-size: 55px;
+    }
+
+    @media ${device.mobileM} {
+      font-size: 65px;
+    }
+    @media ${device.tablet} {
+      font-size: 70px;
     }
   }
   & img {
     display: inline-block;
     /* margin: 0 auto; */
     /* width: 200px; */
-    width: 50px;
+    width: 55px;
     pointer-events: none;
     animation: ${rotate} 0.7s ease-out 1s;
-    @media ${device.mobileL} {
-      width: 70px;
+
+    @media ${device.mobileM} {
+      width: 75px;
+    }
+    @media ${device.tablet} {
+      width: 80px;
     }
   }
 `;
 
 const SignIpUpWindow = styled.div`
   width: 85vw;
-  height: 80vh;
+  /* min-height: 79vh; */
   border: 1px solid #a8a8a8;
   border-radius: 6px;
   background: #add8e6;
@@ -177,35 +192,43 @@ const SignIpUpWindow = styled.div`
   -webkit-box-shadow: 0px 0px 20px -6px rgba(0, 0, 128, 1);
   -moz-box-shadow: 0px 0px 20px -6px rgba(0, 0, 128, 1);
   box-shadow: 0px 0px 20px -6px rgba(0, 0, 128, 1);
+
+  @media ${device.mobileM} {
+    /* min-height: 65vh; */
+  }
+  @media ${device.mobileL} {
+    /* font-size: 65px; */
+  }
+
   @media ${device.mobileL} {
     /* max-width: 50vw;
     height: 65vh; */
     max-width: 85vw;
-    height: 75vh;
+    /* height: 75vh; */
   }
   @media (min-width: 540px) {
     /* max-width: 50vw;
     height: 65vh; */
     max-width: 70vw;
-    height: 75vh;
+    /* min-height: 75vh; */
   }
   @media ${device.tablet} {
-    width: 50vw;
-    height: 75vh;
+    width: 70vw;
+    /* max-height: 55vh; */
   }
   @media ${device.laptop} {
     width: 30vw;
-    height: 73vh;
+    /* max-height: 20vh; */
   }
 `;
 
-const TitleContainer = styled.h3`
+const TitleContainer = styled.div`
   position: relative;
   width: 100%;
   margin: 15px auto 0;
 
-  @media ${device.mobileL} {
-    margin: 20px auto 30px;
+  @media ${device.mobileM} {
+    margin: 20px auto 35px;
   }
 `;
 
@@ -237,6 +260,20 @@ const ButtonContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+
+  &.alternative {
+    padding-bottom: 47px;
+    @media ${device.mobileM} {
+      padding-bottom: 50px;
+    }
+    @media ${device.mobileL} {
+      padding-bottom: 60px;
+    }
+
+    @media ${device.tablet} {
+      padding-bottom: 70px;
+    }
+  }
 `;
 
 const Button = styled.button`
@@ -247,8 +284,12 @@ const Button = styled.button`
   align-items: center;
   border-radius: 4px;
   width: 70%;
-  font-size: 17px;
+  font-size: 16px;
   height: 40px;
+
+  @media ${device.tablet} {
+    font-size: 17px;
+  }
   /* line-height: 40px; */
 `;
 
@@ -256,7 +297,7 @@ const PassButton = styled(Button)`
   margin: 30px auto 0;
   font-weight: 500;
   background: #3063ffe0;
-  font-size: 19px;
+  font-size: 18px;
   color: #fff;
   transition: all 0.3s;
   &:hover {
@@ -570,7 +611,7 @@ const SignInUpScheme = ({ title, history }) => {
           </Form>
 
           <Separator>OR</Separator>
-          <ButtonContainer>
+          <ButtonContainer className="alternative">
             <GoogleButton onClick={handleGoogleLogin}>
               {/* <span> */}
               <GoogleIcon />
