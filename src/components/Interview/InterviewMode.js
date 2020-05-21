@@ -145,7 +145,7 @@ const StopIconContainer = styled.div`
     height: 35px;
     width: 150px;
     left: -430%;
-    top: -140%;
+    top: -200%;
     white-space: pre-wrap;
     line-height: 1.4;
     z-index: 20;
@@ -154,6 +154,11 @@ const StopIconContainer = styled.div`
     transition: opacity 0.3s;
     pointer-events: none;
     font-size: 11px;
+
+    @media ${device.tablet} {
+      left: -430%;
+      top: -140%;
+    }
   }
 
   &[aria-label]:hover:after {

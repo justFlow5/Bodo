@@ -130,6 +130,10 @@ outline: none;
     background: unset;
 
 }
+
+@media (min-width: 1600px) {
+  left: -390%;
+  }
  
   }
     &:hover::before  {

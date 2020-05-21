@@ -262,7 +262,7 @@ const ButtonContainer = styled.div`
   align-items: center;
 
   &.alternative {
-    padding-bottom: 47px;
+    padding-bottom: 42px;
     @media ${device.mobileM} {
       padding-bottom: 50px;
     }
@@ -271,6 +271,13 @@ const ButtonContainer = styled.div`
     }
 
     @media ${device.tablet} {
+      padding-bottom: 70px;
+    }
+    @media ${device.laptop} {
+      padding-bottom: 80px;
+    }
+
+    @media ${device.laptopL} {
       padding-bottom: 70px;
     }
   }

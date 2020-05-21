@@ -1024,24 +1024,7 @@ export let staticQuestions = [{
 
 
 
-    {
-        text: 'What are some of the advantages/disadvantages of writing JavaScript code in a language that compiles to JavaScript? ',
-        answer: {
-            title: `The let keyword is used to declare variables in JavaScript.`,
-            par1: `let allows you to declare variables that are limited to a scope of a block statement, or expression on which it is used, unlike the var keyword, which defines a variable globally, or locally to an entire function regardless of block scope. `,
-            par2: `The other difference between var and let is that the latter is initialized to a value only when a parser evaluates it (see below).`,
-            par3: `Just like const the let does not create properties of the window object when declared globally (in the top-most scope).`,
 
-
-        },
-        note: '',
-        level: 'junior',
-        known: false,
-        technology: 'JavaScript',
-        id: uuid(),
-        job: 'Frontend Developer'
-
-    },
 
     {
         text: 'What is the difference between `==` and `===`?',
@@ -1770,30 +1753,7 @@ export let staticQuestions = [{
 
     },
 
-    {
-        text: 'List some of the major advantages of React.',
-        answer: {
-            title: `Some of the major advantages of React are:`,
-            par1: ` increases the application’s performance.`,
-            par2: `It can be conveniently used on the client as well as server side
-.      `,
-            par3: `Because of JSX, code’s readability increases
-  `,
-            par4: `React is easy to integrate with other frameworks like Meteor, Angular, etc
-  `,
-            par5: `Using React, writing UI test cases become extremely easy
 
-
-  `,
-        },
-        note: '',
-
-        known: false,
-        technology: 'React',
-        id: uuid(),
-        job: 'Frontend Developer'
-
-    },
 
     {
         text: 'What is JSX?',
@@ -2982,4 +2942,171 @@ export let staticQuestions = [{
         job: 'Frontend Developer'
     },
 
+    // #######################################################################################
+    // #############################           NODEJS          ######### #########################
+    // ###########################################################################################
+
+    {
+        text: 'What is Node.js?',
+        answer: {
+            title: `Node.js is a JavaScript runtime or platform which is built on Google Chrome’s JavaScript v8 engine. This runtime allows executing the JavaScript code on any machine outside a browser (this means that it is the server that executes the Javascript and not the browser).`,
+
+            par1: `Node.js is single-threaded, that employs a concurrency model based on an event loop. It doesn’t block the execution instead registers a callback which allows the application to continue. It means Node.js can handle concurrent operations without creating multiple threads of execution so can scale pretty well.
+        `,
+            par2: `It uses JavaScript along with C/C++ for things like interacting with the filesystem, starting up HTTP or TCP servers and so on. Due to it’s extensively fast growing community and NPM, Node.js has become a very popular, open source and cross-platform app. It allows developing very fast and scalable network app that can run on Microsoft Windows, Linux, or OS X.
+        `,
+            par3: `The areas where it’s perfect to use Node.js: I/O bound Applications, Data Streaming Applications, Data Intensive Real-time Applications (DIRT), JSON APIs based Applications, Single Page Applications
+        `,
+            par4: `At the same time, it’s not suitable for heavy applications involving more of CPU usage.
+        `,
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'NodeJS',
+        id: uuid(),
+        job: 'Backend Developer'
+    },
+
+    {
+        text: 'What are the key features of Node.js?',
+        answer: {
+
+            par1: `Asynchronous event driven IO helps concurrent request handling – All APIs of Node.js are asynchronous. This feature means that if a Node receives a request for some Input/Output operation, it will execute that operation in the background and continue with the processing of other requests. Thus it will not wait for the response from the previous requests.
+        `,
+            par2: `Fast in Code execution – Node.js uses the V8 JavaScript Runtime engine, the one which is used by Google Chrome. Node has a wrapper over the JavaScript engine which makes the runtime engine much faster and hence processing of requests within Node.js also become faster.
+        `,
+            par3: `Single Threaded but Highly Scalable – Node.js uses a single thread model for event looping. The response from these events may or may not reach the server immediately. However, this does not block other operations. Thus making Node.js highly scalable. Traditional servers create limited threads to handle requests while Node.js creates a single thread that provides service to much larger numbers of such requests.
+        `,
+            par4: `Node.js library uses JavaScript – This is another important aspect of Node.js from the developer’s point of view. The majority of developers are already well-versed in JavaScript. Hence, development in Node.js becomes easier for a developer who knows JavaScript.
+        `,
+            par5: `There is an Active and vibrant community for the Node.js framework – The active community always keeps the framework updated with the latest trends in the web development.
+        `,
+            par6: `No Buffering – Node.js applications never buffer any data. They simply output the data in chunks.
+        `,
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'NodeJS',
+        id: uuid(),
+        job: 'Backend Developer'
+    },
+
+    {
+        text: 'Explain how does Node.js work?',
+        answer: {
+
+            par1: `A Node.js application creates a single thread on its invocation. Whenever Node.js receives a request, it first completes its processing before moving on to the next request.
+        `,
+            par2: `Node.js works asynchronously by using the event loop and callback functions, to handle multiple requests coming in parallel. An Event Loop is a functionality which handles and processes all your external events and just converts them to a callback function. It invokes all the event handlers at a proper time. Thus, lots of work is done on the back-end, while processing a single request, so that the new incoming request doesn’t have to wait if the processing is not complete.
+        `,
+            par3: `While processing a request, Node.js attaches a callback function to it and moves it to the back-end. Now, whenever its response is ready, an event is called which triggers the associated callback function to send this response.
+        `,
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'NodeJS',
+        id: uuid(),
+        job: 'Backend Developer'
+    },
+
+    {
+        text: 'Is Node.js entirely based on a single-thread?',
+        answer: {
+
+            par1: `Yes, it’s true that Node.js processes all requests on a single thread. But it’s just a part of the theory behind Node.js design. In fact, more than the single thread mechanism, it makes use of events and callbacks to handle a large no. of requests asynchronously.
+        `,
+            par2: `Moreover, Node.js has an optimized design which utilizes both JavaScript and C++ to guarantee maximum performance. JavaScript executes at the server-side by Google Chrome v8 engine. And the C++ lib UV library takes care of the non-sequential I/O via background workers.
+        `,
+            par3: `To explain it practically, let’s assume there are 100s of requests lined up in Node.js queue. As per design, the main thread of Node.js event loop will receive all of them and forwards to background workers for execution. Once the workers finish processing requests, the registered callbacks get notified on event loop thread to pass the result back to the user.
+        `,
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'NodeJS',
+        id: uuid(),
+        job: 'Backend Developer'
+    },
+
+    {
+        text: 'What is Callback in Node.js?',
+        answer: {
+
+            par1: `We may call “callback” as an asynchronous equivalent for a function. Node.js makes heavy use of callbacks and triggers it at the completion of a given task. All the APIs of Node.js are written in such a way that they support callbacks.
+        `,
+            par2: `Moreover, Node.js has an optimized design which utilizes both JavaScript and C++ to guarantee maximum performance. JavaScript executes at the server-side by Google Chrome v8 engine. And the C++ lib UV library takes care of the non-sequential I/O via background workers.
+        `,
+            par3: `For example, suppose we have a function to read a file, as soon as it starts reading the file, Node.js return the control immediately to the execution environment so that the next instruction can be executed. Once file read operation is complete, it will call the callback function and pass the contents of the file as its arguments. Hence, there is no blocking or wait, due to File I/O. This functionality makes Node.js as highly scalable, using it processes a high number of requests without waiting for any function to return the expected result.
+        `,
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'NodeJS',
+        id: uuid(),
+        job: 'Backend Developer'
+    },
+
+    {
+        text: 'What is NPM in Node.js?',
+        answer: {
+            title: `NPM stands for Node Package Manager. It provides following two main functionalities.`,
+
+            par1: `It works as an Online repository for node.js packages/modules which are present at <nodejs.org>.
+        `,
+            par2: `It works as Command line utility to install packages, do version management and dependency management of Node.js packages.
+        `,
+
+
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'NodeJS',
+        id: uuid(),
+        job: 'Backend Developer'
+    },
+
+    {
+        text: 'What is package.json? Who uses it?',
+        answer: {
+
+            par1: `It is a plain JSON (JavaScript Object Notation) text file which contains all metadata information about Node.js Project or application.
+        `,
+            par2: `This file should be present in the root directory of every Node.js Package or Module to describe its metadata in JSON format.
+        `,
+            par3: `The areas where it’s perfect to use Node.js: I/O bound Applications, Data Streaming Applications, Data Intensive Real-time Applications (DIRT), JSON APIs based Applications, Single Page Applications
+        `,
+            par4: `The file is named as “package” because Node.js platform treats every feature as a separate component. Node.js calls these as Package or Module.
+        `,
+            par5: `NPM (Node Package Manager) uses <package.json> file. It includes details of the Node.js application or package. This file contains a no. of different directives or elements. These directives guide NPM, about how to handle a module or package.
+        `,
+
+
+        },
+        note: '',
+
+        known: false,
+        technology: 'NodeJS',
+        id: uuid(),
+        job: 'Backend Developer'
+    },
 ]
