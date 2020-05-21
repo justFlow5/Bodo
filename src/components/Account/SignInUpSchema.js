@@ -228,7 +228,8 @@ const TitleContainer = styled.div`
   margin: 15px auto 0;
 
   @media ${device.mobileM} {
-    margin: 20px auto 35px;
+    /* margin: 20px auto 35px; */
+    margin: 20px auto 20px;
   }
 `;
 
@@ -278,7 +279,7 @@ const ButtonContainer = styled.div`
     }
 
     @media ${device.laptopL} {
-      padding-bottom: 70px;
+      padding-bottom: 50px;
     }
   }
 `;
