@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
 import 'reset-css';
-// import NavBar from './components/Navbar';
-// import AddQuestionForm from './components/pages/AddQuestionForm';
-import AppRouter from './AppRouter';
+import AppRouter from './router/AppRouter';
 
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 
@@ -20,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
 
 html {
   height: 100%;
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
 }
 
   body {

@@ -1,17 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-import Interviewers from '../../images/interview/interviewers.jpg';
-import Interviewer from '../../images/interview/interviewer.jpg';
+
+import Interviewers from '../../images/interviewMode/interviewers.jpg';
+import Interviewer from '../../images/interviewMode/interviewer.jpg';
+import ExitIcon from '../../images/interviewMode/Exit';
+import StopIcon from '../../images/interviewMode/StopIcon';
 
 import IntructionInfo from './IntructionInfo';
 import Timer from './Timer';
 import Rating from './Rating';
 import Verdict from './Verdict';
-import ExitIcon from '../../images/interview/Exit';
-import StopIcon from '../../images/interview/StopIcon';
 
 import { device } from '../utils/media';
-import InformationIcon from '../../images/interview/Information';
+// import InformationIcon from '../../images/interviewMode/Information';
 
 const fadeIn = keyframes`
     from {

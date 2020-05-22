@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { debounce } from 'lodash';
 import { device } from '../utils/media';
-import MainNavbar from '../../components/header/Main-Navbar';
+import MainNavbar from '../header/Main-Navbar';
 
 import styled, { keyframes } from 'styled-components';
 
@@ -14,9 +14,9 @@ import {
   loginAnonimously,
 } from '../../firebase/base';
 
-import Background from '../../images/bg.svg';
-import Left from '../../images/left.svg';
-import Right from '../../images/right.svg';
+import Background from '../../images/frontPage/bg.svg';
+import Left from '../../images/frontPage/left.svg';
+import Right from '../../images/frontPage/right.svg';
 
 import Free from '../../images/frontPage/free.png';
 import Database from '../../images/frontPage/database.png';

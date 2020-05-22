@@ -1,32 +1,25 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useCallback } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Link, withRouter } from 'react-router-dom';
 
 import Tooltip from '@material-ui/core/Tooltip';
-
-import { firebase, googleAuthProvider } from '../../firebase/base';
-
-import { validateEmail } from '../utils/helperFunctions';
-
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 
-import { device } from '../utils/media';
+import GoogleIcon from '../../images/loginPage/googleIcon';
+import AnonimousIcon from '../../images/loginPage/anonimousIcon';
+import InterviewPic from '../../images/loginPage/interviewPic.jpg';
+import InterviewPic2 from '../../images/loginPage/happyInterview.jpg';
+import InterviewPic3 from '../../images/loginPage/studying.jpg';
+import clover from '../../images/loginPage/clover2.png';
 
-import GoogleIcon from '../../images/googleIcon';
-
-import AnonimousIcon from '../../images/anonimousIcon';
-
-import InterviewPic from '../../images/interviewPic.jpg';
-import InterviewPic2 from '../../images/happyInterview.jpg';
-import InterviewPic3 from '../../images/studying.jpg';
-
-import clover from '../../images/clover2.png';
-
+import { firebase } from '../../firebase/base';
 import {
   handleGoogleLogin,
   handleAnonimousLogin,
 } from '../../firebase/firebaseFuntions';
+
+import { device } from '../utils/media';
 
 const rotate = keyframes`
 0% {
@@ -64,7 +57,6 @@ const PicWrapperLeft = styled.div`
     flex-direction: column;
     justify-content: space-around;
     & .left-top-pic {
-      /* margin-left: 35px; */
       width: 210px;
       height: 150px;
       align-self: flex-start;
@@ -74,7 +66,6 @@ const PicWrapperLeft = styled.div`
       }
     }
     & .left-bottom-pic {
-      /* margin-left: 35px; */
       width: 295px;
       height: 190px;
       align-self: flex-end;
@@ -106,19 +97,12 @@ const PicWrapperRight = styled.div`
 const InterviewPic1 = styled.img`
   width: 300px;
   height: 200px;
-  /* position: fixed; */
   border-radius: 50%;
-  /* opacity: 0.6; */
   -webkit-box-shadow: 0px 0px 29px 0px rgba(60, 153, 220, 1);
   -moz-box-shadow: 0px 0px 29px 0px rgba(60, 153, 220, 1);
   box-shadow: 0px 0px 29px 0px rgba(60, 153, 220, 1);
   opacity: 0.7;
-  /* opacity: 1; */
   transition: all 0.3s;
-  /* &:hover {
-    transform: scale(1.07);
-    opacity: 0.8;
-  } */
 `;
 
 const SignInUpWrapper = styled.div`
@@ -132,10 +116,7 @@ const SignInUpWrapper = styled.div`
 
 const LogoHolder = styled.div`
   text-align: center;
-  /* margin: 5px auto 25px; */
   position: relative;
-  /* left: -10px; */
-  /* position: fixed; */
   margin-bottom: 15px;
 
   cursor: pointer;
@@ -165,8 +146,6 @@ const LogoHolder = styled.div`
   }
   & img {
     display: inline-block;
-    /* margin: 0 auto; */
-    /* width: 200px; */
     width: 55px;
     pointer-events: none;
     animation: ${rotate} 0.7s ease-out 1s;
@@ -182,43 +161,31 @@ const LogoHolder = styled.div`
 
 const SignIpUpWindow = styled.div`
   width: 85vw;
-  /* min-height: 79vh; */
   border: 1px solid #a8a8a8;
   border-radius: 6px;
   background: #add8e6;
   background: #fff;
-  /* margin-top: 150px; */
   position: relative;
   -webkit-box-shadow: 0px 0px 20px -6px rgba(0, 0, 128, 1);
   -moz-box-shadow: 0px 0px 20px -6px rgba(0, 0, 128, 1);
   box-shadow: 0px 0px 20px -6px rgba(0, 0, 128, 1);
 
   @media ${device.mobileM} {
-    /* min-height: 65vh; */
   }
   @media ${device.mobileL} {
-    /* font-size: 65px; */
   }
 
   @media ${device.mobileL} {
-    /* max-width: 50vw;
-    height: 65vh; */
     max-width: 85vw;
-    /* height: 75vh; */
   }
   @media (min-width: 540px) {
-    /* max-width: 50vw;
-    height: 65vh; */
     max-width: 70vw;
-    /* min-height: 75vh; */
   }
   @media ${device.tablet} {
     width: 70vw;
-    /* max-height: 55vh; */
   }
   @media ${device.laptop} {
     width: 30vw;
-    /* max-height: 20vh; */
   }
 `;
 
@@ -228,7 +195,6 @@ const TitleContainer = styled.div`
   margin: 15px auto 0;
 
   @media ${device.mobileM} {
-    /* margin: 20px auto 35px; */
     margin: 20px auto 20px;
   }
 `;
@@ -298,7 +264,6 @@ const Button = styled.button`
   @media ${device.tablet} {
     font-size: 17px;
   }
-  /* line-height: 40px; */
 `;
 
 const PassButton = styled(Button)`
@@ -310,8 +275,6 @@ const PassButton = styled(Button)`
   transition: all 0.3s;
   &:hover {
     background: #3063ff;
-    /* background: -webkit-linear-gradient(to right, #2948ff, #396afc);
-    background: linear-gradient(to right, #2948ff, #396afc); */
   }
 `;
 
@@ -354,15 +317,11 @@ const Footer = styled.div`
   margin: 10px auto 0;
   margin-top: auto;
   text-align: center;
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
   position: absolute;
   bottom: 10px;
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
-  /* margin-top: 5px; */
   padding-top: 10px;
 
   @media ${device.mobileL} {
@@ -381,34 +340,6 @@ const Footer = styled.div`
     }
   }
 `;
-
-// function CssTextField(props) {
-//   return (
-//     <TextField
-//       variant="outlined"
-//       id={props.name}
-//       label={props.label}
-//       name={props.name}
-//       type={props.type}
-//       fullWidth
-//       required
-//       value={props.value}
-//       onChange={props.handleChange(props.name)}
-//     />
-//   );
-// }
-
-{
-  /* <CssTextField
-                id="outlined-basic"
-                label="Password"
-                name="password"
-                type="password"
-                value={password}
-            
-                onChange={handleChange}
-              /> */
-}
 
 const PicContainer = styled.div`
   /* display: inline-block; */
@@ -560,7 +491,6 @@ const SignInUpScheme = ({ title, history }) => {
 
   return (
     <PageCointainer>
-      {/* <ContentContainer> */}
       <PicWrapperLeft>
         {' '}
         <PicContainer>
@@ -658,7 +588,6 @@ const SignInUpScheme = ({ title, history }) => {
           <Slogan className="rightside-bottom-text">What you deserve</Slogan>
         </PicContainer>
       </PicWrapperRight>
-      {/* </ContentContainer> */}
     </PageCointainer>
   );
 };

@@ -1,36 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { uuid } from 'uuidv4';
 
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import Tooltip from '@material-ui/core/Tooltip';
-
 import styled, { keyframes } from 'styled-components';
 import Navbar from '../Navbar';
-import ArrowRightAltRoundedIcon from '@material-ui/icons/ArrowRightAltRounded';
-import Jeff from '../../images/jeff2.png';
 
-import Frontend from '../../images/frontend.svg';
-import Frontend2 from '../../images/frontendIcon.js';
-
-// import Backend from '../../images/backend.svg';
-import Backend from '../../images/backendIcon';
-
-import Mean from '../../images/fullstackIcon';
+import Jeff from '../../images/interview/jeff2.png';
+import Frontend2 from '../../images/interview/frontendIcon.js';
+import Backend from '../../images/interview/backendIcon';
+import Mean from '../../images/interview/fullstackIcon';
+import InformationIcon from '../../images/interview/Information';
 
 import Typist from 'react-typist';
-
-import Button from '@material-ui/core/Button';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 import Checkbox from '../forms/Interview_Checkbox';
 
 import InterviewMode from '../Interview/InterviewMode';
 
-import InterviewIcon from '../../images/interview/Information';
-
 import { device } from '../utils/media';
-import InformationIcon from '../../images/interview/Information';
 
 const fadeIn = keyframes`
     from {

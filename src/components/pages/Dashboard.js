@@ -22,7 +22,6 @@ import Datalist from '../forms/Datalist';
 import SimpleBar from 'simplebar-react';
 
 import 'simplebar/dist/simplebar.min.css';
-import Tooltip from '@material-ui/core/Tooltip';
 
 import Checkbox from '../forms/Checkbox';
 import Textarea from '../forms/Textarea';

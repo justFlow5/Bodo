@@ -2,10 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { device } from '../utils/media';
 
-import Logo from '../../images/logo';
-
-// import Logo2 from '../../images/clover8.png';
-import Logo2 from '../../images/clover3.png';
+import Logo2 from '../../images/navbar/clover3.png';
 
 import styled, { keyframes } from 'styled-components';
 
