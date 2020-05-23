@@ -38,8 +38,8 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 import { addQuestion, isQuestion } from '../localStorage';
 
-import { device } from '../utils/media';
-import Navbar from '../Navbar';
+import { device } from '../mediaQueries/media';
+import Navbar from '../navbars/Navbar';
 
 const useStyles = makeStyles((theme) =>
   createStyles({

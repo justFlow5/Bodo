@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import SearchIcon from '@material-ui/icons/Search';
-import { device } from '../utils/media';
+import { device } from '../mediaQueries/media';
 
 const InputContainer = styled.div`
   position: relative;

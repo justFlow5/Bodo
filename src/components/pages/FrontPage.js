@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { debounce } from 'lodash';
-import { device } from '../utils/media';
-import MainNavbar from '../header/Main-Navbar';
+import { device } from '../mediaQueries/media';
+import MainNavbar from '../navbars/Main-Navbar';
 
 import styled, { keyframes } from 'styled-components';
 

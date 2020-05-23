@@ -19,7 +19,7 @@ import {
   handleAnonimousLogin,
 } from '../../firebase/firebaseFuntions';
 
-import { device } from '../utils/media';
+import { device } from '../mediaQueries/media';
 
 const rotate = keyframes`
 0% {

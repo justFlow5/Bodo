@@ -8,8 +8,8 @@ import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 
 import { Link } from 'react-router-dom';
 // import { logout } from '../firebase/base';
-import { logout } from '../firebase/firebaseFuntions';
-import { device } from './utils/media';
+import { logout } from '../../firebase/firebaseFuntions';
+import { device } from '../mediaQueries/media';
 
 const MyNavbar = styled.nav`
   position: fixed;

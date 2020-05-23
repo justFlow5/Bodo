@@ -11,7 +11,7 @@ import Timer from './Timer';
 import Rating from './Rating';
 import Verdict from './Verdict';
 
-import { device } from '../utils/media';
+import { device } from '../mediaQueries/media';
 // import InformationIcon from '../../images/interviewMode/Information';
 
 const fadeIn = keyframes`

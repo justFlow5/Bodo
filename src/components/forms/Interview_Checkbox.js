@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { uuid } from 'uuidv4';
 
-import { device } from '../utils/media';
+import { device } from '../mediaQueries/media';
 
 const Checkbox = styled.input`
   display: none;

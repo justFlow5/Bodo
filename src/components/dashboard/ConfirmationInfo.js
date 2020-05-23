@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import { device } from '../utils/media';
+import { device } from '../mediaQueries/media';
 
 import ConfIcon from '../../images/confirmation/ConfirmationIcon';
 

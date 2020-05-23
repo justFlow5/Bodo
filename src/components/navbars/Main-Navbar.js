@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { device } from '../utils/media';
+import { device } from '../mediaQueries/media';
 
 import Logo2 from '../../images/navbar/clover3.png';
 

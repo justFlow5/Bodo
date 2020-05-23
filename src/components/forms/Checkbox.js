@@ -6,7 +6,7 @@ import { uuid } from 'uuidv4';
 
 import db from '../../firebase/base';
 
-import { device } from '../utils/media';
+import { device } from '../mediaQueries/media';
 
 const Input = styled.input`
   display: none;

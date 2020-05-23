@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import Loader from '../loader/Loader';
 
-import { device } from '../utils/media';
+import { device } from '../mediaQueries/media';
 
 // const fadeIn = keyframes`
 //     from {

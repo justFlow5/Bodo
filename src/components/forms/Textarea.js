@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import SimpleBar from 'simplebar-react';
 
-import { device } from '../utils/media';
+import { device } from '../mediaQueries/media';
 
 const fadeInTitle = keyframes`
 0% {

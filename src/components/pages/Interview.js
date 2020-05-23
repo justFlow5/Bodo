@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { uuid } from 'uuidv4';
 
 import styled, { keyframes } from 'styled-components';
-import Navbar from '../Navbar';
+import Navbar from '../navbars/Navbar';
 
 import Jeff from '../../images/interview/jeff2.png';
 import Frontend2 from '../../images/interview/frontendIcon.js';
@@ -16,7 +16,7 @@ import Checkbox from '../forms/Interview_Checkbox';
 
 import InterviewMode from '../Interview/InterviewMode';
 
-import { device } from '../utils/media';
+import { device } from '../mediaQueries/media';
 
 const fadeIn = keyframes`
     from {

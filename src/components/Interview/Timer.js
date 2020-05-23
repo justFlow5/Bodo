@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import { device } from '../utils/media';
+import { device } from '../mediaQueries/media';
 
 const StyledTimer = styled.div`
   border: 3px solid #005580;
