@@ -1,45 +1,27 @@
 import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
+import { uuid } from 'uuidv4';
+
 import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
+import TextField from '@material-ui/core/TextField';
+import FormLabel from '@material-ui/core/FormLabel';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import RadioGroup from '@material-ui/core/RadioGroup';
 
 import { AuthContext } from '../../contexts/Auth';
 import db from '../../firebase/base';
 
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-
-// import FormLabel from '@material-ui/core/FormLabel';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import { styled } from '@material-ui/core/styles';
-// import Snackbar, { SnackbarOrigin } from '@material-ui/core/Snackbar';
-// import Alert from '@material-ui/lab/Alert';
-
+import Navbar from '../navbars/Navbar';
+import JobRadioButton from '../addQuestionForm/JobRadioButton';
+import TechRadioButton from '../addQuestionForm/TechRadioButton';
+import SaveButton from '../addQuestionForm/SaveButton';
 import AcceptAlert from '../forms/Snackbar';
+import Header from '../addQuestionForm/Header';
 
-import SaveIcon from '@material-ui/icons/Save';
-import Button from '@material-ui/core/Button';
-
-//
-
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import TextField from '@material-ui/core/TextField';
-
-import FormGroup from '@material-ui/core/FormGroup';
-import FormLabel from '@material-ui/core/FormLabel';
-
-import { uuid } from 'uuidv4';
-
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-
-import { addQuestion, isQuestion } from '../localStorage';
+import { addQuestion } from '../localStorage';
+import { saveNumbers } from '../addQuestionForm/helperFunctions';
 
 import { device } from '../mediaQueries/media';
-import Navbar from '../navbars/Navbar';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -51,49 +33,31 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const Header = styled.h3`
-  font-size: 40px;
-  font-weight: 700;
-  letter-spacing: 0.6px;
-  color: #236ab9;
-  text-align: center;
-  margin-bottom: 40px;
-`;
-
 const FormContainer = styled.form`
   overflow: hidden;
   width: 85%;
   padding: 20px 20px 10px;
-
   margin: 20px auto 80px;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   border-radius: 12px;
-
   background: #d5e4f7;
   background: #e8f1fd;
-
   -webkit-box-shadow: 0px 0px 37px -18px rgba(19, 56, 99, 1);
   -moz-box-shadow: 0px 0px 37px -18px rgba(19, 56, 99, 1);
   box-shadow: 0px 0px 37px -18px rgba(19, 56, 99, 1);
-
   @media ${device.mobileL} {
     width: 75%;
   }
-
   @media ${device.tablet} {
     padding: 30px 60px 20px;
     width: 65%;
   }
-
   @media ${device.laptop} {
     width: 40%;
     margin: 80px auto 30px;
   }
-
   & button {
     margin-bottom: 10px;
     margin-top: 20px;
@@ -104,48 +68,34 @@ const FormContainer = styled.form`
 `;
 
 const RadioContainer = styled.div`
-margin: 15px auto 0;
+  margin: 15px auto 0;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-
-
   &.techs {
     & label {
       flex: 0 0 49%;
       margin: 0 auto;
-
-      /* @media ${device.mobileS} {
-        flex: 0 0 45%;
-      } */
       @media (min-width: 520px) {
         flex: 0 0 30%;
       }
-
       @media ${device.tablet} {
         flex: 0 0 30%;
       }
     }
   }
-
   &:first-child {
     margin-bottom: 20px;
   }
-
   & label {
-    
     flex: 0 0 80%;
     margin: 0 auto;
-    /* @media ${device.mobileM} {
-      flex: 0 0 45%;
-    } */
-    
+
     @media ${device.mobileL} {
       flex: 0 0 30%;
     }
-
     @media ${device.tablet} {
       flex: 0 0 30%;
     }
@@ -158,109 +108,30 @@ const FieldsContainer = styled.div`
   justify-content: space-around;
 `;
 
-const MyFormControl = styled(FormControl)({});
-
-const MyInputLabel = styled(InputLabel)({});
-
-const MyInput = styled(Input)({ marginBottom: '10px' });
-
-const SaveButton = styled(Button)({
-  //   marginTop: '25px',
-  width: '250px',
-  alignSelf: 'center',
-});
-
-const MyFormControlLabelTech = styled(TextField)`
-  width: 100%;
-`;
-
-const MyTextField = styled(TextField)({});
-
-const MyFormControlLabel = styled(FormControlLabel)`
-  &.tech {
-    opacity: 0;
-    width: 20%;
-    margin: 0 auto;
-    transition: opacity 0.5s ease-in-out;
-
-    &.active {
-      opacity: 1;
-      width: 20%;
-      margin: 0 auto;
-    }
-  }
-`;
-
-// interface State extends SnackbarOrigin {
-//   open: boolean;
-// }
-
 const AddQuestionForm = () => {
   const classes = useStyles();
 
   const { currentUser } = useContext(AuthContext);
-  // console.log('currentUser: ', currentUser);
 
   const [technology, setTechnology] = useState('JavaScript');
   const [newTechnology, setNewTechnology] = useState('');
   const [text, setText] = useState('');
   const [answer, setAnswer] = useState('');
-  // const [code, setCode] = useState('');
   const [job, setJob] = useState('Frontend Developer');
-  // const [jobText, setJobText] = useState('');
-
-  const [showJob, setShowJob] = useState(true);
-
-  const [showTechField, setShowTechField] = useState(false);
-
-  // const [open, setOpen] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const [active, setActive] = useState('');
+  const technologies = [
+    ['JavaScript', 'NodeJS'],
+    ['CSS', 'PHP'],
+    ['React', 'Ruby'],
+    ['Redux', 'Python'],
+    ['GIT', 'GIT'],
+    ['Other', 'Other'],
+  ];
 
-  //   const [inputId, setInputId] = useState('');
+  const jobs = ['Frontend Developer', 'Backend Developer', 'HR'];
 
-  const toggleJob = () => {
-    if (job === 'Frontend Developer' || job === 'Backend Developer')
-      setShowJob(true);
-    else setShowJob(false);
-  };
-
-  const saveNumbers = () => {
-    const allQ = JSON.parse(localStorage.getItem('questions'));
-
-    const numOfTech = Object.keys(allQ).map((tech) => {
-      return [tech, allQ[tech].length, allQ[tech][0].job];
-    });
-
-    localStorage.setItem('numOfTech', JSON.stringify(numOfTech));
-  };
-
-  // const handleClose = () => {
-  //   setState({ ...state, open: false });
-  // };
-
-  // const handleClick = (newState: SnackbarOrigin) => () => {
-  // setState({ open: true, ...newState });
-  // };
-
-  const toggleOpen = () => {
-    if (!open) setOpen(true);
-    else setOpen(false);
-  };
-
-  const handleChange = (event) => {
-    setTechnology(event.target.value);
-
-    if (event.target.value === 'other') {
-      setShowTechField(true);
-      setActive('active');
-      //   setTechnology(newTechnology);
-    } else {
-      setShowTechField(false);
-      setActive('');
-    }
-  };
+  const typeOfTextInput = ['Job', 'Technology', 'Question', 'Answer'];
 
   const handleJobChange = (event) => {
     setJob(event.target.value);
@@ -270,73 +141,47 @@ const AddQuestionForm = () => {
   };
 
   const isTechReadOnly = () => {
-    if (technology !== 'other') {
+    if (technology !== 'Other') {
       return { readOnly: true };
     } else {
       return { readOnly: false };
     }
   };
 
-  // const isJobReadOnly = () => {
-  //   if (job !== 'HR') {
-  //     return { readOnly: true };
-  //   } else {
-  //     return { readOnly: false };
-  //   }
-  // };
-
   const onSubmit = (e) => {
     e.preventDefault();
     const id = uuid();
 
-    let tech = technology === 'other' ? newTechnology : technology;
+    let tech = technology === 'Other' ? newTechnology : technology;
 
     if (job !== 'HR') {
-      // add to localStorage
-      addQuestion({
-        job,
-        technology: tech,
-        text,
-        answer,
-        // code,
-        known: false,
-        id,
-      });
-
-      // number of questions:
-      saveNumbers();
-
-      // add to firebase
       const dataLoad = {
         job,
         technology: tech,
         text,
         answer,
-        // code,
         known: false,
         id,
       };
+
+      // add to localStorage
+      addQuestion(dataLoad);
+
+      // number of questions:
+      saveNumbers();
+
+      // add to firebase
+
       const dbLoad = JSON.parse(localStorage.getItem('questions'));
       const dbLoadTech = dbLoad[tech];
       const upData = { ...dbLoadTech };
       dbLoad[tech] = upData;
-      const upDataFull = { ...dbLoad };
 
-      // db.ref(`users/${currentUser.uid}/questions/${tech}`).update({
-      //   job,
-      //   technology: tech,
-      //   text,
-      //   answer,
-      //   code,
-      //   known: false,
-      //   id,
-      // });
       db.ref(`users/${currentUser.uid}/questions`).set(dbLoad);
       db.ref(`users/${currentUser.uid}/staticDataStatus`).set(true);
-      // db.ref(`users/${currentUser.uid}/questions/${tech}`).set(upData);
     } else {
       const newHr = {
-        job: 'other',
+        job: 'Other',
         technology: 'HR',
         text,
         answer,
@@ -355,22 +200,10 @@ const AddQuestionForm = () => {
       db.ref(`users/${currentUser.uid}/staticDataStatus`).set(true);
     }
 
-    // if (isQuestion(id)) {
     setOpen(true);
-
     setText('');
     setAnswer('');
-    // setCode('');
-
-    // }
   };
-
-  //   useEffect(() => {
-  //     if (job === 'Frontend Developer') setTechnology('JavaScript');
-  //     else if (job === 'Backend Developer') setTechnology('NodeJS');
-  //     console.log('technology: ', technology);
-  //     console.log('job: ', job);
-  //   }, [job]);
 
   return (
     <>
@@ -380,60 +213,18 @@ const AddQuestionForm = () => {
         autoComplete="off"
         className={classes.root}
       >
-        {/* <FormControlLabel
-        control={<Checkbox name="checkedC" />}
-        label="Uncontrolled"
-      /> */}
-
-        <Header>Create New Question</Header>
-
-        {/* */}
-
+        <Header content="Create New Question" />
         <FormLabel component="legend">Choose Position</FormLabel>
-        <RadioGroup
-          aria-label="quiz1"
-          name="quiz1"
-          // defaultValue="Frontend Developer"
-        >
+
+        <RadioGroup aria-label="job" name="job">
           <RadioContainer>
-            <MyFormControlLabel
-              value="Frontend Developer"
-              control={
-                <Radio
-                  color="primary"
-                  checked={job === 'Frontend Developer'}
-                  onChange={handleJobChange}
-                />
-              }
-              label="Frontend Developer"
-              color="primary"
-            />
-
-            <MyFormControlLabel
-              value="Backend Developer"
-              control={
-                <Radio
-                  color="primary"
-                  checked={job === 'Backend Developer'}
-                  onChange={handleJobChange}
-                />
-              }
-              label="Backend Developer"
-              color="primary"
-            />
-
-            <MyFormControlLabel
-              value="HR"
-              control={
-                <Radio
-                  color="primary"
-                  checked={job === 'HR'}
-                  onChange={handleJobChange}
-                />
-              }
-              label="HR Question"
-              color="primary"
-            />
+            {jobs.map((singleJob) => (
+              <JobRadioButton
+                singleJob={singleJob}
+                handleJobChange={handleJobChange}
+                job={job}
+              />
+            ))}
           </RadioContainer>
         </RadioGroup>
         {/*  */}
@@ -442,86 +233,22 @@ const AddQuestionForm = () => {
           <FormControl component="fieldset">
             <FormLabel component="legend">Choose Technology</FormLabel>
             <RadioGroup
-              aria-label="quiz"
-              name="quiz"
+              aria-label="techs"
+              name="techs"
               defaultValue={
                 job === 'Frontend Developer' ? 'JavaScript' : 'NodeJS'
               }
             >
               <RadioContainer className="techs">
-                <MyFormControlLabel
-                  value={job === 'Frontend Developer' ? 'JavaScript' : 'NodeJS'}
-                  control={
-                    <Radio
-                      color="primary"
-                      checked={
-                        technology === 'JavaScript' || technology === 'NodeJS'
-                      }
-                      onChange={handleChange}
-                    />
-                  }
-                  label={job === 'Frontend Developer' ? 'JavaScript' : 'NodeJS'}
-                  color="primary"
-                />
-                <MyFormControlLabel
-                  value={job === 'Frontend Developer' ? 'CSS' : 'PHP'}
-                  control={
-                    <Radio
-                      color="primary"
-                      checked={technology === 'CSS' || technology === 'PHP'}
-                      onChange={handleChange}
-                    />
-                  }
-                  label={job === 'Frontend Developer' ? 'CSS' : 'PHP'}
-                  color="primary"
-                />
-                <FormControlLabel
-                  value={job === 'Frontend Developer' ? 'React' : 'Ruby'}
-                  control={
-                    <Radio
-                      color="primary"
-                      checked={technology === 'React' || technology === 'Ruby'}
-                      onChange={handleChange}
-                    />
-                  }
-                  label={job === 'Frontend Developer' ? 'React' : 'Ruby'}
-                />{' '}
-                <FormControlLabel
-                  value={job === 'Frontend Developer' ? 'Redux' : 'Python'}
-                  control={
-                    <Radio
-                      color="primary"
-                      checked={
-                        technology === 'Redux' || technology === 'Python'
-                      }
-                      onChange={handleChange}
-                    />
-                  }
-                  label={job === 'Frontend Developer' ? 'Redux' : 'Python'}
-                />
-                <FormControlLabel
-                  value="GIT"
-                  control={
-                    <Radio
-                      color="primary"
-                      checked={technology === 'GIT'}
-                      onChange={handleChange}
-                    />
-                  }
-                  label="GIT"
-                />
-                <MyFormControlLabel
-                  value="other"
-                  control={
-                    <Radio
-                      color="primary"
-                      checked={technology === 'other'}
-                      onChange={handleChange}
-                    />
-                  }
-                  label="Other"
-                  color="primary"
-                />
+                {technologies.map((tech) => (
+                  <TechRadioButton
+                    frontendTech={tech[0]}
+                    backendTech={tech[1]}
+                    job={job}
+                    technology={technology}
+                    setTechnology={setTechnology}
+                  />
+                ))}
               </RadioContainer>
             </RadioGroup>
           </FormControl>
@@ -530,34 +257,32 @@ const AddQuestionForm = () => {
         <FieldsContainer>
           {job !== 'HR' && (
             <>
-              <MyTextField
+              {/* {typeOfTextInput.map((singleInput) => (
+                <TextInput singleInput={singleInput} />
+              ))} */}
+
+              <TextField
                 required
                 variant="standard"
                 label="Job"
                 multiline
-                // value={
-                //   job === 'Frontend Developer' || job === 'Backend Developer'
-                //     ? job
-                //     : jobText
-                // }
                 value={job}
-                // onChange={(e) => setJobText(e.target.value)}
                 InputProps={true}
               />
 
-              <MyFormControlLabelTech
+              <TextField
                 variant="standard"
                 label="Technology"
-                value={technology === 'other' ? newTechnology : technology}
+                value={technology === 'Other' ? newTechnology : technology}
                 onChange={(e) => setNewTechnology(e.target.value)}
                 required
                 autoFocus
                 InputProps={isTechReadOnly()}
-              ></MyFormControlLabelTech>
+              ></TextField>
             </>
           )}
 
-          <MyTextField
+          <TextField
             variant="standard"
             label="Question"
             multiline
@@ -566,7 +291,7 @@ const AddQuestionForm = () => {
             required
           />
 
-          <MyTextField
+          <TextField
             variant="standard"
             label="Answer"
             multiline
@@ -574,31 +299,10 @@ const AddQuestionForm = () => {
             onChange={(e) => setAnswer(e.target.value)}
             required
           />
-          {/* {job !== 'otherjob' && (
-            <MyTextField
-              variant="standard"
-              label="Code"
-              multiline
-              rows="4"
-              rowsMax="6"
-              value={code}
-              onChange={(e) => setCode(e.target.value)}
-            />
-          )} */}
         </FieldsContainer>
 
-        <SaveButton
-          variant="contained"
-          color="primary"
-          size="large"
-          // className={classes.button}
-          startIcon={<SaveIcon />}
-          type="submit"
-        >
-          Save
-        </SaveButton>
-
-        <AcceptAlert open={open} setOpen={setOpen} toggleOpen={toggleOpen} />
+        <SaveButton content="SAVE" />
+        <AcceptAlert open={open} setOpen={setOpen} setOpen={setOpen} />
       </FormContainer>
     </>
   );

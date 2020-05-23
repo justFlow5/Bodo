@@ -44,14 +44,10 @@ const Confirmation = styled.div`
   align-items: center;
   opacity: 0;
   transform: translateX(-100%);
-  /* background: #00e600; */
   background: #4caf50;
-
   animation-name: ${fadeInBuilder(100, 15)};
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.08, 1.17, 0.96, 0.94);
-  /* animation-timing-function: cubic-bezier(.175,.885,.32,1.275); */
-  /* animation-timing-function: linear; */
 
   animation-duration: 5s;
 
