@@ -92,7 +92,6 @@ const RadioContainer = styled.div`
   & label {
     flex: 0 0 80%;
     margin: 0 auto;
-
     @media ${device.mobileL} {
       flex: 0 0 30%;
     }
@@ -257,10 +256,6 @@ const AddQuestionForm = () => {
         <FieldsContainer>
           {job !== 'HR' && (
             <>
-              {/* {typeOfTextInput.map((singleInput) => (
-                <TextInput singleInput={singleInput} />
-              ))} */}
-
               <TextField
                 required
                 variant="standard"
