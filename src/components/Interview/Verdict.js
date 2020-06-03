@@ -1,23 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Link } from 'react-router-dom';
 
 import Loader from '../loader/Loader';
 
 import { device } from '../mediaQueries/media';
-
-// const fadeIn = keyframes`
-//     from {
-//         width: 1%;
-//   height: 1%;
-//       opacity: 0;
-//     }
-//     to {
-//         width: 50%;
-//   height: 55%;
-//       opacity: 1;
-//     }
-// `;
 
 function fadeInBuilder(w2, h2) {
   const fadeIn = keyframes`
@@ -36,11 +22,9 @@ function fadeInBuilder(w2, h2) {
 }
 
 const VerdictContainer = styled.div`
-  /* padding: 15px 20px; */
   position: fixed;
   top: 50%;
   left: 50%;
-  /* transform: translate(-50%, -50%); */
   background: rgba(255, 255, 255, 0.7);
   border-radius: 8px;
   padding: 10px 10px 30px;
@@ -48,18 +32,11 @@ const VerdictContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* opacity: 0;
-  width: 1%;
-  height: 1%; */
-
   opacity: 1;
   width: 80%;
-  /* height: 70%; */
   min-height: 55%;
   transform: translate(-50%, -50%);
   border: 3px solid ${({ color }) => color};
-
-  /* animation: ${fadeInBuilder('50%', '55%')} 0.3s linear forwards; */
 
   @media ${device.tablet} {
     min-height: 60%;
@@ -180,7 +157,7 @@ const Score = styled.div`
   }
 `;
 
-const Verdict = ({ rateData, average }) => {
+const Verdict = ({ average }) => {
   const [verdict, setVerdict] = useState('');
 
   const poorVerdict = `Not enough. There are much better prepared candidates than you. As of now, You don't stand a chance against them. But don't let it worry you! Invest your time in preparation and come back stronger!`;
@@ -210,7 +187,7 @@ const Verdict = ({ rateData, average }) => {
       </Score>
       <FeedbackTitle color={() => chooseColor()}>Feedback</FeedbackTitle>
       <VerdictContent>{verdict}</VerdictContent>
-      {/* <Link to="/interview"> */}
+
       <GoBackButton
         color={() => chooseColor()}
         onClick={() => {
@@ -219,7 +196,6 @@ const Verdict = ({ rateData, average }) => {
       >
         Go Back
       </GoBackButton>
-      {/* </Link> */}
     </VerdictContainer>
   ) : (
     <Loader />

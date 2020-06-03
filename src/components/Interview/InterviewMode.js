@@ -10,9 +10,7 @@ import IntructionInfo from './IntructionInfo';
 import Timer from './Timer';
 import Rating from './Rating';
 import Verdict from './Verdict';
-
 import { device } from '../mediaQueries/media';
-// import InformationIcon from '../../images/interviewMode/Information';
 
 const fadeIn = keyframes`
     from {
@@ -164,7 +162,6 @@ const StopIconContainer = styled.div`
 
   &[aria-label]:hover:after {
     opacity: 1;
-    /* transition-delay: 0.3s; */
   }
 
   & svg {
@@ -183,7 +180,6 @@ const QuestionContainer = styled.div`
   background: ${({ isAnswer }) =>
     isAnswer ? `rgba(255, 255, 255, 0.7)` : `rgba(25, 28, 29, 0.6)`};
   width: 90%;
-  /* height: 80px; */
   border-radius: 14px;
   display: inline-block;
   position: absolute;
@@ -222,19 +218,13 @@ const QuestionContainer = styled.div`
 `;
 const QuestionContent = styled.h3`
   font-size: ${({ isAnswer }) => (isAnswer ? `26px` : `21px`)};
-  /* font-size: 26px; */
   line-height: 1.3;
   color: #d4dae0bf;
   color: #d4dae0e6;
   text-align: center;
   margin-bottom: ${({ isAnswer }) => (isAnswer ? `20px` : `0px`)};
-
-  /* margin-bottom: 20px; */
   padding: ${({ isAnswer }) => (isAnswer ? `15px 20px 0` : `0px`)};
-  /* padding: 15px 20px 0; */
-
   color: ${({ isAnswer }) => (isAnswer ? `black` : `#d4dae0e6`)};
-
   @media ${device.tablet} {
     font-size: 30px;
   }
@@ -346,59 +336,11 @@ const Exit = styled.button`
   }
 `;
 
-// const Exit = styled.button`
-//   /* width: 160px; */
-//   /* height: 30px; */
-//   /* padding: 8px 15px; */
-//   /* border-radius: 5px; */
-//   width: 50px;
-//   height: 50px;
-//   padding: 10px;
-//   background: blue;
-//   cursor: pointer;
-//   position: fixed;
-//   top: 10px;
-//   left: 10px;
-//   font-size: 18px;
-//   letter-spacing: 0.9px;
-//   border-radius: 50%;
-
-//   &:hover {
-//     &::before {
-//       opacity: 1;
-//       transform: rotate(180deg) translateX(15px);
-//     }
-//   }
-
-//   &::before {
-//     content: '\\2192';
-//     font-size: 25px;
-//     color: white;
-//     position: absolute;
-//     /* transform: scale(3); */
-//     transform: rotate(180deg) translateX(0px);
-//     opacity: 0;
-
-//     /* padding-right: 10px; */
-//     transition: all 0.3s;
-//   }
-
-//   &:hover > h3 {
-//     /* padding-right: 10px; */
-//   }
-
-//   & > h3 {
-//     font-size: 18px;
-//     letter-spacing: 0.9px;
-//   }
-// `;
-
 const InterviewMode = ({ enterInterviewMode, typeOfQuestionDraw }) => {
   const [overlay, activateOverlay] = useState(true);
   const [isAnswer, setIsAnswer] = useState(false);
   const [isQuestion, setIsQuestion] = useState(false);
   const [isTimer, setIsTimer] = useState(false);
-  const [isCountDown, setIsCountDown] = useState(true);
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [ratingData, setRatingData] = useState([]);
@@ -409,14 +351,10 @@ const InterviewMode = ({ enterInterviewMode, typeOfQuestionDraw }) => {
 
   const [showVerdict, setShowVerdict] = useState(false);
 
-  //   const [typeOfQuestionDraw, setTypeOfQuestionDraw] = useState('');
   const [drawnQuestions, setDrawnQuestions] = useState([]);
 
   const [questions, setQuestions] = useState(
     JSON.parse(localStorage.getItem('questions'))
-  );
-  const [selectedCategories, setSelectedCategories] = useState(
-    JSON.parse(localStorage.getItem('selectedTechs'))
   );
 
   const showTimer = () => {
@@ -444,8 +382,6 @@ const InterviewMode = ({ enterInterviewMode, typeOfQuestionDraw }) => {
       // THE FINAL ANSWER CONFIRMATION
       setIsAnswer(false);
       setIsQuestion(false);
-      // setCurrentQuestion(currentQuestion + 1);
-      // activateOverlay(false);
       setRateUpdate(false);
       setRatingData([...ratingData, ratingValue]);
       setRatingValue(0);
@@ -460,17 +396,10 @@ const InterviewMode = ({ enterInterviewMode, typeOfQuestionDraw }) => {
     if (!overlay) showTimer(true);
   }, [overlay]);
 
-  useEffect(() => {
-    console.log('ratingData: ', ratingData);
-  }, [ratingData]);
-
-  // useEffect(() => {
-  //   if (currentQuestion > 1) showTimer(true);
-  // }, [currentQuestion]);
+  useEffect(() => {}, [ratingData]);
 
   useEffect(() => {
     if (ratingData.length === 5) {
-      console.log('getAverage(ratingData): ', getAverage(ratingData));
       setAverage(getAverage(ratingData));
       setShowVerdict(true);
     }
@@ -495,7 +424,6 @@ const InterviewMode = ({ enterInterviewMode, typeOfQuestionDraw }) => {
             activateOverlay={activateOverlay}
             setIsQuestion={setIsQuestion}
             typeOfQuestionDraw={typeOfQuestionDraw}
-            // getRandomQuestions={getRandomQuestions}
             setDrawnQuestions={setDrawnQuestions}
             typeOfQuestionDraw={typeOfQuestionDraw}
           />
@@ -507,16 +435,7 @@ const InterviewMode = ({ enterInterviewMode, typeOfQuestionDraw }) => {
               >
                 <StopIcon />
               </StopIconContainer>
-
-              {/* </div> */}
-              <Timer
-                // activateOverlay={activateOverlay}
-                // setIsTimer={setIsTimer}
-                // setIsAnswer={setIsAnswer}
-                // setIsQuestion={setIsQuestion}
-                showAnswer={showAnswer}
-                isTimer={isTimer}
-              />
+              <Timer showAnswer={showAnswer} isTimer={isTimer} />
             </TimerContainer>
           )}
           {/* QUESTION */}
