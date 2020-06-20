@@ -1,12 +1,11 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { device } from '../mediaQueries/media';
 
 import Textarea from '../forms/Textarea';
 
 const EditItem = styled.div`
   background: #e6f2ff;
-  /* border: 1px solid #66b3ff; */
   position: relative;
   border-radius: 8px;
   margin: 15px 15px 25px;

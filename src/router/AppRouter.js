@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Router } from '@reach/router';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -17,10 +16,8 @@ import Register from '../components/pages/Register';
 
 export const AppRouter = () => {
   return (
-    // <div>
     <AuthProvider>
       <Router>
-        {/* <PrivateRoute exact path="/" component={Dashboard} /> */}
         <PublicRoute exact path="/" component={FrontPage} />
         <PublicRoute exact path="/login" component={Login} />
         <PublicRoute exact path="/sign-up" component={Register} />

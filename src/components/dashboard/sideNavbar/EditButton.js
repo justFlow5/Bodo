@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { device } from '../../mediaQueries/media';
 
 const EditButton = styled.button`
@@ -42,7 +42,6 @@ const EditButton = styled.button`
     margin-right: 5%;
     font-size: 17px;
     margin-top: 15px;
-
     margin-left: auto;
     margin-right: auto;
   }

@@ -1,10 +1,8 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
-
-import { device } from '../mediaQueries/media';
 
 const MyFormControlLabel = styled(FormControlLabel)`
   &.tech {

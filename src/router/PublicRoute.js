@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Route, Redirect, RouteComponentProps } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { AuthContext } from '../contexts/Auth';
 
 const PublicRoute = ({ component, ...rest }) => {

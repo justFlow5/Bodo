@@ -1,11 +1,10 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 
 const SaveButton = styled(Button)({
-  //   marginTop: '25px',
   width: '250px',
   alignSelf: 'center',
 });
