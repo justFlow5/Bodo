@@ -118,12 +118,7 @@ const LogoHolder = styled.div`
   text-align: center;
   position: relative;
   margin-bottom: 15px;
-
   cursor: pointer;
-
-  @media ${device.mobileS} {
-    margin-bottom: 20px;
-  }
 
   @media ${device.mobileM} {
     margin-bottom: 45px;
@@ -229,7 +224,7 @@ const ButtonContainer = styled.div`
   align-items: center;
 
   &.alternative {
-    padding-bottom: 42px;
+    padding-bottom: 55px;
     @media ${device.mobileM} {
       padding-bottom: 50px;
     }
@@ -242,10 +237,6 @@ const ButtonContainer = styled.div`
     }
     @media ${device.laptop} {
       padding-bottom: 80px;
-    }
-
-    @media ${device.laptopL} {
-      padding-bottom: 50px;
     }
   }
 `;
@@ -342,7 +333,6 @@ const Footer = styled.div`
 `;
 
 const PicContainer = styled.div`
-  /* display: inline-block; */
   position: relative;
   padding: 30px;
   opacity: 0;
@@ -356,7 +346,6 @@ const PicContainer = styled.div`
     animation-delay: 0.6s;
   }
   &:hover > img {
-    /* animation-fill-mode: forwards; */
     transform: scale(1.05);
     opacity: 0.85;
   }
@@ -382,14 +371,11 @@ const PicContainer = styled.div`
 `;
 
 const Slogan = styled.p`
-  /* display: inline-block; */
-  /* font-family: 'Permanent Marker', cursive; */
   font-family: 'Merienda', cursive;
   font-size: 32px;
   font-weight: 600;
   opacity: 0;
   position: absolute;
-  /* bottom: -10px; */
   word-break: keep-all;
   color: #133863;
   transform: translateX(0);
@@ -551,10 +537,8 @@ const SignInUpScheme = ({ title, history }) => {
           <Separator>OR</Separator>
           <ButtonContainer className="alternative">
             <GoogleButton onClick={handleGoogleLogin}>
-              {/* <span> */}
               <GoogleIcon />
               Login with Google
-              {/* </span> */}
             </GoogleButton>
             <Tooltip
               title="Some functionality of the app will be disabled"
