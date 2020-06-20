@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { device } from '../mediaQueries/media';
 

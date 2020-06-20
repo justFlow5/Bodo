@@ -1,19 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react';
-import styled, { keyframes } from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
 import { device } from '../mediaQueries/media';
 
 const StyledTimer = styled.div`
   border: 3px solid #005580;
   border: 3px solid #a4abb9;
-
   border-radius: 50px;
-
   width: 30px;
   height: 30px;
   padding: 30px;
   font-size: 27px;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,10 +38,6 @@ const Timer = ({ showAnswer, isTimer }) => {
     if (counter > 0 && isTimer) setTimeout(() => setCounter(counter - 1), 1000);
     else if (counter === 0) {
       showAnswer();
-      // activateOverlay(true);
-      // setIsTimer(false);
-      // setIsAnswer(true);
-      // setIsQuestion(true);
     }
   }, [counter]);
 

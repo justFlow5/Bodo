@@ -1,25 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 import Loader from '../loader/Loader';
 
 import { device } from '../mediaQueries/media';
-
-function fadeInBuilder(w2, h2) {
-  const fadeIn = keyframes`
-      from {
-        width: 1%;
-  height: 1%;
-      opacity: 0;
-    }
-    to {
-        width: ${w2};
-  height: ${h2};
-      opacity: 1;
-    }
-    `;
-  return fadeIn;
-}
 
 const VerdictContainer = styled.div`
   position: fixed;
@@ -130,7 +114,6 @@ const Score = styled.div`
     position: relative;
     bottom: 13px;
     font-size: 32px;
-
     @media ${device.tablet} {
       font-size: 38px;
     }
@@ -148,9 +131,7 @@ const Score = styled.div`
   & > .max {
     position: relative;
     bottom: -5px;
-
     font-size: 32px;
-
     @media ${device.tablet} {
       font-size: 38px;
     }

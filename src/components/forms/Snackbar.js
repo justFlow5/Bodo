@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React from 'react';
 import Alert from '@material-ui/lab/Alert';
-import Snackbar, { SnackbarOrigin } from '@material-ui/core/Snackbar';
+import Snackbar from '@material-ui/core/Snackbar';
 
 const SnackBar = ({ open, setOpen }) => {
   return (

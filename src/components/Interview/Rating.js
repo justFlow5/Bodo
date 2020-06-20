@@ -1,9 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
-import styled, { keyframes } from 'styled-components';
-// var Rating = require('react-rating');
+import React from 'react';
+import styled from 'styled-components';
 import Rating from '@material-ui/lab/Rating';
-import Box from '@material-ui/core/Box';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 import { device } from '../mediaQueries/media';
 
@@ -44,7 +41,6 @@ const LabelContainer = styled.div`
 
   @media ${device.tablet} {
     width: 50%;
-    /* top: unset; */
     margin-left: 20px;
     padding: 10px 20px;
     font-size: 14px;
@@ -53,13 +49,6 @@ const LabelContainer = styled.div`
   }
 `;
 
-const useStyles = makeStyles({
-  root: {
-    width: 200,
-    display: 'flex',
-    alignItems: 'center',
-  },
-});
 const labels = {
   1: 'Completely wrong/did not know the answer',
   2: 'Somehow relevant answer',
@@ -68,10 +57,8 @@ const labels = {
   5: 'Even more than required. Excellent!',
 };
 
-const Rate = ({ ratingData, setRateUpdate, ratingValue, setRatingValue }) => {
-  // const [value, setValue] = React.useState(0);
+const Rate = ({ setRateUpdate, ratingValue, setRatingValue }) => {
   const [hover, setHover] = React.useState(-1);
-  const classes = useStyles();
 
   return (
     <RatingContainer>
@@ -82,7 +69,6 @@ const Rate = ({ ratingData, setRateUpdate, ratingValue, setRatingValue }) => {
         precision={1}
         onChange={(event, newValue) => {
           setRatingValue(newValue);
-
           setRateUpdate(true);
         }}
         onChangeActive={(event, newHover) => {

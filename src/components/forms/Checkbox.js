@@ -1,12 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import DoneSharpIcon from '@material-ui/icons/DoneSharp';
 import Tooltip from '@material-ui/core/Tooltip';
-import { uuid } from 'uuidv4';
-
-import db from '../../firebase/base';
-
-import { device } from '../mediaQueries/media';
 
 const Input = styled.input`
   display: none;
@@ -22,7 +17,6 @@ const Input = styled.input`
 const Label = styled.label`
   display: inline-block;
   cursor: pointer;
-  /* z-index: 999; */
   position: absolute;
   top: -10px;
   right: -10px;
@@ -57,7 +51,6 @@ const Checkbox = ({ id, boxId, technology, updateKnown, known }) => {
   }, []);
 
   return (
-    // <>
     <>
       <Input
         id={boxId}
@@ -65,7 +58,6 @@ const Checkbox = ({ id, boxId, technology, updateKnown, known }) => {
         type="checkbox"
         checked={checked}
         onChange={(e) => toggleCheckbox(e.target.checked)}
-        // onChange={() => setChecked(!checked)}
       />{' '}
       <Label htmlFor={boxId} className="known" key={boxId}>
         <Tooltip

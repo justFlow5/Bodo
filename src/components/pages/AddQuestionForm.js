@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { uuid } from 'uuidv4';
 
@@ -129,8 +129,6 @@ const AddQuestionForm = () => {
   ];
 
   const jobs = ['Frontend Developer', 'Backend Developer', 'HR'];
-
-  const typeOfTextInput = ['Job', 'Technology', 'Question', 'Answer'];
 
   const handleJobChange = (event) => {
     setJob(event.target.value);
@@ -297,7 +295,7 @@ const AddQuestionForm = () => {
         </FieldsContainer>
 
         <SaveButton content="SAVE" />
-        <AcceptAlert open={open} setOpen={setOpen} setOpen={setOpen} />
+        <AcceptAlert open={open} setOpen={setOpen} />
       </FormContainer>
     </>
   );

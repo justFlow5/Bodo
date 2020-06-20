@@ -1,11 +1,3 @@
-import React, {
-  useState,
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-} from 'react';
-
 import * as firebase from 'firebase';
 
 export const logout = () => {

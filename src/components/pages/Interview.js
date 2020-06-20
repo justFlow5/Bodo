@@ -22,31 +22,13 @@ const fadeIn = keyframes`
     from {
       transform: scale(0);
       opacity: 0;
-      /* transform: translateY(30px); */
-            /* transform: translateX(30px); */
     }
     to {
       transform: scale(1);
       opacity: 1;
-      /* transform: translateY(0px); */
-            /* transform: translateX(0px); */
     }
 `;
 
-const fadeOut = keyframes`
-    from {
-      transform: scale(1);
-      opacity: 1;
-      /* transform: translateY(30px); */
-            /* transform: translateX(30px); */
-    }
-    to {
-      transform: scale(0);
-      opacity: 0;
-      /* transform: translateY(0px); */
-            /* transform: translateX(0px); */
-    }
-`;
 const shadowPulse = keyframes`
 
      0% {
@@ -59,8 +41,6 @@ const shadowPulse = keyframes`
 
 const PulseButton = styled.button`
   position: fixed;
-  /* bottom: 22%; */
-  /* left: 49%; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -102,9 +82,7 @@ const PulseButton = styled.button`
   @media ${device.tablet} {
     height: 60px;
     font-size: 22px;
-    /* bottom: 26%; */
     bottom: 39%;
-
     right: 9%;
   }
 
@@ -112,10 +90,7 @@ const PulseButton = styled.button`
     width: 120px;
     height: 60px;
     font-size: 23px;
-    /* bottom: 30%;
-    right: 16%; */
     bottom: 22%;
-    /* right: 17%; */
     right: 9%;
   }
   @media ${device.laptopL} {
@@ -228,13 +203,7 @@ const Title = styled.h3`
   display: inline;
   border-bottom: 4px solid #0083b0;
   white-space: nowrap;
-  /* word-break: keep-all; */
-
   color: #091d34;
-
-  @media ${device.mobileL} {
-    /* margin-left: 15%; */
-  }
 
   @media ${device.tablet} {
     font-size: 29px;
@@ -287,17 +256,8 @@ const CustomTooltip = styled.div`
     left: 20px;
     bottom: 70px;
 
-    
-/* 
-    &.appear {
-    animation: ${fadeOut} 0.3s cubic-bezier(0.08, 1.17, 0.96, 0.94) forwards;
-
-    } */
-
     @media ${device.tablet} {
       position: absolute;
-      /* top: -10px; */
-      /* right: -10px; */
       left: unset;
       right: -220px;
       bottom: -65px;
@@ -310,15 +270,11 @@ const Label = styled.label`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* margin-left: 45px; */
-  /* width: 80px; */
-  /* height: 80px; */
   display: inline-block;
   position: relative;
   cursor: pointer;
   text-align: center;
   border: 1px solid transparent;
-  /* border: 2px solid #091d34; */
   padding: 15px 10px 10px;
   border-radius: 12px;
   margin-right: 10px;
@@ -391,9 +347,7 @@ const Label = styled.label`
   }
 
   & svg {
-    /* fill: #091d34; */
     fill: #131517;
-    /* fill: #0000b3; */
     width: 50px;
     height: 50px;
     transition: all 0.3s;
@@ -424,26 +378,6 @@ const Input = styled.input`
     -moz-box-shadow: 0px 0px 26px 0px rgba(19, 56, 99, 1);
     box-shadow: 0px 0px 26px 0px rgba(19, 56, 99, 1);
     background: #609ce1;
-
-    /* background: #00b4db;  */
-    /* background: -webkit-linear-gradient(
-      to right,
-      #0083b0,
-      #00b4db
-    ); 
-    background: linear-gradient(
-      to right,
-      #0083b0,
-      #00b4db
-    );  */
-
-    /* background: #00b4db;
-
-    background: -webkit-linear-gradient(to right, #0083b0, #00b4db);
-    background: linear-gradient(to right, #0083b0, #00b4db); */
-
-    /* background-color: #abe9cd;
-    background-image: linear-gradient(315deg, #abe9cd 0%, #3eadcf 74%); */
     background-color: #6a93cb;
     background-image: linear-gradient(315deg, #6a93cb 0%, #a4bfef 74%);
   }
@@ -458,37 +392,29 @@ const TechsContainer = styled.div`
   }
 
   @media ${device.tablet} {
-  &.spaceBottom {
+    &.spaceBottom {
       padding-bottom: unset;
     }
-    }
-
-  /* animation: ${fadeIn} 0.2s ease-in-out; */
+  }
 `;
 
 const TechsList = styled.form`
   position: relative;
   width: 100%;
-
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-
   justify-content: center;
   margin-top: 30px;
 
   @media ${device.mobileL} {
-    /* justify-content: flex-start; */
     width: 100%;
   }
   @media ${device.tablet} {
     width: 100%;
-    /* justify-content: center; */
   }
 
   @media ${device.laptop} {
-    /* width: 55px;
-    height: 55px; */
     width: 100%;
   }
 `;
@@ -527,12 +453,7 @@ const TechsItem = styled.label`
   padding: 5px;
   width: 100%;
   height: 100%;
-
-  /* background: #84b4b9;
-  background: #c1d9db;
-  background: #94bdc1; */
   background: #aacbce;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -582,9 +503,7 @@ const InterviewSection = styled.section`
     }
     @media ${device.laptop} {
       top: 23%;
-      /* right: 7%; */
       right: 0%;
-
       width: 35%;
       height: 70%;
     }
@@ -628,7 +547,6 @@ const SpeechBubble = styled.div`
 
   @media ${device.laptop} {
     top: 17%;
-    /* right: 29%; */
     right: 22%;
   }
 
@@ -642,10 +560,6 @@ const SpeechBubbleText = styled.p`
 
   & br.hide {
     display: none;
-  }
-
-  & .interviewer-text {
-    /* font-size: 18px; */
   }
 `;
 const SpeechBubbleArrow = styled.div`
@@ -677,19 +591,8 @@ const SpeechBubbleArrow = styled.div`
 const Interview = () => {
   const [isChange, setIsChange] = useState(false);
   const [stack, setStack] = useState('');
-  const [isTechSelected, setIsTechSelected] = useState(false);
-
   const [enterInterviewMode, setEnterInterviewMode] = useState(false);
   const [typeOfQuestionDraw, setTypeOfQuestionDraw] = useState('');
-
-  // const [delay, setDelay] = useState(0);
-
-  const [isCompleted, setIsCompleted] = useState(true);
-
-  // const [questions, setQuestions] = useState(
-  //   JSON.parse(localStorage.getItem('questions')) || []
-  // );
-
   const [numOfTech, setNumOfTech] = useState(
     JSON.parse(localStorage.getItem('numOfTech')) || []
   );
@@ -753,12 +656,6 @@ const Interview = () => {
     localStorage.setItem('selectedTechs', JSON.stringify([]));
   }, [stack]);
 
-  useEffect(() => {
-    const selectedTechs = JSON.parse(localStorage.getItem('selectedTechs'));
-    selectedTechs.length > 0 && setIsTechSelected(true);
-    console.log('selectedTechs: ', selectedTechs);
-  }, [isChange]);
-
   return (
     <>
       {!enterInterviewMode && <Navbar />}
@@ -807,19 +704,8 @@ const Interview = () => {
                 <Title className="selectTechTitle">
                   {' '}
                   Choose Technology:
-                  {/* <Tooltip
-                    title="Listed below are techs that have at least 5 questions stored in our database"
-                    placement="bottom-end"
-                  >
-                    <div className="iconContainer">
-                      <InformationIcon />
-                    </div>
-                  </Tooltip> */}
                   <div className="iconContainer">
-                    <CustomTooltip
-                      className="tooltip"
-                      // text="Listed below are techs that have at least 5 questions stored in our database"
-                    >
+                    <CustomTooltip className="tooltip">
                       Listed here are techs that have at least 5 questions
                       stored in our database
                     </CustomTooltip>
@@ -856,7 +742,7 @@ const Interview = () => {
           </FieldsContainer>{' '}
         </InputsSection>{' '}
         <InterviewSection>
-          <img src={Jeff} />{' '}
+          <img src={Jeff} alt="interviewer man" />{' '}
           <PulseButton
             className={stack ? 'active' : null}
             onClick={handleEnterInterviewMode}

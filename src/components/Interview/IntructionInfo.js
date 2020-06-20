@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 import { device } from '../mediaQueries/media';
@@ -21,7 +21,6 @@ const InfoContainer = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  /* z-index: 10; */
 `;
 
 const InfoContent = styled.div`
@@ -31,7 +30,6 @@ const InfoContent = styled.div`
   border: 1px solid #a6a6a6;
   border-radius: 4px;
   background-color: rgba(255, 255, 255, 0.7);
-  /* margin: 0 auto; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -50,8 +48,6 @@ const InfoContent = styled.div`
 
   &.hide {
     display: none;
-    /* opacity: 0;
-    transform: scale(0); */
   }
 
   & .skip {
@@ -78,10 +74,6 @@ const InfoContentText = styled.h3`
   margin-bottom: 5px;
   line-height: 1.3;
   text-align: left;
-
-  /* top: 50%;
-  transform: translateY(-50%); */
-
   &.goodluck {
     font-size: 24px;
   }
@@ -122,7 +114,6 @@ const Instruction = ({
   questions,
   activateOverlay,
   setIsQuestion,
-  // getRandomQuestions,
   setDrawnQuestions,
   typeOfQuestionDraw,
 }) => {
@@ -134,16 +125,9 @@ const Instruction = ({
     JSON.parse(localStorage.getItem('selectedTechs')) || []
   );
 
-  const [info, setInfo] = useState(
-    'You will be asked 5 questions from the selected category.'
-  );
-
   const oneCategory = 'You will be asked 5';
   const manyCats =
     'You will be asked 1 question for each of these technologies';
-
-  // const manyCategories =
-  //   'You will be asked 5 questions from each of the selected category.';
 
   const questionTime = 'For each question You will be given 1 min to answer.';
   const questionTimeEnd =
@@ -162,16 +146,9 @@ const Instruction = ({
     let categories = selectedCategories.join(', ');
     switch (step) {
       case 1:
-        // return selectedCategories.length > 1
-        //   ? `${oneCategory} ${selectedCategories.join(', ')}`
-        //   : null;
-        // break;
         return typeOfInterview === 'many-categories'
           ? `${manyCats} ${categories} questions + 1 HR question.`
           : `${oneCategory} ${categories} questions + 1 HR question.`;
-
-        // return `${oneCategory} ${selectedCategories.join(', ')}`;
-
         break;
 
       case 2:
@@ -198,17 +175,11 @@ const Instruction = ({
     typeOfDistribution,
     saveDrawnQuestions
   ) => {
-    console.log('DrawnQuestions FUNCTIOn');
-    console.log('typeOfDistribution: ', typeOfDistribution);
-
     const selectedNumbers = [];
     const selectedQuestions = [];
 
     // GET HR QUESTION
-    // console.log('setOfQuestions: ', setOfQuestions);
-
     let randomNumberQ = randomNumber(0, setOfQuestions.HR.length);
-    console.log('HR RANDOM NUMBER: ', randomNumberQ);
     let selectedQuestion = setOfQuestions.HR[randomNumberQ];
     selectedQuestions.push(selectedQuestion);
 
@@ -234,55 +205,34 @@ const Instruction = ({
       }
     } else if (typeOfDistribution === 'between-categories') {
       const numOfCat = selectedCategories.length;
-      console.log('numOfCat: ', numOfCat);
-
       const selectedQuestionsId = [];
       for (let i = 0; i < 5; i++) {
-        console.log('hello');
         let randomNumberCategory = randomNumber(0, numOfCat);
-        console.log('randomNumberCategory: ', randomNumberCategory);
         let choosenCategory = selectedCategories[randomNumberCategory];
-        console.log('choosenCategory: ', choosenCategory);
-
         let randomNumberQuestion = randomNumber(
           0,
           setOfQuestions[choosenCategory].length
         );
-        console.log('randomNumberQuestion: ', randomNumberQuestion);
-
         let choosenQuestion =
           setOfQuestions[choosenCategory][randomNumberQuestion];
-        console.log('choosenQuestion: ', choosenQuestion);
-
         if (!selectedQuestionsId.includes(choosenQuestion.id)) {
-          console.log('if (!selectedQuestionsId.includes: ', choosenQuestion);
-
           selectedQuestions.push(choosenQuestion);
           selectedQuestionsId.push(choosenQuestion.id);
         } else i -= 1;
       }
     } else if (typeOfDistribution === 'many-categories') {
-      // while (selectedQuestions.length < 4) {
       selectedCategories.forEach((category) => {
         let randomNumberQ = randomNumber(0, setOfQuestions[category].length);
         selectedQuestions.push(setOfQuestions[category][randomNumberQ]);
       });
-      // }
     }
-    console.log('DrawnQuestions: ', selectedQuestions);
-
     selectedQuestions.length === 6 && saveDrawnQuestions(selectedQuestions);
-    selectedQuestions.length === 6 &&
-      console.log('DrawnQuestions: ', selectedQuestions);
   };
 
   const handleSkip = () => {
     activateOverlay(false);
     setIsQuestion(true);
     setHide('hide');
-    // getRandomQuestions()setOfQuestions,
-    // selectedCategories,
-    // typeOfDistribution
   };
 
   useEffect(() => {
@@ -294,9 +244,6 @@ const Instruction = ({
   }, [step]);
 
   useEffect(() => {
-    console.log('questions: ', questions);
-    console.log('selectedCategories: ', questions);
-
     getRandomQuestions(
       questions,
       selectedCategories,
@@ -316,8 +263,6 @@ const Instruction = ({
           {handleIntruction(step, typeOfQuestionDraw)}
         </InfoContentText>
         <ButtonContainer>
-          {/* <NextButton onClick={() => handleIntruction('back')}>back</NextButton> */}
-          {/* <NextButton onClick={() => handleIntruction('next')}>next</NextButton> */}
           {step > 1 && (
             <NextButton onClick={() => setStep(step - 1)}>back</NextButton>
           )}

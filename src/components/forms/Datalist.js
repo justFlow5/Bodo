@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import SearchIcon from '@material-ui/icons/Search';
 import { device } from '../mediaQueries/media';
@@ -31,11 +31,6 @@ const LanguageDatalist = styled.input`
     -moz-box-shadow: 0px 0px 12px 0px rgba(32, 10, 199, 1);
     box-shadow: 0px 0px 12px 0px rgba(32, 10, 199, 1);
     color: white;
-
-    & + svg {
-      /* opacity: 1; */
-      /* fill: white; */
-    }
   }
 
   &::placeholder {
@@ -44,16 +39,13 @@ const LanguageDatalist = styled.input`
   }
 
   &:hover {
-    /* opacity: 1; */
     color: white;
-
     &::placeholder {
       color: white;
     }
   }
 
   &:hover ~ svg {
-    /* opacity: 1; */
     fill: white;
   }
 
@@ -76,20 +68,12 @@ const LanguageDatalist = styled.input`
 
 const Datalist = ({ ref, setCategory, technologies }) => {
   const datalistRef = useRef(null);
-
   const allTechs = technologies.map((tech) => tech[0]);
-
-  console.log();
   const isTech = (inputValue) => {
     const selectedValue = allTechs.find(
       (tech) => tech.toLowerCase() === inputValue.toLowerCase()
     );
-
     if (selectedValue) setCategory(selectedValue);
-
-    // if (allTechs.includes(inputValue.toLowerCase())) {
-    //   setCategory(inputValue);
-    // }
   };
 
   return (
@@ -108,7 +92,6 @@ const Datalist = ({ ref, setCategory, technologies }) => {
           <option value={tech[0]} />
         ))}{' '}
       </datalist>{' '}
-      {console.log('REF: ', ref)}{' '}
     </InputContainer>
   );
 };

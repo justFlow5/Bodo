@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import 'reset-css';
 import AppRouter from './router/AppRouter';
 
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   *,
@@ -18,20 +18,12 @@ const GlobalStyle = createGlobalStyle`
 
 html {
   height: 100%;
-  /* scroll-behavior: smooth; */
 }
 
   body {
     margin: 0;
-    /* font-family: 'Roboto', sans-serif; */
     font-family: 'Montserrat', sans-serif;
-  /* -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
-  /* background: #f7fbdf; */
-  /* background: #E1ECF9; */
-  /* background: #acccf1; */
   background: #e1ecf9;
-  /* height: 100%; */
   position: relative;
   }
 

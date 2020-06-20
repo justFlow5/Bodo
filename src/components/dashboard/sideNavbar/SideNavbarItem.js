@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { device } from '../../mediaQueries/media';
 
 const SideNavbarItem = styled.li`

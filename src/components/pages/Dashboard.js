@@ -230,6 +230,7 @@ const Dashboard = () => {
       } else {
         // set flag to null and toggle view of the page
         setCategory('');
+        return;
       }
     });
   };

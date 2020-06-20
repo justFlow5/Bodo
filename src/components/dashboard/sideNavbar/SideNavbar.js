@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
-import styled, { keyframes } from 'styled-components';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 import { device } from '../../mediaQueries/media';
 
 import Datalist from '../../forms/Datalist';
