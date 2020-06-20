@@ -8,6 +8,8 @@ Fancy, intuitive, eye-catching Interview Simulator App that helps its users prep
 
 Website is hosted on Netlify and it's available for [preview].
 
+[preview]: https://bodo-jf.netlify.app/
+
 ## Installation
 
 Clone this repository and install dependencies inside project directory.
@@ -27,5 +29,7 @@ npm start
 ```
 
 Created with [Create React App](https://github.com/facebook/create-react-app).
+
 Styled with [Styled-Components](https://github.com/styled-components/styled-components).
+
 [preview]: https://bodo-jf.netlify.app/
