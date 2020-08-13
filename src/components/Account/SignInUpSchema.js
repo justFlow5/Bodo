@@ -123,6 +123,10 @@ const LogoHolder = styled.div`
   @media ${device.mobileM} {
     margin-bottom: 45px;
   }
+
+  @media ${device.tablet} {
+    margin-bottom: 30px;
+  }
   & span {
     font-family: 'Merienda', cursive;
     font-size: 45px;
@@ -153,7 +157,7 @@ const LogoHolder = styled.div`
       width: 75px;
     }
     @media ${device.tablet} {
-      width: 80px;
+      width: 60px;
     }
   }
 `;
