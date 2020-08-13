@@ -589,7 +589,6 @@ const SpeechBubbleArrow = styled.div`
 `;
 
 const Interview = () => {
-  const [isChange, setIsChange] = useState(false);
   const [stack, setStack] = useState('');
   const [enterInterviewMode, setEnterInterviewMode] = useState(false);
   const [typeOfQuestionDraw, setTypeOfQuestionDraw] = useState('');
@@ -658,7 +657,8 @@ const Interview = () => {
 
   return (
     <>
-      {!enterInterviewMode && <Navbar />}
+      {' '}
+      {!enterInterviewMode && <Navbar />}{' '}
       <InterviewPage>
         <InputsSection>
           <FieldsContainer>
@@ -673,7 +673,7 @@ const Interview = () => {
               />{' '}
               <Label htmlFor="frontend235325324322423">
                 <Frontend2 /> <h3 className="title"> Frontend </h3>{' '}
-              </Label>
+              </Label>{' '}
               <Input
                 type="radio"
                 value="backend"
@@ -683,7 +683,7 @@ const Interview = () => {
               />{' '}
               <Label htmlFor="backend432354325234">
                 <Backend /> <h3 className="title"> Backend </h3>{' '}
-              </Label>
+              </Label>{' '}
               <Input
                 type="radio"
                 value="fullstack"
@@ -695,10 +695,10 @@ const Interview = () => {
                 <Mean /> <h3 className="title"> Fullstack </h3>{' '}
               </Label>{' '}
               {/* </form> */}{' '}
-            </FieldsList>
+            </FieldsList>{' '}
             {/* ##################################################################### */}{' '}
             {/* ############################### TECH SECTIONS        ################*/}{' '}
-            {/* ##################################################################### */}
+            {/* ##################################################################### */}{' '}
             {stack && (
               <>
                 <Title className="selectTechTitle">
@@ -707,13 +707,14 @@ const Interview = () => {
                   <div className="iconContainer">
                     <CustomTooltip className="tooltip">
                       Listed here are techs that have at least 5 questions
-                      stored in our database
-                    </CustomTooltip>
+                      stored in our database{' '}
+                    </CustomTooltip>{' '}
                     <InformationIcon />
-                  </div>
+                  </div>{' '}
                 </Title>{' '}
                 <TechsContainer className={stack ? 'spaceBottom' : null}>
                   <TechsList>
+                    {' '}
                     {listStack(stack, numOfTech).map((singleTech, id) => {
                       let newId = uuid();
                       return (
@@ -722,7 +723,7 @@ const Interview = () => {
                             id={newId}
                             singleTech={singleTech}
                             updateSelectedData={updateSelectedData}
-                          />
+                          />{' '}
                           <TechsItemWrapper
                             className="checkbox-label-wrapper"
                             delay={id / 4}
@@ -734,11 +735,11 @@ const Interview = () => {
                           </TechsItemWrapper>{' '}
                         </TechItemContainer>
                       );
-                    })}
+                    })}{' '}
                   </TechsList>{' '}
-                </TechsContainer>
+                </TechsContainer>{' '}
               </>
-            )}
+            )}{' '}
           </FieldsContainer>{' '}
         </InputsSection>{' '}
         <InterviewSection>
@@ -747,8 +748,8 @@ const Interview = () => {
             className={stack ? 'active' : null}
             onClick={handleEnterInterviewMode}
           >
-            Start
-          </PulseButton>
+            Start{' '}
+          </PulseButton>{' '}
           <SpeechBubble>
             <SpeechBubbleText>
               <div>
@@ -777,7 +778,7 @@ const Interview = () => {
                       <p className="interviewer-text"> Hi!My name is Jeff. </p>{' '}
                       <Typist.Delay ms={1250} />{' '}
                       <p className="interviewer-text"> Nice to meet you! </p>{' '}
-                      <Typist.Backspace count={info1.length + 4} delay={1000} />
+                      <Typist.Backspace count={info1.length + 4} delay={1000} />{' '}
                       <p className="interviewer-text">
                         Before we start our interview, please fill the required
                         fields.{' '}
@@ -789,14 +790,13 @@ const Interview = () => {
             </SpeechBubbleText>{' '}
             <SpeechBubbleArrow />
           </SpeechBubble>{' '}
-        </InterviewSection>
-        {/* INTERVIEW MODE */}
-        {/* {enterInterviewMode && ( */}
+        </InterviewSection>{' '}
+        {/* INTERVIEW MODE */} {/* {enterInterviewMode && ( */}{' '}
         <InterviewMode
           enterInterviewMode={enterInterviewMode}
           typeOfQuestionDraw={typeOfQuestionDraw}
-        />
-        {/* )} */}
+        />{' '}
+        {/* )} */}{' '}
       </InterviewPage>{' '}
     </>
   );

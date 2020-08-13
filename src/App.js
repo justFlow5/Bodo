@@ -65,7 +65,6 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-
       <AppRouter />
     </ThemeProvider>
   );

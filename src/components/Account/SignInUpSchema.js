@@ -138,6 +138,10 @@ const LogoHolder = styled.div`
     @media ${device.tablet} {
       font-size: 70px;
     }
+
+    @media ${device.laptop} {
+      font-size: 60px;
+    }
   }
   & img {
     display: inline-block;
@@ -164,11 +168,6 @@ const SignIpUpWindow = styled.div`
   -webkit-box-shadow: 0px 0px 20px -6px rgba(0, 0, 128, 1);
   -moz-box-shadow: 0px 0px 20px -6px rgba(0, 0, 128, 1);
   box-shadow: 0px 0px 20px -6px rgba(0, 0, 128, 1);
-
-  @media ${device.mobileM} {
-  }
-  @media ${device.mobileL} {
-  }
 
   @media ${device.mobileL} {
     max-width: 85vw;
@@ -235,9 +234,9 @@ const ButtonContainer = styled.div`
     @media ${device.tablet} {
       padding-bottom: 70px;
     }
-    @media ${device.laptop} {
+    /* @media ${device.laptop} {
       padding-bottom: 80px;
-    }
+    } */
   }
 `;
 
